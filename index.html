@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>StockPro · ইনভেন্টরি</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        :root {
+            --bg: #F2F5FC;
+            --surface: #FFF;
+            --sf2: #EEF2FA;
+            --sf3: #E5EAF5;
+            --bdr: #E0E8F5;
+            --bdr2: #C5D0E8;
+            --tx: #0F172A;
+            --tx2: #475569;
+            --tx3: #94A3B8;
+            --tx4: #CBD5E1;
+            --acc: #3B6CF4;
+            --acc2: #2952D9;
+            --acc-l: #EEF2FF;
+            --acc-b: #C7D2FE;
+            --grn: #10B981;
+            --grn2: #059669;
+            --grn-l: #ECFDF5;
+            --grn-b: #6EE7B7;
+            --red: #EF4444;
+            --red-l: #FEF2F2;
+            --red-b: #FECACA;
+            --amb: #F59E0B;
+            --amb-l: #FFFBEB;
+            --amb-b: #FDE68A;
+            --pur: #8B5CF6;
+            --pur-l: #F5F3FF;
+            --r6: 6px;
+            --r8: 8px;
+            --r10: 10px;
+            --r12: 12px;
+            --r14: 14px;
+            --r16: 16px;
+            --r20: 20px;
+            --s1: 0 1px 3px rgba(15, 23, 42, .06), 0 1px 2px rgba(15, 23, 42, .04);
+            --s2: 0 4px 12px rgba(15, 23, 42, .08), 0 2px 4px rgba(15, 23, 42, .05);
+            --s3: 0 8px 24px rgba(15, 23, 42, .10), 0 4px 8px rgba(15, 23, 42, .06);
+            --nav: 64px;
+            --top: 58px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg)
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            color: var(--tx);
+            display: flex;
+            flex-direction: column;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            height: 100%;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            height: var(--top);
+            flex-shrink: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--bdr);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            z-index: 60;
+            box-shadow: var(--s1);
+        }
+
+        .t-left {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .t-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--r10);
+            background: linear-gradient(135deg, #3B6CF4, #2141c2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            box-shadow: 0 2px 8px rgba(59, 108, 244, .35);
+        }
+
+        .t-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tx);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.1
+        }
+
+        .t-sub {
+            font-size: 11px;
+            color: var(--tx3);
+            margin-top: 1px
+        }
+
+        .t-right {
+            display: flex;
+            align-items: center;
+            gap: 7px
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 11px;
+            border-radius: 20px;
+            border: 1.5px solid var(--bdr2);
+            background: var(--sf2);
+            font-size: 12px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            color: var(--tx2);
+            cursor: pointer;
+            transition: all .15s;
+        }
+
+        .lang-btn.bn {
+            background: var(--grn-l);
+            border-color: var(--grn-b);
+            color: var(--grn2)
+        }
+
+        .lang-btn.en {
+            background: var(--acc-l);
+            border-color: var(--acc-b);
+            color: var(--acc)
+        }
+
+        .lang-btn:active {
+            transform: scale(.93)
+        }
+
+        .page-chip {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--acc-l);
+            border: 1px solid var(--acc-b);
+            color: var(--acc);
+        }
+
+        /* SCROLL */
+        .scr {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 14px 13px 18px
+        }
+
+        .scr::-webkit-scrollbar {
+            display: none
+        }
+
+        /* PAGES */
+        .page {
+            display: none
+        }
+
+        .page.active {
+            display: block
+        }
+
+        /* STAT GRID */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-bottom: 14px
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r14);
+            padding: 13px 13px 11px;
+            box-shadow: var(--s1);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            opacity: .1
+        }
+
+        .sc-blue::after {
+            background: var(--acc)
+        }
+
+        .sc-green::after {
+            background: var(--grn)
+        }
+
+        .sc-purple::after {
+            background: var(--pur)
+        }
+
+        .sc-amber::after {
+            background: var(--amb)
+        }
+
+        .stat-ic {
+            font-size: 17px;
+            line-height: 1
+        }
+
+        .stat-lbl {
+            font-size: 11px;
+            color: var(--tx3);
+            font-weight: 500
+        }
+
+        .stat-val {
+            font-size: 21px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1
+        }
+
+        .sc-blue .stat-val {
+            color: var(--acc)
+        }
+
+        .sc-green .stat-val {
+            color: var(--grn)
+        }
+
+        .sc-purple .stat-val {
+            color: var(--pur)
+        }
+
+        .sc-amber .stat-val {
+            color: var(--amb)
+        }
+
+        /* CARD */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r16);
+            padding: 15px;
+            margin-bottom: 13px;
+            box-shadow: var(--s1)
+        }
+
+        .card-hd {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--bdr)
+        }
+
+        .card-ic {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--r8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0
+        }
+
+        .ci-blue {
+            background: var(--acc-l)
+        }
+
+        .ci-green {
+            background: var(--grn-l)
+        }
+
+        .ci-amber {
+            background: var(--amb-l)
+        }
+
+        .ci-purple {
+            background: var(--pur-l)
+        }
+
+        .card-ht {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tx)
+        }
+
+        .card-hs {
+            font-size: 11px;
+            color: var(--tx3);
+            margin-top: 1px
+        }
+
+        /* FORM */
+        .fld {
+            margin-bottom: 11px
+        }
+
+        .lbl {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tx2);
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .inp {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1.5px solid var(--bdr);
+            border-radius: var(--r10);
+            font-size: 14px;
+            font-family: 'Hind Siliguri', sans-serif;
+            color: var(--tx);
+            background: var(--surface);
+            outline: none;
+            transition: border .15s, box-shadow .15s;
+            -webkit-appearance: none;
+        }
+
+        .inp:focus {
+            border-color: var(--acc);
+            box-shadow: 0 0 0 3px rgba(59, 108, 244, .12)
+        }
+
+        .inp::placeholder {
+            color: var(--tx4)
+        }
+
+        .inp.ro {
+            background: var(--sf2);
+            color: var(--tx3)
+        }
+
+        .inp.mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500
+        }
+
+        .g2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+
+        /* PAY BUTTONS */
+        .pay-grp {
+            display: flex;
+            gap: 7px
+        }
+
+        .pay-opt {
+            flex: 1;
+            padding: 10px 4px;
+            border: 1.5px solid var(--bdr);
+            border-radius: var(--r10);
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Hind Siliguri', sans-serif;
+            cursor: pointer;
+            background: var(--surface);
+            color: var(--tx2);
+            text-align: center;
+            line-height: 1.5;
+            transition: all .14s;
+        }
+
+        .pay-opt.active {
+            border-color: var(--acc);
+            background: var(--acc-l);
+            color: var(--acc);
+            box-shadow: 0 0 0 2px rgba(59, 108, 244, .12)
+        }
+
+        .pay-opt:active {
+            transform: scale(.95)
+        }
+
+        /* BUTTON */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--r12);
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Hind Siliguri', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            transition: all .14s;
+        }
+
+        .btn-p {
+            background: var(--acc);
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(59, 108, 244, .28)
+        }
+
+        .btn-p:active {
+            background: var(--acc2);
+            transform: scale(.98);
+            box-shadow: none
+        }
+
+        .btn-g {
+            background: var(--grn);
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, .26)
+        }
+
+        .btn-g:active {
+            background: var(--grn2);
+            transform: scale(.98);
+            box-shadow: none
+        }
+
+        /* SCAN ROW */
+        .scan-row {
+            display: flex;
+            gap: 8px;
+            position: relative;
+            margin-bottom: 10px
+        }
+
+        .scan-row .inp {
+            flex: 1
+        }
+
+        .scan-cam {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: var(--r10);
+            background: var(--acc);
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(59, 108, 244, .30);
+            transition: all .14s;
+        }
+
+        .scan-cam:active {
+            transform: scale(.92);
+            background: var(--acc2)
+        }
+
+        /* SUGGEST */
+        .sug-wrap {
+            position: relative
+        }
+
+        .sug-list {
+            position: absolute;
+            top: calc(100% + 3px);
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border: 1.5px solid var(--acc-b);
+            border-radius: var(--r12);
+            box-shadow: var(--s3);
+            z-index: 80;
+            max-height: 210px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .sug-list::-webkit-scrollbar {
+            display: none
+        }
+
+        .sug-item {
+            padding: 11px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid var(--bdr);
+            transition: background .1s;
+        }
+
+        .sug-item:last-child {
+            border-bottom: none
+        }
+
+        .sug-item:active {
+            background: var(--acc-l)
+        }
+
+        .sug-nm {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--tx)
+        }
+
+        .sug-cd {
+            font-size: 11px;
+            color: var(--tx3);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 2px
+        }
+
+        .sug-rt {
+            text-align: right;
+            flex-shrink: 0
+        }
+
+        .sug-pr {
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--acc)
+        }
+
+        .sug-st {
+            font-size: 11px;
+            color: var(--tx3);
+            margin-top: 2px
+        }
+
+        /* LIST ITEM (purchase) */
+        .list-row {
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r14);
+            padding: 13px 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            box-shadow: var(--s1);
+            transition: all .14s;
+            cursor: default;
+        }
+
+        .li-code {
+            background: var(--acc-l);
+            color: var(--acc);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: var(--r6);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            border: 1px solid var(--acc-b);
+            flex-shrink: 0;
+        }
+
+        .li-body {
+            flex: 1;
+            min-width: 0
+        }
+
+        .li-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--tx);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .li-sub {
+            font-size: 12px;
+            color: var(--tx3);
+            margin-top: 2px
+        }
+
+        .li-rt {
+            text-align: right;
+            flex-shrink: 0
+        }
+
+        .li-price {
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--tx)
+        }
+
+        .li-qty {
+            font-size: 11px;
+            color: var(--tx3);
+            margin-top: 3px
+        }
+
+        /* CART ITEM */
+        .cart-row {
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r12);
+            padding: 11px 12px;
+            margin-bottom: 7px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: var(--s1);
+        }
+
+        .cr-body {
+            flex: 1;
+            min-width: 0
+        }
+
+        .cr-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--tx);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .cr-meta {
+            font-size: 11px;
+            color: var(--tx3);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 3px
+        }
+
+        .cr-total {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--acc);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 2px
+        }
+
+        .qty-ctrl {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0
+        }
+
+        .qb {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--r8);
+            border: 1.5px solid var(--bdr2);
+            background: var(--sf2);
+            color: var(--tx);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .12s;
+        }
+
+        .qb:active {
+            background: var(--acc);
+            border-color: var(--acc);
+            color: #fff;
+            transform: scale(.9)
+        }
+
+        .qn {
+            font-size: 15px;
+            font-weight: 700;
+            min-width: 26px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        .del-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--r8);
+            border: 1.5px solid var(--red-b);
+            background: var(--red-l);
+            color: var(--red);
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .12s;
+        }
+
+        .del-btn:active {
+            transform: scale(.88)
+        }
+
+        /* BILL */
+        .b-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--bdr)
+        }
+
+        .b-row:last-child {
+            border-bottom: none
+        }
+
+        .b-lbl {
+            font-size: 13px;
+            color: var(--tx2);
+            font-weight: 500
+        }
+
+        .b-val {
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        .b-row.b-tot {
+            background: var(--sf2);
+            border-radius: var(--r10);
+            padding: 12px 13px;
+            margin: 8px 0;
+            border: 1px solid var(--bdr);
+        }
+
+        .b-row.b-tot .b-lbl {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tx)
+        }
+
+        .b-row.b-tot .b-val {
+            font-size: 18px;
+            color: var(--grn)
+        }
+
+        .b-inp {
+            width: 110px;
+            padding: 7px 10px;
+            border: 1.5px solid var(--bdr);
+            border-radius: var(--r8);
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--tx);
+            background: var(--surface);
+            outline: none;
+            text-align: right;
+            transition: border .15s;
+        }
+
+        .b-inp:focus {
+            border-color: var(--acc);
+            box-shadow: 0 0 0 3px rgba(59, 108, 244, .1)
+        }
+
+        .b-due {
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--red)
+        }
+
+        /* STOCK */
+        .sto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 13px
+        }
+
+        .sto-box {
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r12);
+            padding: 11px 8px;
+            text-align: center;
+            box-shadow: var(--s1);
+        }
+
+        .sto-v {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        .sto-l {
+            font-size: 10px;
+            color: var(--tx3);
+            font-weight: 500;
+            margin-top: 3px
+        }
+
+        .sto-box.sb-bl .sto-v {
+            color: var(--acc)
+        }
+
+        .sto-box.sb-am .sto-v {
+            color: var(--amb)
+        }
+
+        .sto-box.sb-rd .sto-v {
+            color: var(--red)
+        }
+
+        /* STOCK ROWS */
+        .stk-row {
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r14);
+            padding: 12px 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            box-shadow: var(--s1);
+        }
+
+        .stk-row.s-low {
+            border-color: var(--amb-b);
+            background: #fffdf5
+        }
+
+        .stk-row.s-out {
+            border-color: var(--red-b);
+            background: #fff8f8
+        }
+
+        .s-code {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: var(--r6);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .s-code.c-ok {
+            background: var(--acc-l);
+            color: var(--acc);
+            border: 1px solid var(--acc-b)
+        }
+
+        .s-code.c-low {
+            background: var(--amb-l);
+            color: var(--amb);
+            border: 1px solid var(--amb-b)
+        }
+
+        .s-code.c-out {
+            background: var(--red-l);
+            color: var(--red);
+            border: 1px solid var(--red-b)
+        }
+
+        .s-body {
+            flex: 1;
+            min-width: 0
+        }
+
+        .s-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--tx);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .s-sup {
+            font-size: 12px;
+            color: var(--tx3);
+            margin-top: 2px
+        }
+
+        .s-rt {
+            text-align: right;
+            flex-shrink: 0
+        }
+
+        .s-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700
+        }
+
+        .bg-ok {
+            background: var(--grn-l);
+            color: var(--grn2);
+            border: 1px solid var(--grn-b)
+        }
+
+        .bg-low {
+            background: var(--amb-l);
+            color: var(--amb);
+            border: 1px solid var(--amb-b)
+        }
+
+        .bg-out {
+            background: var(--red-l);
+            color: var(--red);
+            border: 1px solid var(--red-b)
+        }
+
+        .s-qty {
+            font-size: 11px;
+            color: var(--tx3);
+            margin-top: 4px
+        }
+
+        /* SEARCH BOX */
+        .srch {
+            position: relative;
+            margin-bottom: 13px
+        }
+
+        .srch .inp {
+            padding-left: 40px
+        }
+
+        .srch-ic {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none
+        }
+
+        /* SECTION HEADER */
+        .sec-hd {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .sec-t {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--tx2);
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .sec-pill {
+            background: var(--sf3);
+            border: 1px solid var(--bdr);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--tx3);
+            padding: 2px 10px;
+            border-radius: 20px
+        }
+
+        /* EMPTY */
+        .empty {
+            text-align: center;
+            padding: 36px 20px;
+            background: var(--surface);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r16);
+            margin-bottom: 8px;
+            box-shadow: var(--s1);
+        }
+
+        .empty-ic {
+            font-size: 40px;
+            margin-bottom: 10px;
+            opacity: .55
+        }
+
+        .empty-t {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tx2);
+            margin-bottom: 5px
+        }
+
+        .empty-s {
+            font-size: 12px;
+            color: var(--tx3)
+        }
+
+        /* BOTTOM NAV */
+        .bnav {
+            height: var(--nav);
+            flex-shrink: 0;
+            background: var(--surface);
+            border-top: 1px solid var(--bdr);
+            display: flex;
+            z-index: 60;
+            box-shadow: 0 -2px 14px rgba(15, 23, 42, .07);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .nt {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 7px 4px;
+            transition: all .14s;
+            position: relative;
+        }
+
+        .nt.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25%;
+            right: 25%;
+            height: 2.5px;
+            background: var(--acc);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .nt-ic {
+            width: 38px;
+            height: 26px;
+            border-radius: var(--r8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background .14s;
+        }
+
+        .nt.active .nt-ic {
+            background: var(--acc-l)
+        }
+
+        .nt-lbl {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--tx3);
+            font-family: 'Hind Siliguri', sans-serif;
+            transition: color .14s
+        }
+
+        .nt.active .nt-lbl {
+            color: var(--acc);
+            font-weight: 700
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: calc(var(--nav) + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(14px);
+            background: #1E293B;
+            color: #fff;
+            padding: 11px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Hind Siliguri', sans-serif;
+            z-index: 999;
+            opacity: 0;
+            transition: all .22s ease;
+            white-space: nowrap;
+            pointer-events: none;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, .22);
+        }
+
+        .toast.on {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        /* DIVIDER */
+        .dv {
+            height: 1px;
+            background: var(--bdr);
+            margin: 10px 0
+        }
+
+        /* SCANNER MODAL */
+        .scan-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(10, 15, 30, .92);
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .scan-modal.open {
+            display: flex
+        }
+
+        .scan-sheet {
+            width: 100%;
+            max-width: 480px;
+            background: #0f172a;
+            border-radius: 24px 24px 0 0;
+            padding: 0 0 32px;
+            animation: slideUp .25s ease;
+            overflow: hidden;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%)
+            }
+
+            to {
+                transform: translateY(0)
+            }
+        }
+
+        .scan-handle {
+            width: 40px;
+            height: 4px;
+            background: #ffffff33;
+            border-radius: 4px;
+            margin: 12px auto 0
+        }
+
+        .scan-title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px 10px
+        }
+
+        .scan-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            font-family: 'Hind Siliguri', sans-serif
+        }
+
+        .scan-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ffffff22;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scan-close:active {
+            background: #ffffff44
+        }
+
+        .scan-viewport {
+            position: relative;
+            width: 100%;
+            background: #000;
+            overflow: hidden
+        }
+
+        #scan-video {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 280px;
+            min-height: 200px
+        }
+
+        .scan-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none
+        }
+
+        .scan-frame {
+            width: 210px;
+            height: 155px;
+            position: relative
+        }
+
+        .scan-frame::before,
+        .scan-frame::after,
+        .scan-c3,
+        .scan-c4 {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-color: #fff;
+            border-style: solid
+        }
+
+        .scan-frame::before {
+            top: 0;
+            left: 0;
+            border-width: 3px 0 0 3px;
+            border-radius: 4px 0 0 0
+        }
+
+        .scan-frame::after {
+            top: 0;
+            right: 0;
+            border-width: 3px 3px 0 0;
+            border-radius: 0 4px 0 0
+        }
+
+        .scan-c3 {
+            bottom: 0;
+            left: 0;
+            border-width: 0 0 3px 3px;
+            border-radius: 0 0 0 4px
+        }
+
+        .scan-c4 {
+            bottom: 0;
+            right: 0;
+            border-width: 0 3px 3px 0;
+            border-radius: 0 0 4px 0
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3B6CF4, #60efff, #3B6CF4, transparent);
+            border-radius: 2px;
+            animation: scanLine 2s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(96, 239, 255, .7);
+        }
+
+        @keyframes scanLine {
+            0% {
+                top: 8px
+            }
+
+            50% {
+                top: calc(100% - 10px)
+            }
+
+            100% {
+                top: 8px
+            }
+        }
+
+        .scan-hint {
+            color: #ffffff77;
+            font-size: 12px;
+            text-align: center;
+            padding: 12px 20px 4px;
+            font-family: 'Hind Siliguri', sans-serif
+        }
+
+        .scan-result-bar {
+            display: none;
+            margin: 12px 16px 0;
+            background: #1a2744;
+            border: 1px solid var(--acc-b);
+            border-radius: var(--r10);
+            padding: 12px 14px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scan-result-bar.show {
+            display: flex
+        }
+
+        .srb-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--acc);
+            flex: 1
+        }
+
+        .srb-name {
+            font-size: 12px;
+            color: #ffffff88;
+            margin-top: 2px
+        }
+
+        .srb-btn {
+            padding: 8px 16px;
+            background: var(--acc);
+            color: #fff;
+            border: none;
+            border-radius: var(--r8);
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Hind Siliguri', sans-serif;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all .14s;
+        }
+
+        .srb-btn:active {
+            background: var(--acc2);
+            transform: scale(.96)
+        }
+
+        .scan-nf {
+            display: none;
+            margin: 12px 16px 0;
+            background: #2a1a1a;
+            border: 1px solid var(--red-b);
+            border-radius: var(--r10);
+            padding: 12px 14px;
+            font-size: 13px;
+            color: #ff9999;
+            text-align: center;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .scan-nf.show {
+            display: block
+        }
+
+        .scan-err {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 20px;
+            text-align: center
+        }
+
+        .scan-err.show {
+            display: flex
+        }
+
+        .scan-err-ic {
+            font-size: 38px;
+            margin-bottom: 10px
+        }
+
+        .scan-err-t {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-family: 'Hind Siliguri', sans-serif
+        }
+
+        .scan-err-s {
+            color: #ffffff55;
+            font-size: 12px;
+            font-family: 'Hind Siliguri', sans-serif
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="t-left">
+            <div class="t-logo">📦</div>
+            <div>
+                <div class="t-name" id="app-title">StockPro</div>
+                <div class="t-sub" id="app-sub">ইনভেন্টরি ম্যানেজার</div>
+            </div>
+        </div>
+        <div class="t-right">
+            <button class="lang-btn bn" id="lang-btn" onclick="toggleLang()">
+                <span id="l-flag">🇧🇩</span>
+                <span id="l-txt">BN</span>
+            </button>
+            <div class="page-chip" id="p-chip">আইটেম</div>
+        </div>
+    </header>
+
+    <!-- SCROLL AREA -->
+    <main class="scr" id="scr">
+
+        <!-- PAGE: ITEM -->
+        <div class="page active" id="page-item">
+            <div class="stat-grid">
+                <div class="stat-card sc-blue">
+                    <div class="stat-ic">📦</div>
+                    <div class="stat-lbl" id="sl-items">মোট আইটেম</div>
+                    <div class="stat-val" id="sv-items">0</div>
+                </div>
+                <div class="stat-card sc-green">
+                    <div class="stat-ic">🔢</div>
+                    <div class="stat-lbl" id="sl-qty">মোট পরিমাণ</div>
+                    <div class="stat-val" id="sv-qty">0</div>
+                </div>
+                <div class="stat-card sc-purple">
+                    <div class="stat-ic">💰</div>
+                    <div class="stat-lbl" id="sl-amt">মোট মূল্য</div>
+                    <div class="stat-val" id="sv-amt">৳0</div>
+                </div>
+                <div class="stat-card sc-amber">
+                    <div class="stat-ic">✅</div>
+                    <div class="stat-lbl" id="sl-paid">পরিশোধিত</div>
+                    <div class="stat-val" id="sv-paid">৳0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-hd">
+                    <div class="card-ic ci-blue">➕</div>
+                    <div>
+                        <div class="card-ht" id="ch-add">নতুন আইটেম যোগ করুন</div>
+                        <div class="card-hs" id="ch-add-s">Add New Item / Purchase</div>
+                    </div>
+                </div>
+                <div class="g2">
+                    <div class="fld">
+                        <label class="lbl" id="lb-code">আইটেম কোড *</label>
+                        <input class="inp mono" id="f-code" placeholder="ITM001">
+                    </div>
+                    <div class="fld">
+                        <label class="lbl" id="lb-name">আইটেম নাম *</label>
+                        <input class="inp" id="f-name" placeholder="পণ্যের নাম">
+                    </div>
+                </div>
+                <div class="fld">
+                    <label class="lbl" id="lb-sup">সরবরাহকারী</label>
+                    <input class="inp" id="f-sup" placeholder="সরবরাহকারীর নাম">
+                </div>
+                <div class="g2">
+                    <div class="fld">
+                        <label class="lbl" id="lb-price">একক মূল্য (৳)</label>
+                        <input class="inp mono" id="f-price" type="number" placeholder="0.00" oninput="calcItem()">
+                    </div>
+                    <div class="fld">
+                        <label class="lbl" id="lb-qty">পরিমাণ</label>
+                        <input class="inp mono" id="f-qty" type="number" placeholder="0" oninput="calcItem()">
+                    </div>
+                </div>
+                <div class="g2">
+                    <div class="fld">
+                        <label class="lbl" id="lb-tqty">মোট পরিমাণ</label>
+                        <input class="inp mono ro" id="f-tqty" readonly placeholder="0">
+                    </div>
+                    <div class="fld">
+                        <label class="lbl" id="lb-tamt">মোট মূল্য (৳)</label>
+                        <input class="inp mono ro" id="f-tamt" readonly placeholder="0.00">
+                    </div>
+                </div>
+                <div class="fld" style="margin-bottom:14px">
+                    <label class="lbl" id="lb-paid">পরিশোধিত (৳)</label>
+                    <input class="inp mono" id="f-paid" type="number" placeholder="0.00">
+                </div>
+                <button class="btn btn-p" onclick="addItem()">
+                    <span>✅</span><span id="btn-save">আইটেম সংরক্ষণ করুন</span>
+                </button>
+            </div>
+
+            <div class="sec-hd">
+                <div class="sec-t">📋 <span id="st-pur">ক্রয় তালিকা</span></div>
+                <div class="sec-pill" id="ip-pill">0টি</div>
+            </div>
+            <div id="item-list"></div>
+        </div>
+
+        <!-- PAGE: SALES -->
+        <div class="page" id="page-sales">
+            <div class="card">
+                <div class="card-hd">
+                    <div class="card-ic ci-blue">🔍</div>
+                    <div>
+                        <div class="card-ht" id="ch-scan">স্ক্যান / খুঁজুন</div>
+                        <div class="card-hs" id="ch-scan-s">Scan or Search Item</div>
+                    </div>
+                </div>
+                <div class="sug-wrap">
+                    <div class="scan-row">
+                        <input class="inp" id="s-search" placeholder="কোড বা নাম লিখুন..." oninput="doSearch()">
+                        <button class="scan-cam" onclick="quickScan()" title="Quick Add">📷</button>
+                    </div>
+                    <div class="sug-list" id="sug-list"></div>
+                </div>
+                <div id="cart-body">
+                    <div class="empty" style="padding:20px 16px;border-radius:var(--r10)">
+                        <div class="empty-ic" style="font-size:30px">🛒</div>
+                        <div class="empty-t" id="ec-t" style="font-size:13px">কোনো আইটেম যোগ হয়নি</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-hd">
+                    <div class="card-ic ci-green">👤</div>
+                    <div>
+                        <div class="card-ht" id="ch-cust">গ্রাহক তথ্য</div>
+                        <div class="card-hs">Customer Info</div>
+                    </div>
+                </div>
+                <div class="fld">
+                    <label class="lbl" id="lb-cname">গ্রাহকের নাম</label>
+                    <input class="inp" id="cust-name" placeholder="গ্রাহকের নাম লিখুন">
+                </div>
+                <div class="fld" style="margin-bottom:0">
+                    <label class="lbl" id="lb-payby">পরিশোধ পদ্ধতি</label>
+                    <div class="pay-grp">
+                        <button class="pay-opt active" id="pay-cash" onclick="setPay('cash')">💵<br><span
+                                id="pc-lbl">নগদ</span></button>
+                        <button class="pay-opt" id="pay-bank" onclick="setPay('bank')">🏦<br><span
+                                id="pb-lbl">ব্যাংক</span></button>
+                        <button class="pay-opt" id="pay-mfs" onclick="setPay('mfs')">📱<br><span
+                                id="pm-lbl">বিকাশ/MFS</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-hd">
+                    <div class="card-ic ci-amber">💰</div>
+                    <div>
+                        <div class="card-ht" id="ch-bill">বিল সারসংক্ষেপ</div>
+                        <div class="card-hs">Bill Summary</div>
+                    </div>
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl" id="bl-sub">মোট</span>
+                    <span class="b-val" id="bv-sub">৳0.00</span>
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl" id="bl-disc">ছাড় (৳)</span>
+                    <input class="b-inp" id="bv-disc" type="number" placeholder="0" oninput="calcBill()">
+                </div>
+                <div class="b-row b-tot">
+                    <span class="b-lbl" id="bl-tot">মোট মূল্য</span>
+                    <span class="b-val" id="bv-tot">৳0.00</span>
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl" id="bl-paid">পরিশোধিত (৳)</span>
+                    <input class="b-inp" id="bv-paid" type="number" placeholder="0.00" oninput="calcDue()">
+                </div>
+                <div class="b-row">
+                    <span class="b-lbl" id="bl-due">বাকি</span>
+                    <span class="b-due" id="bv-due">৳0.00</span>
+                </div>
+                <div style="margin-top:14px">
+                    <button class="btn btn-g" onclick="completeSale()">
+                        <span>🧾</span><span id="btn-sale">বিক্রয় সম্পন্ন করুন</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: STOCK -->
+        <div class="page" id="page-stock">
+            <div class="srch">
+                <span class="srch-ic">🔍</span>
+                <input class="inp" id="stk-search" placeholder="কোড, নাম বা সরবরাহকারী খুঁজুন..."
+                    oninput="renderStock()">
+            </div>
+            <div class="sto-grid">
+                <div class="sto-box sb-bl">
+                    <div class="sto-v" id="st-tot">0</div>
+                    <div class="sto-l" id="stl-tot">মোট</div>
+                </div>
+                <div class="sto-box sb-am">
+                    <div class="sto-v" id="st-low">0</div>
+                    <div class="sto-l" id="stl-low">কম স্টক</div>
+                </div>
+                <div class="sto-box sb-rd">
+                    <div class="sto-v" id="st-out">0</div>
+                    <div class="sto-l" id="stl-out">শেষ</div>
+                </div>
+            </div>
+            <div class="sec-hd">
+                <div class="sec-t">📦 <span id="st-stk">স্টক তালিকা</span></div>
+                <div class="sec-pill" id="sp-pill">0টি</div>
+            </div>
+            <div id="stock-list"></div>
+        </div>
+
+    </main>
+
+    <!-- SCANNER MODAL -->
+    <div class="scan-modal" id="scan-modal">
+        <div class="scan-sheet">
+            <div class="scan-handle"></div>
+            <div class="scan-title-bar">
+                <div class="scan-title" id="scan-title-txt">📷 বারকোড স্ক্যান করুন</div>
+                <button class="scan-close" onclick="closeScanner()">✕</button>
+            </div>
+            <div class="scan-viewport">
+                <video id="scan-video" playsinline autoplay muted></video>
+                <div class="scan-overlay">
+                    <div class="scan-frame">
+                        <div class="scan-c3"></div>
+                        <div class="scan-c4"></div>
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scan-err" id="scan-err">
+                <div class="scan-err-ic">📵</div>
+                <div class="scan-err-t" id="scan-err-t">ক্যামেরা অ্যাক্সেস নেই</div>
+                <div class="scan-err-s" id="scan-err-s">ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন</div>
+            </div>
+            <div class="scan-hint" id="scan-hint-txt">বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন</div>
+            <div class="scan-result-bar" id="scan-result-bar">
+                <div style="flex:1;min-width:0">
+                    <div class="srb-code" id="srb-code"></div>
+                    <div class="srb-name" id="srb-name"></div>
+                </div>
+                <button class="srb-btn" id="srb-btn" onclick="confirmScanAdd()">যোগ করুন</button>
+            </div>
+            <div class="scan-nf" id="scan-nf"></div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bnav">
+        <button class="nt active" id="nt-item" onclick="goPage('item')">
+            <div class="nt-ic">📦</div>
+            <div class="nt-lbl" id="nl-item">আইটেম</div>
+        </button>
+        <button class="nt" id="nt-sales" onclick="goPage('sales')">
+            <div class="nt-ic">🛒</div>
+            <div class="nt-lbl" id="nl-sales">বিক্রয়</div>
+        </button>
+        <button class="nt" id="nt-stock" onclick="goPage('stock')">
+            <div class="nt-ic">📋</div>
+            <div class="nt-lbl" id="nl-stock">স্টক</div>
+        </button>
+    </nav>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        /* DATA */
+        let DB = {
+            items: JSON.parse(localStorage.getItem('sp2_items') || '[]'),
+            sales: JSON.parse(localStorage.getItem('sp2_sales') || '[]'),
+        };
+        function saveDB() {
+            localStorage.setItem('sp2_items', JSON.stringify(DB.items));
+            localStorage.setItem('sp2_sales', JSON.stringify(DB.sales));
+        }
+
+        /* LANG */
+        let LANG = localStorage.getItem('sp2_lang') || 'bn';
+        const TX = {
+            bn: {
+                appSub: 'ইনভেন্টরি ম্যানেজার',
+                ptag: { item: 'আইটেম', sales: 'বিক্রয়', stock: 'স্টক' },
+                slItems: 'মোট আইটেম', slQty: 'মোট পরিমাণ', slAmt: 'মোট মূল্য', slPaid: 'পরিশোধিত',
+                chAdd: 'নতুন আইটেম যোগ করুন', chAddS: 'Add New Item / Purchase',
+                lbCode: 'আইটেম কোড *', lbName: 'আইটেম নাম *', lbSup: 'সরবরাহকারী',
+                lbPrice: 'একক মূল্য (৳)', lbQty: 'পরিমাণ', lbTqty: 'মোট পরিমাণ', lbTamt: 'মোট মূল্য (৳)', lbPaid: 'পরিশোধিত (৳)',
+                phCode: 'ITM001', phName: 'পণ্যের নাম', phSup: 'সরবরাহকারীর নাম',
+                btnSave: 'আইটেম সংরক্ষণ করুন', stPur: 'ক্রয় তালিকা',
+                chScan: 'স্ক্যান / খুঁজুন', chScanS: 'Scan or Search Item', phSearch: 'কোড বা নাম লিখুন...',
+                ecT: 'কোনো আইটেম যোগ হয়নি', ecT2: 'কার্ট খালি', ecS2: 'আইটেম স্ক্যান বা খুঁজে যোগ করুন',
+                chCust: 'গ্রাহক তথ্য', lbCname: 'গ্রাহকের নাম', phCname: 'গ্রাহকের নাম লিখুন',
+                lbPayby: 'পরিশোধ পদ্ধতি', pcL: 'নগদ', pbL: 'ব্যাংক', pmL: 'বিকাশ/MFS',
+                chBill: 'বিল সারসংক্ষেপ', blSub: 'মোট', blDisc: 'ছাড় (৳)', blTot: 'মোট মূল্য', blPaid: 'পরিশোধিত (৳)', blDue: 'বাকি',
+                btnSale: 'বিক্রয় সম্পন্ন করুন',
+                phStkS: 'কোড, নাম বা সরবরাহকারী খুঁজুন...', stlTot: 'মোট', stlLow: 'কম স্টক', stlOut: 'শেষ',
+                stStk: 'স্টক তালিকা', nlItem: 'আইটেম', nlSales: 'বিক্রয়', nlStock: 'স্টক',
+                flag: '🇧🇩', ltxt: 'BN',
+                emT: 'কোনো আইটেম নেই', emS: 'উপরে ফর্ম থেকে যোগ করুন',
+                noR: 'কোনো ফলাফল নেই', noRS: 'ভিন্ন কিছু খোঁজ করুন',
+                supUnk: 'সরবরাহকারী অজানা', stkLbl: 'স্টক', qtyLbl: 'পরিমাণ',
+                bgOk: 'আছে', bgLow: 'কম', bgOut: 'শেষ',
+                tSaved: '✅ আইটেম সংরক্ষিত!', tUpd: '✅ স্টক আপডেট!', tNeed: '⚠️ কোড ও নাম আবশ্যক',
+                tOut: '⚠️ স্টক শেষ!', tNone: '⚠️ কোনো আইটেম নেই', tEmpty: '⚠️ কার্ট খালি!',
+                tAdd: '🛒 যোগ হয়েছে:', tDone: '✅ বিক্রয় সম্পন্ন! গ্রাহক:', tLang: '🇧🇩 বাংলা সক্রিয়',
+                guest: 'অতিথি', sfx: 'টি',
+                scanTitle: '📷 বারকোড স্ক্যান করুন', scanHint: 'বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন',
+                scanAdd: 'যোগ করুন', scanErrT: 'ক্যামেরা অ্যাক্সেস নেই', scanErrS: 'ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন',
+            },
+            en: {
+                appSub: 'Inventory Manager',
+                ptag: { item: 'Item', sales: 'Sales', stock: 'Stock' },
+                slItems: 'Total Items', slQty: 'Total Qty', slAmt: 'Total Amount', slPaid: 'Paid Amount',
+                chAdd: 'Add New Item', chAddS: 'Purchase Entry',
+                lbCode: 'Item Code *', lbName: 'Item Name *', lbSup: 'Supplier Name',
+                lbPrice: 'Unit Price (৳)', lbQty: 'Quantity', lbTqty: 'Total Qty', lbTamt: 'Total Amount (৳)', lbPaid: 'Paid Amount (৳)',
+                phCode: 'ITM001', phName: 'Product name', phSup: 'Supplier name',
+                btnSave: 'Save Item', stPur: 'Purchase List',
+                chScan: 'Scan / Search', chScanS: 'Scan or Search Item', phSearch: 'Enter code or name...',
+                ecT: 'No items added', ecT2: 'Cart Empty', ecS2: 'Scan or search to add items',
+                chCust: 'Customer Info', lbCname: 'Customer Name', phCname: 'Enter customer name',
+                lbPayby: 'Payment Method', pcL: 'Cash', pbL: 'Bank', pmL: 'MFS/bKash',
+                chBill: 'Bill Summary', blSub: 'Subtotal', blDisc: 'Discount (৳)', blTot: 'Total', blPaid: 'Paid Amount (৳)', blDue: 'Due',
+                btnSale: 'Complete Sale',
+                phStkS: 'Search by code, name or supplier...', stlTot: 'Total', stlLow: 'Low Stock', stlOut: 'Out of Stock',
+                stStk: 'Stock List', nlItem: 'Item', nlSales: 'Sales', nlStock: 'Stock',
+                flag: '🇬🇧', ltxt: 'EN',
+                emT: 'No Items Yet', emS: 'Add items using the form above',
+                noR: 'No Results Found', noRS: 'Try a different search',
+                supUnk: 'Unknown supplier', stkLbl: 'Stock', qtyLbl: 'Qty',
+                bgOk: 'In Stock', bgLow: 'Low', bgOut: 'Out',
+                tSaved: '✅ Item saved!', tUpd: '✅ Stock updated!', tNeed: '⚠️ Code & name required',
+                tOut: '⚠️ Out of stock!', tNone: '⚠️ No items found', tEmpty: '⚠️ Cart is empty!',
+                tAdd: '🛒 Added:', tDone: '✅ Sale done! Customer:', tLang: '🇬🇧 English Active',
+                guest: 'Guest', sfx: ' items',
+                scanTitle: '📷 Scan Barcode', scanHint: 'Hold barcode or QR code inside the frame',
+                scanAdd: 'Add Item', scanErrT: 'Camera access denied', scanErrS: 'Allow camera permission in browser settings',
+            }
+        };
+
+        function tx(k) { return TX[LANG][k] || '' }
+        function $id(id) { return document.getElementById(id) }
+        function _t(id, v) { const e = $id(id); if (e) e.textContent = v }
+        function _p(id, v) { const e = $id(id); if (e) e.placeholder = v }
+
+        function applyLang() {
+            const L = TX[LANG];
+            _t('app-sub', L.appSub);
+            $id('l-flag').textContent = L.flag;
+            $id('l-txt').textContent = L.ltxt;
+            const lb = $id('lang-btn'); lb.className = 'lang-btn ' + LANG;
+            const cp = document.querySelector('.page.active')?.id?.replace('page-', '') || 'item';
+            _t('p-chip', L.ptag[cp]);
+            // stats
+            _t('sl-items', L.slItems); _t('sl-qty', L.slQty); _t('sl-amt', L.slAmt); _t('sl-paid', L.slPaid);
+            // item form
+            _t('ch-add', L.chAdd); _t('ch-add-s', L.chAddS);
+            _t('lb-code', L.lbCode); _t('lb-name', L.lbName); _t('lb-sup', L.lbSup);
+            _t('lb-price', L.lbPrice); _t('lb-qty', L.lbQty); _t('lb-tqty', L.lbTqty); _t('lb-tamt', L.lbTamt); _t('lb-paid', L.lbPaid);
+            _p('f-code', L.phCode); _p('f-name', L.phName); _p('f-sup', L.phSup);
+            _t('btn-save', L.btnSave); _t('st-pur', L.stPur);
+            // sales
+            _t('ch-scan', L.chScan); _t('ch-scan-s', L.chScanS); _p('s-search', L.phSearch);
+            _t('ch-cust', L.chCust); _t('lb-cname', L.lbCname); _p('cust-name', L.phCname);
+            _t('lb-payby', L.lbPayby); _t('pc-lbl', L.pcL); _t('pb-lbl', L.pbL); _t('pm-lbl', L.pmL);
+            _t('ch-bill', L.chBill); _t('bl-sub', L.blSub); _t('bl-disc', L.blDisc); _t('bl-tot', L.blTot); _t('bl-paid', L.blPaid); _t('bl-due', L.blDue);
+            _t('btn-sale', L.btnSale);
+            // stock
+            _p('stk-search', L.phStkS); _t('stl-tot', L.stlTot); _t('stl-low', L.stlLow); _t('stl-out', L.stlOut); _t('st-stk', L.stStk);
+            // nav
+            _t('nl-item', L.nlItem); _t('nl-sales', L.nlSales); _t('nl-stock', L.nlStock);
+            // scanner
+            _t('scan-title-txt', L.scanTitle); _t('scan-hint-txt', L.scanHint); _t('srb-btn', L.scanAdd);
+            // re-render
+            renderItemList(); renderCart(); renderStock(); updateStats();
+        }
+
+        function toggleLang() {
+            LANG = LANG === 'bn' ? 'en' : 'bn';
+            localStorage.setItem('sp2_lang', LANG);
+            applyLang();
+            showToast(tx('tLang'));
+        }
+
+        /* NAV */
+        let curPage = 'item';
+        function goPage(p) {
+            if (curPage === p) return; curPage = p;
+            document.querySelectorAll('.page').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.nt').forEach(e => e.classList.remove('active'));
+            $id('page-' + p).classList.add('active');
+            $id('nt-' + p).classList.add('active');
+            _t('p-chip', TX[LANG].ptag[p]);
+            $id('scr').scrollTop = 0;
+            if (p === 'stock') renderStock();
+            if (p === 'sales') renderCart();
+        }
+
+        /* TOAST */
+        let tt;
+        function showToast(msg) {
+            const el = $id('toast'); el.textContent = msg; el.classList.add('on');
+            clearTimeout(tt); tt = setTimeout(() => el.classList.remove('on'), 2600);
+        }
+
+        /* ITEM PAGE */
+        function calcItem() {
+            const p = parseFloat($id('f-price').value) || 0;
+            const q = parseFloat($id('f-qty').value) || 0;
+            $id('f-tqty').value = q || '';
+            $id('f-tamt').value = q && p ? (p * q).toFixed(2) : '';
+        }
+
+        function addItem() {
+            const code = $id('f-code').value.trim();
+            const name = $id('f-name').value.trim();
+            if (!code || !name) { showToast(tx('tNeed')); return; }
+            const price = parseFloat($id('f-price').value) || 0;
+            const qty = parseFloat($id('f-qty').value) || 0;
+            const paid = parseFloat($id('f-paid').value) || 0;
+            const sup = $id('f-sup').value.trim();
+            const ex = DB.items.find(i => i.code === code);
+            if (ex) {
+                ex.qty += qty; ex.totalQty = (ex.totalQty || 0) + qty;
+                ex.totalAmt = (ex.totalAmt || 0) + (price * qty); ex.paidAmt = (ex.paidAmt || 0) + paid;
+                if (sup) ex.supplier = sup; if (price) ex.price = price;
+                showToast(tx('tUpd'));
+            } else {
+                DB.items.push({ code, name, supplier: sup, price, qty, totalQty: qty, totalAmt: price * qty, paidAmt: paid, date: new Date().toLocaleDateString('bn-BD') });
+                showToast(tx('tSaved'));
+            }
+            saveDB();
+            ['f-code', 'f-name', 'f-sup', 'f-price', 'f-qty', 'f-tqty', 'f-tamt', 'f-paid'].forEach(id => { const e = $id(id); if (e) e.value = ''; });
+            renderItemList(); updateStats();
+        }
+
+        function renderItemList() {
+            const el = $id('item-list');
+            const n = DB.items.length;
+            _t('ip-pill', n + (LANG === 'bn' ? tx('sfx') : ' items'));
+            if (!n) {
+                el.innerHTML = `<div class="empty"><div class="empty-ic">📦</div><div class="empty-t">${tx('emT')}</div><div class="empty-s">${tx('emS')}</div></div>`;
+                return;
+            }
+            el.innerHTML = DB.items.slice().reverse().map(it => `
+    <div class="list-row">
+      <div class="li-code">${e(it.code)}</div>
+      <div class="li-body">
+        <div class="li-name">${e(it.name)}</div>
+        <div class="li-sub">🏭 ${e(it.supplier || tx('supUnk'))}${it.date ? ' · ' + it.date : ''}</div>
+      </div>
+      <div class="li-rt">
+        <div class="li-price">৳${it.price.toFixed(2)}</div>
+        <div class="li-qty">${tx('stkLbl')}: ${it.qty}</div>
+      </div>
+    </div>`).join('');
+        }
+
+        function updateStats() {
+            const I = DB.items;
+            _t('sv-items', I.length);
+            _t('sv-qty', I.reduce((a, b) => a + (b.qty || 0), 0));
+            _t('sv-amt', '৳' + I.reduce((a, b) => a + (b.totalAmt || 0), 0).toFixed(0));
+            _t('sv-paid', '৳' + I.reduce((a, b) => a + (b.paidAmt || 0), 0).toFixed(0));
+        }
+
+        /* SALES PAGE */
+        let cart = [], payMethod = 'cash';
+
+        function doSearch() {
+            const q = $id('s-search').value.toLowerCase().trim();
+            const sl = $id('sug-list');
+            if (!q) { sl.style.display = 'none'; return; }
+            const found = DB.items.filter(i => i.code.toLowerCase().includes(q) || i.name.toLowerCase().includes(q)).slice(0, 6);
+            if (!found.length) { sl.style.display = 'none'; return; }
+            sl.style.display = 'block';
+            sl.innerHTML = found.map(it => `
+    <div class="sug-item" onclick="addToCart('${e(it.code)}')">
+      <div><div class="sug-nm">${e(it.name)}</div><div class="sug-cd">${e(it.code)}</div></div>
+      <div class="sug-rt"><div class="sug-pr">৳${it.price.toFixed(2)}</div><div class="sug-st">${tx('stkLbl')}: ${it.qty}</div></div>
+    </div>`).join('');
+        }
+
+        function addToCart(code) {
+            const item = DB.items.find(i => i.code === code);
+            if (!item) return;
+            if (item.qty <= 0) { showToast(tx('tOut')); return; }
+            const ex = cart.find(c => c.code === code);
+            if (ex) ex.qty++;
+            else cart.push({ code: item.code, name: item.name, price: item.price, qty: 1 });
+            $id('sug-list').style.display = 'none'; $id('s-search').value = '';
+            renderCart(); showToast(tx('tAdd') + ' ' + item.name);
+        }
+
+        /* SCANNER */
+        let scanStream = null, scanReader = null, scanActive = false, lastScanned = '';
+
+        function openScanner() {
+            const modal = $id('scan-modal');
+            modal.classList.add('open');
+            $id('scan-result-bar').classList.remove('show');
+            $id('scan-nf').classList.remove('show');
+            $id('scan-err').classList.remove('show');
+            lastScanned = '';
+            startCamera();
+        }
+
+        function closeScanner() {
+            $id('scan-modal').classList.remove('open');
+            stopCamera();
+        }
+
+        function stopCamera() {
+            scanActive = false;
+            if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null; }
+            const v = $id('scan-video'); v.srcObject = null;
+        }
+
+        async function startCamera() {
+            stopCamera(); scanActive = true;
+            const v = $id('scan-video');
+            try {
+                scanStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } }
+                });
+                v.srcObject = scanStream;
+                await v.play();
+                scheduleScan();
+            } catch (err) {
+                $id('scan-err').classList.add('show');
+                if (LANG === 'bn') {
+                    _t('scan-err-t', 'ক্যামেরা অ্যাক্সেস নেই');
+                    _t('scan-err-s', 'ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন');
+                } else {
+                    _t('scan-err-t', 'Camera access denied');
+                    _t('scan-err-s', 'Please allow camera permission in browser settings');
+                }
+            }
+        }
+
+        function scheduleScan() {
+            if (!scanActive) return;
+            requestAnimationFrame(() => {
+                if (!scanActive) return;
+                const v = $id('scan-video');
+                if (v.readyState === v.HAVE_ENOUGH_DATA) {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = v.videoWidth; canvas.height = v.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+                    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    try {
+                        const code = window.jsQR(imgData.data, imgData.width, imgData.height, { inversionAttempts: 'dontInvert' });
+                        if (code && code.data && code.data !== lastScanned) {
+                            lastScanned = code.data;
+                            handleScanResult(code.data);
+                        }
+                    } catch (e) { }
+                }
+                setTimeout(() => scheduleScan(), 250);
+            });
+        }
+
+        function handleScanResult(code) {
+            const item = DB.items.find(i => i.code === code || i.barcode === code);
+            const rb = $id('scan-result-bar');
+            const nf = $id('scan-nf');
+            rb.classList.remove('show'); nf.classList.remove('show');
+            if (item) {
+                _t('srb-code', item.code);
+                _t('srb-name', item.name + (item.qty <= 0 ? ' ⚠️ স্টক শেষ' : '  ·  স্টক: ' + item.qty));
+                $id('srb-btn').onclick = () => confirmScanAdd(item.code);
+                rb.classList.add('show');
+                // vibrate on success
+                if (navigator.vibrate) navigator.vibrate([60, 30, 60]);
+            } else {
+                nf.classList.add('show');
+                nf.textContent = (LANG === 'bn' ? '❌ পণ্য পাওয়া যায়নি: ' : '❌ Item not found: ') + code;
+            }
+        }
+
+        function confirmScanAdd(code) {
+            if (!code) return;
+            addToCart(code);
+            $id('scan-result-bar').classList.remove('show');
+            lastScanned = '';
+        }
+
+        function quickScan() {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                showToast(LANG === 'bn' ? '⚠️ এই ব্রাউজারে ক্যামেরা সাপোর্ট নেই' : '⚠️ Camera not supported');
+                return;
+            }
+            openScanner();
+        }
+
+        function renderCart() {
+            const el = $id('cart-body');
+            if (!cart.length) {
+                el.innerHTML = `<div class="empty" style="padding:20px 16px;border-radius:var(--r10);margin-bottom:0"><div class="empty-ic" style="font-size:30px">🛒</div><div class="empty-t" style="font-size:13px">${tx('ecT2')}</div><div class="empty-s" style="font-size:12px">${tx('ecS2')}</div></div>`;
+                calcBill(); return;
+            }
+            el.innerHTML = cart.map((c, i) => `
+    <div class="cart-row">
+      <div class="cr-body">
+        <div class="cr-name">${e(c.name)}</div>
+        <div class="cr-meta">৳${c.price.toFixed(2)} × ${c.qty}</div>
+        <div class="cr-total">= ৳${(c.price * c.qty).toFixed(2)}</div>
+      </div>
+      <div class="qty-ctrl">
+        <button class="qb" onclick="chQty(${i},-1)">−</button>
+        <span class="qn">${c.qty}</span>
+        <button class="qb" onclick="chQty(${i},1)">+</button>
+      </div>
+      <button class="del-btn" onclick="delCart(${i})">✕</button>
+    </div>`).join('');
+            calcBill();
+        }
+
+        function chQty(i, d) { cart[i].qty += d; if (cart[i].qty <= 0) cart.splice(i, 1); renderCart(); }
+        function delCart(i) { cart.splice(i, 1); renderCart(); }
+
+        function calcBill() {
+            const sub = cart.reduce((a, c) => a + c.price * c.qty, 0);
+            const disc = parseFloat($id('bv-disc').value) || 0;
+            const tot = Math.max(0, sub - disc);
+            _t('bv-sub', '৳' + sub.toFixed(2)); _t('bv-tot', '৳' + tot.toFixed(2)); calcDue();
+        }
+        function calcDue() {
+            const tot = parseFloat($id('bv-tot').textContent.replace('৳', '')) || 0;
+            const paid = parseFloat($id('bv-paid').value) || 0;
+            _t('bv-due', '৳' + Math.max(0, tot - paid).toFixed(2));
+        }
+        function setPay(m) {
+            payMethod = m;
+            ['cash', 'bank', 'mfs'].forEach(p => $id('pay-' + p).classList.toggle('active', p === m));
+        }
+        function completeSale() {
+            if (!cart.length) { showToast(tx('tEmpty')); return; }
+            const cust = $id('cust-name').value.trim() || tx('guest');
+            const tot = parseFloat($id('bv-tot').textContent.replace('৳', '')) || 0;
+            const paid = parseFloat($id('bv-paid').value) || 0;
+            cart.forEach(c => { const it = DB.items.find(i => i.code === c.code); if (it) it.qty = Math.max(0, it.qty - c.qty); });
+            DB.sales.push({ cust, items: [...cart], total: tot, paid, pay: payMethod, date: new Date().toLocaleString() });
+            saveDB(); cart = [];
+            $id('cust-name').value = ''; $id('bv-disc').value = ''; $id('bv-paid').value = '';
+            renderCart(); updateStats(); showToast(tx('tDone') + ' ' + cust);
+        }
+
+        /* STOCK PAGE */
+        function renderStock() {
+            const q = ($id('stk-search').value || '').toLowerCase();
+            const fil = DB.items.filter(i => i.code.toLowerCase().includes(q) || i.name.toLowerCase().includes(q) || (i.supplier || '').toLowerCase().includes(q));
+            const el = $id('stock-list');
+            _t('sp-pill', fil.length + (LANG === 'bn' ? tx('sfx') : ' items'));
+            _t('st-tot', DB.items.length);
+            _t('st-low', DB.items.filter(i => i.qty > 0 && i.qty <= 5).length);
+            _t('st-out', DB.items.filter(i => i.qty === 0).length);
+            if (!fil.length) {
+                el.innerHTML = `<div class="empty"><div class="empty-ic">🔍</div><div class="empty-t">${tx('noR')}</div><div class="empty-s">${tx('noRS')}</div></div>`;
+                return;
+            }
+            el.innerHTML = fil.map(it => {
+                const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok';
+                const badge = { ok: `<span class="s-badge bg-ok">${tx('bgOk')}</span>`, low: `<span class="s-badge bg-low">${tx('bgLow')}</span>`, out: `<span class="s-badge bg-out">${tx('bgOut')}</span>` }[s];
+                return `<div class="stk-row${s === 'low' ? ' s-low' : s === 'out' ? ' s-out' : ''}">
+      <div class="s-code c-${s}">${e(it.code)}</div>
+      <div class="s-body"><div class="s-name">${e(it.name)}</div><div class="s-sup">🏭 ${e(it.supplier || tx('supUnk'))}</div></div>
+      <div class="s-rt">${badge}<div class="s-qty">${tx('qtyLbl')}: ${it.qty}</div></div>
+    </div>`;
+            }).join('');
+        }
+
+        /* UTILS */
+        function e(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+        document.addEventListener('click', ev => { if (!ev.target.closest('.sug-wrap')) $id('sug-list').style.display = 'none'; });
+        $id('scan-modal').addEventListener('click', ev => { if (ev.target === $id('scan-modal')) closeScanner(); });
+
+        /* INIT */
+        applyLang();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+</body>
+
+</html>
