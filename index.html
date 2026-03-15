@@ -1263,6 +1263,168 @@
             margin-left: 5px
         }
 
+        /* ROW ACTIONS */
+        .row-actions {
+            display: flex;
+            gap: 5px;
+            flex-shrink: 0;
+            margin-left: 4px
+        }
+
+        .act-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--r8);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all .12s;
+            flex-shrink: 0
+        }
+
+        .act-edit {
+            background: var(--acc-l);
+            border: 1.5px solid var(--acc-b);
+            color: var(--acc)
+        }
+
+        .act-edit:active {
+            transform: scale(.88)
+        }
+
+        .act-del {
+            background: var(--red-l);
+            border: 1.5px solid var(--red-b);
+            color: var(--red)
+        }
+
+        .act-del:active {
+            transform: scale(.88)
+        }
+
+        /* EDIT MODAL */
+        .edit-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(10, 15, 30, .7);
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end
+        }
+
+        .edit-modal.open {
+            display: flex
+        }
+
+        .edit-sheet {
+            width: 100%;
+            max-width: 480px;
+            background: var(--surface);
+            border-radius: 24px 24px 0 0;
+            padding: 0 0 24px;
+            animation: slideUp .25s ease;
+            overflow-y: auto;
+            max-height: 92vh
+        }
+
+        .edit-sheet::-webkit-scrollbar {
+            display: none
+        }
+
+        .edit-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--bdr2);
+            border-radius: 4px;
+            margin: 12px auto 0
+        }
+
+        .edit-title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px 10px;
+            border-bottom: 1px solid var(--bdr)
+        }
+
+        .edit-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--tx);
+            font-family: 'Hind Siliguri', sans-serif
+        }
+
+        .edit-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--sf2);
+            border: 1px solid var(--bdr);
+            color: var(--tx2);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .12s
+        }
+
+        .edit-close:active {
+            background: var(--sf3)
+        }
+
+        .edit-body {
+            padding: 16px
+        }
+
+        .edit-2btn {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px
+        }
+
+        .btn-sec {
+            background: var(--sf2);
+            color: var(--tx2);
+            border: 1.5px solid var(--bdr2);
+            box-shadow: none
+        }
+
+        .btn-sec:active {
+            background: var(--sf3);
+            transform: scale(.98)
+        }
+
+        .d-act-wrap {
+            display: flex;
+            gap: 6px;
+            align-items: center
+        }
+
+        .d-act-edit {
+            padding: 5px 11px;
+            border: 1px solid var(--acc-b);
+            background: var(--acc-l);
+            color: var(--acc);
+            border-radius: 7px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all .12s;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 600;
+            white-space: nowrap
+        }
+
+        .d-act-edit:hover {
+            background: var(--acc-b)
+        }
+
         /* SCANNER MODAL */
         .scan-modal {
             display: none;
@@ -3123,6 +3285,97 @@
     </nav>
     <div class="toast" id="toast"></div>
 
+    <!-- EDIT ITEM MODAL -->
+    <div class="edit-modal" id="edit-item-modal">
+        <div class="edit-sheet">
+            <div class="edit-handle"></div>
+            <div class="edit-title-bar">
+                <div class="edit-title" id="eim-title">✏️ আইটেম সম্পাদনা</div>
+                <button class="edit-close" onclick="closeEditItem()">✕</button>
+            </div>
+            <div class="edit-body">
+                <input type="hidden" id="eim-code-orig">
+                <div class="g2">
+                    <div class="fld"><label class="lbl" id="eilb-code">আইটেম কোড</label><input class="inp mono"
+                            id="eim-code" placeholder="ITM001"></div>
+                    <div class="fld"><label class="lbl" id="eilb-name">আইটেম নাম *</label><input class="inp"
+                            id="eim-name" placeholder="পণ্যের নাম"></div>
+                </div>
+                <div class="fld"><label class="lbl" id="eilb-sup">সরবরাহকারী</label><input class="inp" id="eim-sup"
+                        placeholder="সরবরাহকারীর নাম"></div>
+                <div class="g2">
+                    <div class="fld"><label class="lbl" id="eilb-price">একক মূল্য (৳)</label><input class="inp mono"
+                            id="eim-price" type="number" placeholder="0.00"></div>
+                    <div class="fld"><label class="lbl" id="eilb-qty">স্টক পরিমাণ</label><input class="inp mono"
+                            id="eim-qty" type="number" placeholder="0"></div>
+                </div>
+                <div class="fld"><label class="lbl" id="eilb-paid">পরিশোধিত (৳)</label><input class="inp mono"
+                        id="eim-paid" type="number" placeholder="0.00"></div>
+                <div class="fld" style="margin-bottom:16px">
+                    <label class="lbl" id="eilb-pay">পরিশোধ পদ্ধতি</label>
+                    <div class="pay-grp">
+                        <button class="pay-opt active" id="eim-pay-cash" onclick="setEimPay('cash')">💵<br><span
+                                id="eipc-lbl">নগদ</span></button>
+                        <button class="pay-opt" id="eim-pay-bank" onclick="setEimPay('bank')">🏦<br><span
+                                id="eipb-lbl">ব্যাংক</span></button>
+                        <button class="pay-opt" id="eim-pay-mfs" onclick="setEimPay('mfs')">📱<br><span
+                                id="eipm-lbl">বিকাশ/MFS</span></button>
+                    </div>
+                </div>
+                <button class="btn btn-p" onclick="saveEditItem()" style="margin-bottom:10px"><span>✅</span><span
+                        id="eim-btn">আপডেট করুন</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT EXPENSE MODAL -->
+    <div class="edit-modal" id="edit-exp-modal">
+        <div class="edit-sheet">
+            <div class="edit-handle"></div>
+            <div class="edit-title-bar">
+                <div class="edit-title" id="eem-title">✏️ খরচ সম্পাদনা</div>
+                <button class="edit-close" onclick="closeEditExp()">✕</button>
+            </div>
+            <div class="edit-body">
+                <input type="hidden" id="eem-id">
+                <div class="fld"><label class="lbl" id="eelb-date">তারিখ</label><input class="inp" type="date"
+                        id="eem-date"></div>
+                <div class="fld"><label class="lbl" id="eelb-cat">খরচের ধরন</label>
+                    <select class="inp" id="eem-cat">
+                        <option value="">-- ক্যাটাগরি --</option>
+                        <option value="rent">🏠 ভাড়া / Rent</option>
+                        <option value="salary">👷 বেতন / Salary</option>
+                        <option value="utility">💡 বিদ্যুৎ / Utility</option>
+                        <option value="transport">🚚 পরিবহন / Transport</option>
+                        <option value="marketing">📣 বিজ্ঞাপন / Marketing</option>
+                        <option value="maintenance">🔧 রক্ষণাবেক্ষণ / Maintenance</option>
+                        <option value="food">🍽️ খাবার / Food</option>
+                        <option value="stationery">📝 স্টেশনারি / Stationery</option>
+                        <option value="tax">📋 ট্যাক্স / Tax</option>
+                        <option value="other">📌 অন্যান্য / Other</option>
+                    </select>
+                </div>
+                <div class="fld"><label class="lbl" id="eelb-desc">বিবরণ</label><input class="inp" id="eem-desc"
+                        placeholder="খরচের বিবরণ"></div>
+                <div class="fld"><label class="lbl" id="eelb-amt">পরিমাণ (৳)</label><input class="inp mono" id="eem-amt"
+                        type="number" placeholder="0.00"></div>
+                <div class="fld" style="margin-bottom:16px">
+                    <label class="lbl" id="eelb-pay">পরিশোধ পদ্ধতি</label>
+                    <div class="pay-grp">
+                        <button class="pay-opt active" id="eem-pay-cash" onclick="setEemPay('cash')">💵<br><span
+                                id="eepc-lbl">নগদ</span></button>
+                        <button class="pay-opt" id="eem-pay-bank" onclick="setEemPay('bank')">🏦<br><span
+                                id="eepb-lbl">ব্যাংক</span></button>
+                        <button class="pay-opt" id="eem-pay-mfs" onclick="setEemPay('mfs')">📱<br><span
+                                id="eepm-lbl">বিকাশ/MFS</span></button>
+                    </div>
+                </div>
+                <button class="btn btn-r" onclick="saveEditExp()" style="margin-bottom:10px"><span>✅</span><span
+                        id="eem-btn">আপডেট করুন</span></button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCANNER MODAL -->
     <div class="scan-modal" id="scan-modal">
         <div class="scan-sheet">
@@ -3153,6 +3406,103 @@
                 </div><button class="srb-btn" id="srb-btn" onclick="confirmScanAdd()">যোগ করুন</button>
             </div>
             <div class="scan-nf" id="scan-nf"></div>
+        </div>
+    </div>
+
+    <!-- EDIT ITEM MODAL -->
+    <div class="edit-modal" id="edit-item-modal">
+        <div class="edit-sheet">
+            <div class="edit-handle"></div>
+            <div class="edit-title-bar">
+                <div class="edit-title" id="eim-title">✏️ আইটেম সম্পাদনা</div>
+                <button class="edit-close" onclick="closeEditItem()">✕</button>
+            </div>
+            <div class="edit-body">
+                <input type="hidden" id="eim-code-orig">
+                <div class="g2">
+                    <div class="fld"><label class="lbl" id="eilb-code">আইটেম কোড</label><input class="inp mono"
+                            id="eim-code" placeholder="ITM001"></div>
+                    <div class="fld"><label class="lbl" id="eilb-name">আইটেম নাম *</label><input class="inp"
+                            id="eim-name" placeholder="পণ্যের নাম"></div>
+                </div>
+                <div class="fld"><label class="lbl" id="eilb-sup">সরবরাহকারী</label><input class="inp" id="eim-sup"
+                        placeholder="সরবরাহকারীর নাম"></div>
+                <div class="g2">
+                    <div class="fld"><label class="lbl" id="eilb-price">একক মূল্য (৳)</label><input class="inp mono"
+                            id="eim-price" type="number" placeholder="0.00"></div>
+                    <div class="fld"><label class="lbl" id="eilb-qty">বর্তমান স্টক</label><input class="inp mono"
+                            id="eim-qty" type="number" placeholder="0"></div>
+                </div>
+                <div class="fld"><label class="lbl" id="eilb-paid">পরিশোধিত (৳)</label><input class="inp mono"
+                        id="eim-paid" type="number" placeholder="0.00"></div>
+                <div class="fld" style="margin-bottom:0">
+                    <label class="lbl">পরিশোধ পদ্ধতি</label>
+                    <div class="pay-grp">
+                        <button class="pay-opt active" id="eim-pay-cash" onclick="setEimPay('cash')">💵<br><span
+                                id="eipc-lbl">নগদ</span></button>
+                        <button class="pay-opt" id="eim-pay-bank" onclick="setEimPay('bank')">🏦<br><span
+                                id="eipb-lbl">ব্যাংক</span></button>
+                        <button class="pay-opt" id="eim-pay-mfs" onclick="setEimPay('mfs')">📱<br><span
+                                id="eipm-lbl">বিকাশ/MFS</span></button>
+                    </div>
+                </div>
+                <div class="edit-2btn">
+                    <button class="btn btn-sec" onclick="closeEditItem()">✕ <span
+                            id="ebtn-cancel-i">বাতিল</span></button>
+                    <button class="btn btn-p" onclick="saveEditItem()">✅ <span id="eim-btn">আপডেট করুন</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT EXPENSE MODAL -->
+    <div class="edit-modal" id="edit-exp-modal">
+        <div class="edit-sheet">
+            <div class="edit-handle"></div>
+            <div class="edit-title-bar">
+                <div class="edit-title" id="eem-title">✏️ খরচ সম্পাদনা</div>
+                <button class="edit-close" onclick="closeEditExp()">✕</button>
+            </div>
+            <div class="edit-body">
+                <input type="hidden" id="eem-id">
+                <div class="fld"><label class="lbl" id="eelb-date">তারিখ</label><input class="inp" type="date"
+                        id="eem-date"></div>
+                <div class="fld"><label class="lbl" id="eelb-cat">খরচের ধরন</label>
+                    <select class="inp" id="eem-cat">
+                        <option value="">-- ক্যাটাগরি বেছে নিন --</option>
+                        <option value="rent">🏠 ভাড়া / Rent</option>
+                        <option value="salary">👷 বেতন / Salary</option>
+                        <option value="utility">💡 বিদ্যুৎ / Utility</option>
+                        <option value="transport">🚚 পরিবহন / Transport</option>
+                        <option value="marketing">📣 বিজ্ঞাপন / Marketing</option>
+                        <option value="maintenance">🔧 রক্ষণাবেক্ষণ / Maintenance</option>
+                        <option value="food">🍽️ খাবার / Food</option>
+                        <option value="stationery">📝 স্টেশনারি / Stationery</option>
+                        <option value="tax">📋 ট্যাক্স / Tax</option>
+                        <option value="other">📌 অন্যান্য / Other</option>
+                    </select>
+                </div>
+                <div class="fld"><label class="lbl" id="eelb-desc">বিবরণ</label><input class="inp" id="eem-desc"
+                        placeholder="খরচের বিবরণ লিখুন..."></div>
+                <div class="fld"><label class="lbl" id="eelb-amt">পরিমাণ (৳)</label><input class="inp mono" id="eem-amt"
+                        type="number" placeholder="0.00"></div>
+                <div class="fld" style="margin-bottom:0">
+                    <label class="lbl" id="eelb-pay">পরিশোধ পদ্ধতি</label>
+                    <div class="pay-grp">
+                        <button class="pay-opt active" id="eem-pay-cash" onclick="setEemPay('cash')">💵<br><span
+                                id="eepc-lbl">নগদ</span></button>
+                        <button class="pay-opt" id="eem-pay-bank" onclick="setEemPay('bank')">🏦<br><span
+                                id="eepb-lbl">ব্যাংক</span></button>
+                        <button class="pay-opt" id="eem-pay-mfs" onclick="setEemPay('mfs')">📱<br><span
+                                id="eepm-lbl">বিকাশ/MFS</span></button>
+                    </div>
+                </div>
+                <div class="edit-2btn">
+                    <button class="btn btn-sec" onclick="closeEditExp()">✕ <span
+                            id="ebtn-cancel-e">বাতিল</span></button>
+                    <button class="btn btn-r" onclick="saveEditExp()">✅ <span id="eem-btn">আপডেট করুন</span></button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3295,6 +3645,7 @@
                                             <th id="dth-price">মূল্য</th>
                                             <th id="dth-qty">স্টক</th>
                                             <th id="dth-pay">পেমেন্ট</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody id="d-item-tbody"></tbody>
@@ -3680,6 +4031,8 @@
             _t('ch-exp', L.chExp); _t('elb-date', L.elbDate); _t('elb-cat', L.elbCat); _t('elb-desc', L.elbDesc); _t('elb-amt', L.elbAmt); _t('elb-pay', L.elbPay);
             _p('ef-desc', L.phDesc); _t('btn-exp', L.btnExp); _t('est-list', L.estList);
             _t('epc-lbl', L.epc); _t('epb-lbl', L.epb); _t('epm-lbl', L.epm);
+            // edit modal labels
+            _t('ebtn-cancel-i', L.btnCancel || 'বাতিল'); _t('ebtn-cancel-e', L.btnCancel || 'বাতিল');
             // desktop
             _t('d-app-sub', L.appSub);
             $id('d-l-flag').textContent = L.flag; _t('d-l-txt', L.ltxt + ' · ' + (LANG === 'bn' ? 'বাংলা' : 'English'));
@@ -3772,12 +4125,19 @@
             else { DB.items.push({ code, name, supplier: sup, price, qty, totalQty: qty, totalAmt: price * qty, paidAmt: paid, payMethod: pm, date: new Date().toLocaleDateString('bn-BD') }); showToast(tx('tSaved')) }
             saveDB();
         }
+        function deleteItem(code) {
+            if (!confirm(tx('confirmDel') || 'Delete?')) return;
+            DB.items = DB.items.filter(i => i.code !== code);
+            saveDB(); renderItemList(); renderStock(); updateStats();
+            if (isDesktop()) { dRenderItemTable(); dRenderStock() }
+            showToast(tx('tItemDel'));
+        }
         function renderItemList() {
             const el = $id('item-list'), n = DB.items.length;
             _t('ip-pill', n + (LANG === 'bn' ? tx('sfx') : ' items'));
             if (!n) { el.innerHTML = `<div class="empty"><div class="empty-ic">📦</div><div class="empty-t">${tx('emT')}</div><div class="empty-s">${tx('emS')}</div></div>`; return }
             const pl = LANG === 'bn' ? PAY_LABELS_BN : PAY_LABELS_EN;
-            el.innerHTML = DB.items.slice().reverse().map(it => { const pm = it.payMethod || 'cash'; return `<div class="list-row"><div class="li-code">${e(it.code)}</div><div class="li-body"><div class="li-name">${e(it.name)}</div><div class="li-sub">🏭 ${e(it.supplier || tx('supUnk'))}${it.date ? ' · ' + it.date : ''}<span class="pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></div></div><div class="li-rt"><div class="li-price">৳${it.price.toFixed(2)}</div><div class="li-qty">${tx('stkLbl')}: ${it.qty}</div></div></div>` }).join('');
+            el.innerHTML = DB.items.slice().reverse().map(it => { const pm = it.payMethod || 'cash'; return `<div class="list-row"><div class="li-code">${e(it.code)}</div><div class="li-body"><div class="li-name">${e(it.name)}</div><div class="li-sub">🏭 ${e(it.supplier || tx('supUnk'))}${it.date ? ' · ' + it.date : ''}<span class="pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></div></div><div class="li-rt"><div class="li-price">৳${it.price.toFixed(2)}</div><div class="li-qty">${tx('stkLbl')}: ${it.qty}</div></div><div class="row-actions"><button class="act-btn act-edit" onclick="openEditItem('${e(it.code)}')">✏️</button><button class="act-btn act-del" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></div>` }).join('');
         }
 
         /* ════════════════════════════════════════
@@ -3830,7 +4190,7 @@
             _t('sp-pill', fil.length + (LANG === 'bn' ? tx('sfx') : ' items'));
             _t('st-tot', DB.items.length); _t('st-low', DB.items.filter(i => i.qty > 0 && i.qty <= 5).length); _t('st-out', DB.items.filter(i => i.qty === 0).length);
             if (!fil.length) { el.innerHTML = `<div class="empty"><div class="empty-ic">🔍</div><div class="empty-t">${tx('noR')}</div><div class="empty-s">${tx('noRS')}</div></div>`; return }
-            el.innerHTML = fil.map(it => { const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok'; const badge = { ok: `<span class="s-badge bg-ok">${tx('bgOk')}</span>`, low: `<span class="s-badge bg-low">${tx('bgLow')}</span>`, out: `<span class="s-badge bg-out">${tx('bgOut')}</span>` }[s]; return `<div class="stk-row${s === 'low' ? ' s-low' : s === 'out' ? ' s-out' : ''}"><div class="s-code c-${s}">${e(it.code)}</div><div class="s-body"><div class="s-name">${e(it.name)}</div><div class="s-sup">🏭 ${e(it.supplier || tx('supUnk'))}</div></div><div class="s-rt">${badge}<div class="s-qty">${tx('qtyLbl')}: ${it.qty}</div></div></div>` }).join('');
+            el.innerHTML = fil.map(it => { const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok'; const badge = { ok: `<span class="s-badge bg-ok">${tx('bgOk')}</span>`, low: `<span class="s-badge bg-low">${tx('bgLow')}</span>`, out: `<span class="s-badge bg-out">${tx('bgOut')}</span>` }[s]; return `<div class="stk-row${s === 'low' ? ' s-low' : s === 'out' ? ' s-out' : ''}"><div class="s-code c-${s}">${e(it.code)}</div><div class="s-body"><div class="s-name">${e(it.name)}</div><div class="s-sup">🏭 ${e(it.supplier || tx('supUnk'))}</div></div><div class="s-rt">${badge}<div class="s-qty">${tx('qtyLbl')}: ${it.qty}</div></div><div class="row-actions"><button class="act-btn act-edit" onclick="openEditItem('${e(it.code)}')">✏️</button><button class="act-btn act-del" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></div>` }).join('');
         }
 
         /* MOBILE EXPENSE */
@@ -3857,7 +4217,7 @@
             const pl = LANG === 'bn' ? PAY_LABELS_BN : PAY_LABELS_EN, cn = TX[LANG].catNames;
             el.innerHTML = E.slice().reverse().map(ex => {
                 const ic = CAT_ICONS[ex.cat] || '📌', col = CAT_COLORS[ex.cat] || '#94A3B8', pm = ex.payMethod || 'cash', catLabel = cn[ex.cat] || ex.cat; let dStr = ex.date; try { const dp = new Date(ex.date); if (!isNaN(dp)) dStr = dp.toLocaleDateString(LANG === 'bn' ? 'bn-BD' : 'en-GB') } catch (err) { }
-                return `<div class="exp-row"><div class="exp-cat-ic" style="background:${col}22">${ic}</div><div class="exp-body"><div class="exp-desc">${e(ex.desc)}</div><div class="exp-meta" style="display:flex;align-items:center;gap:5px;flex-wrap:wrap"><span style="color:${col};font-weight:600;font-size:11px">${catLabel}</span><span class="pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></div></div><div class="exp-rt"><div class="exp-amt">৳${ex.amt.toFixed(2)}</div><div class="exp-date">${dStr}</div></div><button class="exp-del" onclick="deleteExpense(${ex.id})">✕</button></div>`
+                return `<div class="exp-row"><div class="exp-cat-ic" style="background:${col}22">${ic}</div><div class="exp-body"><div class="exp-desc">${e(ex.desc)}</div><div class="exp-meta" style="display:flex;align-items:center;gap:5px;flex-wrap:wrap"><span style="color:${col};font-weight:600;font-size:11px">${catLabel}</span><span class="pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></div></div><div class="exp-rt"><div class="exp-amt">৳${ex.amt.toFixed(2)}</div><div class="exp-date">${dStr}</div></div><div class="row-actions"><button class="act-btn act-edit" onclick="openEditExp(${ex.id})">✏️</button><button class="act-btn act-del" onclick="deleteExpense(${ex.id})">🗑️</button></div></div>`
             }).join('');
         }
 
@@ -3889,9 +4249,9 @@
         function dRenderItemTable() {
             const tb = $id('d-item-tbody'), n = DB.items.length;
             _t('dip-pill', n + (LANG === 'bn' ? tx('sfx') : ' items'));
-            if (!n) { tb.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:40px;color:rgba(255,255,255,.25);font-size:13px">📦 ${tx('emT')}</td></tr>`; return }
+            if (!n) { tb.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--tx3);font-size:13px">📦 ${tx('emT')}</td></tr>`; return }
             const pl = LANG === 'bn' ? PAY_LABELS_BN : PAY_LABELS_EN;
-            tb.innerHTML = DB.items.slice().reverse().map(it => { const pm = it.payMethod || 'cash'; return `<tr><td><span class="d-code-badge">${e(it.code)}</span></td><td class="d-name-cell">${e(it.name)}</td><td style="color:rgba(255,255,255,.4);font-size:12px">${e(it.supplier || tx('supUnk'))}</td><td class="d-mono d-acc">৳${it.price.toFixed(2)}</td><td class="d-mono ${it.qty === 0 ? 'd-red' : it.qty <= 5 ? 'd-amb' : 'd-grn'}">${it.qty}</td><td><span class="d-pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></td></tr>` }).join('');
+            tb.innerHTML = DB.items.slice().reverse().map(it => { const pm = it.payMethod || 'cash'; return `<tr><td><span class="d-code-badge">${e(it.code)}</span></td><td class="d-name-cell">${e(it.name)}</td><td style="color:var(--tx3);font-size:12px">${e(it.supplier || tx('supUnk'))}</td><td class="d-mono d-acc">৳${it.price.toFixed(2)}</td><td class="d-mono ${it.qty === 0 ? 'd-red' : it.qty <= 5 ? 'd-amb' : 'd-grn'}">${it.qty}</td><td><span class="d-pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></td><td><div class="d-act-wrap"><button class="d-act-edit" onclick="openEditItem('${e(it.code)}')">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button><button class="d-del-btn" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></td></tr>` }).join('');
         }
 
         /* DESKTOP — SALES */
@@ -3940,8 +4300,8 @@
             const fil = DB.items.filter(i => i.code.toLowerCase().includes(q) || i.name.toLowerCase().includes(q) || (i.supplier || '').toLowerCase().includes(q));
             const tb = $id('d-stock-tbody');
             _t('dst-tot', DB.items.length); _t('dst-low', DB.items.filter(i => i.qty > 0 && i.qty <= 5).length); _t('dst-out', DB.items.filter(i => i.qty === 0).length);
-            if (!fil.length) { tb.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:40px;color:rgba(255,255,255,.25);font-size:13px">🔍 ${tx('noR')}</td></tr>`; return }
-            tb.innerHTML = fil.map(it => { const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok'; const badge = { ok: `<span class="d-stk-badge dsb-ok">${tx('bgOk')}</span>`, low: `<span class="d-stk-badge dsb-low">${tx('bgLow')}</span>`, out: `<span class="d-stk-badge dsb-out">${tx('bgOut')}</span>` }[s]; return `<tr><td><span class="d-code-badge">${e(it.code)}</span></td><td class="d-name-cell">${e(it.name)}</td><td style="color:rgba(255,255,255,.4);font-size:12px">${e(it.supplier || tx('supUnk'))}</td><td class="d-mono d-acc">৳${it.price.toFixed(2)}</td><td class="d-mono ${s === 'out' ? 'd-red' : s === 'low' ? 'd-amb' : 'd-grn'}">${it.qty}</td><td>${badge}</td></tr>` }).join('');
+            if (!fil.length) { tb.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--tx3);font-size:13px">🔍 ${tx('noR')}</td></tr>`; return }
+            tb.innerHTML = fil.map(it => { const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok'; const badge = { ok: `<span class="d-stk-badge dsb-ok">${tx('bgOk')}</span>`, low: `<span class="d-stk-badge dsb-low">${tx('bgLow')}</span>`, out: `<span class="d-stk-badge dsb-out">${tx('bgOut')}</span>` }[s]; return `<tr><td><span class="d-code-badge">${e(it.code)}</span></td><td class="d-name-cell">${e(it.name)}</td><td style="color:var(--tx3);font-size:12px">${e(it.supplier || tx('supUnk'))}</td><td class="d-mono d-acc">৳${it.price.toFixed(2)}</td><td class="d-mono ${s === 'out' ? 'd-red' : s === 'low' ? 'd-amb' : 'd-grn'}">${it.qty}</td><td>${badge}</td><td><div class="d-act-wrap"><button class="d-act-edit" onclick="openEditItem('${e(it.code)}')">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button><button class="d-del-btn" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></td></tr>` }).join('');
         }
 
         /* DESKTOP — EXPENSE */
@@ -3955,7 +4315,6 @@
             const d = new Date(), y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), dd = String(d.getDate()).padStart(2, '0'); $id('def-date').value = `${y}-${m}-${dd}`;
             dSetExpPay('cash'); dRenderExpenseTable(); dUpdateExpenseStats(); renderExpenseList(); updateExpenseStats();
         }
-        function dDeleteExpense(id) { DB.expenses = DB.expenses.filter(ex => ex.id !== id); saveDB(); dRenderExpenseTable(); dUpdateExpenseStats(); renderExpenseList(); updateExpenseStats(); showToast(tx('tExpDel')) }
         function dUpdateExpenseStats() {
             const E = DB.expenses, total = E.reduce((a, b) => a + b.amt, 0), now = new Date();
             const mTot = E.filter(ex => { const d = new Date(ex.date); return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear() }).reduce((a, b) => a + b.amt, 0);
@@ -3965,11 +4324,11 @@
         function dRenderExpenseTable() {
             const tb = $id('d-exp-tbody'), E = DB.expenses;
             _t('dep-pill', E.length + (LANG === 'bn' ? tx('sfx') : ' items'));
-            if (!E.length) { tb.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:rgba(255,255,255,.25);font-size:13px">💸 ${tx('emExpT')}</td></tr>`; return }
+            if (!E.length) { tb.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--tx3);font-size:13px">💸 ${tx('emExpT')}</td></tr>`; return }
             const pl = LANG === 'bn' ? PAY_LABELS_BN : PAY_LABELS_EN, cn = TX[LANG].catNames;
             tb.innerHTML = E.slice().reverse().map(ex => {
                 const ic = CAT_ICONS[ex.cat] || '📌', col = CAT_COLORS[ex.cat] || '#94A3B8', pm = ex.payMethod || 'cash', catLabel = cn[ex.cat] || ex.cat; let dStr = ex.date; try { const dp = new Date(ex.date); if (!isNaN(dp)) dStr = dp.toLocaleDateString(LANG === 'bn' ? 'bn-BD' : 'en-GB') } catch (err) { }
-                return `<tr><td><div class="d-cat-ic-cell" style="background:${col}22">${ic}</div></td><td style="color:${col};font-weight:700;font-size:12px">${catLabel}</td><td class="d-name-cell">${e(ex.desc)}</td><td class="d-mono d-red">৳${ex.amt.toFixed(2)}</td><td><span class="d-pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></td><td style="color:rgba(255,255,255,.4);font-size:12px">${dStr}</td><td><button class="d-del-btn" onclick="dDeleteExpense(${ex.id})">✕</button></td></tr>`
+                return `<tr><td><div class="d-cat-ic-cell" style="background:${col}22">${ic}</div></td><td style="color:${col};font-weight:700;font-size:12px">${catLabel}</td><td class="d-name-cell">${e(ex.desc)}</td><td class="d-mono d-red">৳${ex.amt.toFixed(2)}</td><td><span class="d-pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></td><td style="color:var(--tx3);font-size:12px">${dStr}</td><td><div class="d-act-wrap"><button class="d-act-edit" onclick="openEditExp(${ex.id})">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button><button class="d-del-btn" onclick="deleteExpense(${ex.id})">🗑️</button></div></td></tr>`
             }).join('');
         }
 
@@ -3978,10 +4337,100 @@
             updateStats(); dRenderItemTable(); dRenderCart(); dRenderStock(); dRenderExpenseTable(); dUpdateExpenseStats();
         }
 
+        /* ════════════════════════════════════════
+           EDIT ITEM MODAL
+        ════════════════════════════════════════ */
+        let eimPay = 'cash';
+        function setEimPay(m) { eimPay = m;['cash', 'bank', 'mfs'].forEach(p => $id('eim-pay-' + p).classList.toggle('active', p === m)) }
+        function openEditItem(code) {
+            const it = DB.items.find(i => i.code === code); if (!it) return;
+            const L = TX[LANG];
+            _t('eim-title', '✏️ ' + (L.editItem || 'Edit Item'));
+            _t('eim-btn', L.btnUpdate || 'Update');
+            _t('eilb-code', L.lbCode); _t('eilb-name', L.lbName); _t('eilb-sup', L.lbSup);
+            _t('eilb-price', L.lbPrice); _t('eilb-qty', L.lbQty); _t('eilb-paid', L.lbPaid);
+            _t('eipc-lbl', L.pcL); _t('eipb-lbl', L.pbL); _t('eipm-lbl', L.pmL);
+            $id('eim-code-orig').value = it.code;
+            $id('eim-code').value = it.code;
+            $id('eim-name').value = it.name;
+            $id('eim-sup').value = it.supplier || '';
+            $id('eim-price').value = it.price || '';
+            $id('eim-qty').value = it.qty || 0;
+            $id('eim-paid').value = it.paidAmt || '';
+            eimPay = it.payMethod || 'cash';
+            ['cash', 'bank', 'mfs'].forEach(p => $id('eim-pay-' + p).classList.toggle('active', p === eimPay));
+            $id('edit-item-modal').classList.add('open');
+        }
+        function closeEditItem() { $id('edit-item-modal').classList.remove('open') }
+        function saveEditItem() {
+            const origCode = $id('eim-code-orig').value;
+            const newCode = $id('eim-code').value.trim();
+            const name = $id('eim-name').value.trim();
+            if (!name) { showToast(tx('tNeed')); return }
+            const it = DB.items.find(i => i.code === origCode); if (!it) return;
+            // if code changed and new code already exists elsewhere, reject
+            if (newCode !== origCode && DB.items.find(i => i.code === newCode)) { showToast('⚠️ কোড আগে থেকে আছে!'); return }
+            it.code = newCode || origCode;
+            it.name = name;
+            it.supplier = $id('eim-sup').value.trim();
+            it.price = parseFloat($id('eim-price').value) || it.price;
+            it.qty = parseFloat($id('eim-qty').value) || 0;
+            it.paidAmt = parseFloat($id('eim-paid').value) || it.paidAmt || 0;
+            it.payMethod = eimPay;
+            saveDB(); closeEditItem();
+            renderItemList(); renderStock(); updateStats();
+            if (isDesktop()) { dRenderItemTable(); dRenderStock() }
+            showToast(tx('tItemEdit'));
+        }
+
+        /* ════════════════════════════════════════
+           EDIT EXPENSE MODAL
+        ════════════════════════════════════════ */
+        let eemPay = 'cash';
+        function setEemPay(m) { eemPay = m;['cash', 'bank', 'mfs'].forEach(p => $id('eem-pay-' + p).classList.toggle('active', p === m)) }
+        function openEditExp(id) {
+            const ex = DB.expenses.find(x => x.id === id); if (!ex) return;
+            const L = TX[LANG];
+            _t('eem-title', '✏️ ' + (L.editExp || 'Edit Expense'));
+            _t('eem-btn', L.btnUpdate || 'Update');
+            _t('eelb-date', L.elbDate); _t('eelb-cat', L.elbCat); _t('eelb-desc', L.elbDesc);
+            _t('eelb-amt', L.elbAmt); _t('eelb-pay', L.elbPay);
+            _t('eepc-lbl', L.epc); _t('eepb-lbl', L.epb); _t('eepm-lbl', L.epm);
+            $id('eem-id').value = ex.id;
+            $id('eem-date').value = ex.date || '';
+            $id('eem-cat').value = ex.cat || '';
+            $id('eem-desc').value = ex.desc || '';
+            $id('eem-amt').value = ex.amt || '';
+            eemPay = ex.payMethod || 'cash';
+            ['cash', 'bank', 'mfs'].forEach(p => $id('eem-pay-' + p).classList.toggle('active', p === eemPay));
+            $id('edit-exp-modal').classList.add('open');
+        }
+        function closeEditExp() { $id('edit-exp-modal').classList.remove('open') }
+        function saveEditExp() {
+            const id = parseInt($id('eem-id').value);
+            const cat = $id('eem-cat').value, amt = parseFloat($id('eem-amt').value) || 0;
+            if (!cat) { showToast(tx('eNeedCat')); return } if (!amt || amt <= 0) { showToast(tx('eNeedAmt')); return }
+            const ex = DB.expenses.find(x => x.id === id); if (!ex) return;
+            ex.cat = cat;
+            ex.desc = $id('eem-desc').value.trim() || (TX[LANG].catNames[cat] || cat);
+            ex.amt = amt;
+            ex.date = $id('eem-date').value || ex.date;
+            ex.payMethod = eemPay;
+            saveDB(); closeEditExp();
+            renderExpenseList(); updateExpenseStats();
+            if (isDesktop()) { dRenderExpenseTable(); dUpdateExpenseStats() }
+            showToast(tx('tExpEdit'));
+        }
+
         /* UTILS */
         function e(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') }
-        document.addEventListener('click', ev => { if (!ev.target.closest('.sug-wrap')) $id('sug-list').style.display = 'none'; if (!ev.target.closest('[id="d-sug-list"]') && !ev.target.closest('#ds-search')) if ($id('d-sug-list')) $id('d-sug-list').style.display = 'none' });
+        document.addEventListener('click', ev => {
+            if (!ev.target.closest('.sug-wrap')) $id('sug-list').style.display = 'none';
+            if (!ev.target.closest('[id="d-sug-list"]') && !ev.target.closest('#ds-search')) if ($id('d-sug-list')) $id('d-sug-list').style.display = 'none';
+        });
         $id('scan-modal').addEventListener('click', ev => { if (ev.target === $id('scan-modal')) closeScanner() });
+        $id('edit-item-modal').addEventListener('click', ev => { if (ev.target === $id('edit-item-modal')) closeEditItem() });
+        $id('edit-exp-modal').addEventListener('click', ev => { if (ev.target === $id('edit-exp-modal')) closeEditExp() });
 
         /* INIT */
         initExpenseDate();
