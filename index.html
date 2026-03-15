@@ -2691,6 +2691,153 @@
                 justify-content: center;
                 font-size: 16px
             }
+
+            .d-act-wrap {
+                display: flex;
+                gap: 6px;
+                align-items: center
+            }
+
+            .d-act-edit {
+                padding: 5px 11px;
+                border: 1px solid var(--acc-b);
+                background: var(--acc-l);
+                color: var(--acc);
+                border-radius: 7px;
+                font-size: 12px;
+                cursor: pointer;
+                transition: all .12s;
+                font-family: 'Hind Siliguri', sans-serif;
+                font-weight: 600
+            }
+
+            .d-act-edit:hover {
+                background: var(--acc);
+                color: #fff
+            }
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 5px;
+            flex-shrink: 0;
+            align-items: center
+        }
+
+        .act-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--r8);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            transition: all .12s;
+            flex-shrink: 0
+        }
+
+        .act-edit {
+            background: var(--acc-l);
+            color: var(--acc);
+            border: 1.5px solid var(--acc-b)
+        }
+
+        .act-edit:active {
+            transform: scale(.88)
+        }
+
+        .act-del {
+            background: var(--red-l);
+            color: var(--red);
+            border: 1.5px solid var(--red-b)
+        }
+
+        .act-del:active {
+            transform: scale(.88)
+        }
+
+        .edit-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(10, 15, 30, .5);
+            align-items: flex-end;
+            justify-content: center
+        }
+
+        .edit-modal.open {
+            display: flex
+        }
+
+        .edit-sheet {
+            width: 100%;
+            max-width: 480px;
+            background: var(--surface);
+            border-radius: 22px 22px 0 0;
+            padding: 0 0 28px;
+            animation: slideUp .22s ease;
+            overflow: hidden;
+            max-height: 92vh;
+            overflow-y: auto
+        }
+
+        .edit-sheet::-webkit-scrollbar {
+            display: none
+        }
+
+        .edit-handle {
+            width: 38px;
+            height: 4px;
+            background: var(--bdr2);
+            border-radius: 4px;
+            margin: 12px auto 0
+        }
+
+        .edit-title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px 12px;
+            border-bottom: 1px solid var(--bdr)
+        }
+
+        .edit-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--tx);
+            font-family: 'Syne', sans-serif
+        }
+
+        .edit-close {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--sf2);
+            border: 1.5px solid var(--bdr);
+            color: var(--tx2);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .edit-body {
+            padding: 14px 16px 0
+        }
+
+        @media(min-width:768px) {
+            .edit-modal {
+                align-items: center
+            }
+
+            .edit-sheet {
+                max-width: 500px;
+                border-radius: 18px
+            }
         }
     </style>
 </head>
@@ -2958,8 +3105,8 @@
 
     <nav class="bnav">
         <button class="nt active" id="nt-item" onclick="goPage('item')">
-            <div class="nt-ic">📦</div>
-            <div class="nt-lbl" id="nl-item">আইটেম</div>
+            <div class="nt-ic">🛍️</div>
+            <div class="nt-lbl" id="nl-item">ক্রয়</div>
         </button>
         <button class="nt" id="nt-sales" onclick="goPage('sales')">
             <div class="nt-ic">🛒</div>
@@ -3025,7 +3172,7 @@
             <div class="d-nav-section">
                 <div class="d-nav-label" id="dnavlbl-main">MAIN</div>
                 <button class="d-nav-item active" id="dnt-item" onclick="dGoPage('item')"><span
-                        class="d-nav-ic">📦</span><span class="d-nav-txt" id="dnl-item">আইটেম / ক্রয়</span></button>
+                        class="d-nav-ic">🛍️</span><span class="d-nav-txt" id="dnl-item">ক্রয়</span></button>
                 <button class="d-nav-item" id="dnt-sales" onclick="dGoPage('sales')"><span
                         class="d-nav-ic">🛒</span><span class="d-nav-txt" id="dnl-sales">বিক্রয়</span></button>
                 <button class="d-nav-item" id="dnt-stock" onclick="dGoPage('stock')"><span
@@ -3404,24 +3551,25 @@
         let LANG = localStorage.getItem('sp2_lang') || 'bn';
         const TX = {
             bn: {
-                appSub: 'ইনভেন্টরি ম্যানেজার', ptag: { item: 'আইটেম', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' },
+                appSub: 'ইনভেন্টরি ম্যানেজার', ptag: { item: 'ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' },
                 slItems: 'মোট আইটেম', slQty: 'মোট পরিমাণ', slAmt: 'মোট মূল্য', slPaid: 'পরিশোধিত',
-                chAdd: 'নতুন আইটেম যোগ করুন', lbCode: 'আইটেম কোড *', lbName: 'আইটেম নাম *', lbSup: 'সরবরাহকারী',
+                chAdd: 'নতুন ক্রয় যোগ করুন', lbCode: 'আইটেম কোড *', lbName: 'আইটেম নাম *', lbSup: 'সরবরাহকারী',
                 lbPrice: 'একক মূল্য (৳)', lbQty: 'পরিমাণ', lbTamt: 'মোট মূল্য (৳)', lbPaid: 'পরিশোধিত (৳)', lbItemPay: 'পরিশোধ পদ্ধতি',
                 phCode: 'ITM001', phName: 'পণ্যের নাম', phSup: 'সরবরাহকারীর নাম',
-                btnSave: 'আইটেম সংরক্ষণ করুন', stPur: 'ক্রয় তালিকা',
+                btnSave: 'ক্রয় সংরক্ষণ করুন', stPur: 'ক্রয় তালিকা',
                 chScan: 'স্ক্যান / খুঁজুন', phSearch: 'কোড বা নাম লিখুন...', ecT2: 'কার্ট খালি', ecS2: 'আইটেম খুঁজে যোগ করুন',
                 chCust: 'গ্রাহক তথ্য', lbCname: 'গ্রাহকের নাম', phCname: 'গ্রাহকের নাম লিখুন',
                 lbPayby: 'পরিশোধ পদ্ধতি', pcL: 'নগদ', pbL: 'ব্যাংক', pmL: 'বিকাশ/MFS',
                 chBill: 'বিল সারসংক্ষেপ', blSub: 'মোট', blDisc: 'ছাড় (৳)', blTot: 'মোট মূল্য', blPaid: 'পরিশোধিত (৳)', blDue: 'বাকি',
                 btnSale: 'বিক্রয় সম্পন্ন করুন',
                 phStkS: 'কোড, নাম বা সরবরাহকারী খুঁজুন...', stlTot: 'মোট', stlLow: 'কম স্টক', stlOut: 'শেষ', stStk: 'স্টক তালিকা',
-                nlItem: 'আইটেম', nlSales: 'বিক্রয়', nlStock: 'স্টক', nlExpense: 'খরচ', flag: '🇧🇩', ltxt: 'BN',
-                emT: 'কোনো আইটেম নেই', emS: 'উপরে ফর্ম থেকে যোগ করুন', noR: 'কোনো ফলাফল নেই', noRS: 'ভিন্ন কিছু খোঁজ করুন',
+                nlItem: 'ক্রয়', nlSales: 'বিক্রয়', nlStock: 'স্টক', nlExpense: 'খরচ', flag: '🇧🇩', ltxt: 'BN',
+                emT: 'কোনো ক্রয় নেই', emS: 'উপরে ফর্ম থেকে যোগ করুন', noR: 'কোনো ফলাফল নেই', noRS: 'ভিন্ন কিছু খোঁজ করুন',
                 supUnk: 'অজানা', stkLbl: 'স্টক', qtyLbl: 'পরিমাণ',
                 bgOk: 'আছে', bgLow: 'কম', bgOut: 'শেষ',
-                tSaved: '✅ আইটেম সংরক্ষিত!', tUpd: '✅ স্টক আপডেট!', tNeed: '⚠️ কোড ও নাম আবশ্যক',
+                tSaved: '✅ ক্রয় সংরক্ষিত!', tUpd: '✅ স্টক আপডেট!', tNeed: '⚠️ কোড ও নাম আবশ্যক',
                 tOut: '⚠️ স্টক শেষ!', tEmpty: '⚠️ কার্ট খালি!', tAdd: '🛒 যোগ হয়েছে:', tDone: '✅ বিক্রয় সম্পন্ন! গ্রাহক:', tLang: '🇧🇩 বাংলা সক্রিয়',
+                tItemDel: '🗑️ আইটেম মুছে গেছে', tItemEdit: '✅ আইটেম আপডেট!', tExpEdit: '✅ খরচ আপডেট!',
                 guest: 'অতিথি', sfx: 'টি',
                 scanTitle: '📷 বারকোড স্ক্যান করুন', scanHint: 'বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন', scanAdd: 'যোগ করুন',
                 scanErrT: 'ক্যামেরা অ্যাক্সেস নেই', scanErrS: 'ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন',
@@ -3433,28 +3581,30 @@
                 emExpT: 'কোনো খরচ নেই', emExpS: 'উপরে ফর্ম থেকে যোগ করুন',
                 epc: 'নগদ', epb: 'ব্যাংক', epm: 'বিকাশ/MFS',
                 catNames: { rent: 'ভাড়া', salary: 'বেতন', utility: 'বিদ্যুৎ', transport: 'পরিবহন', marketing: 'বিজ্ঞাপন', maintenance: 'রক্ষণাবেক্ষণ', food: 'খাবার', stationery: 'স্টেশনারি', tax: 'ট্যাক্স', other: 'অন্যান্য' },
-                dPageTitles: { item: 'আইটেম ও ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' },
-                dNavLabels: { main: 'MAIN' }
+                dPageTitles: { item: 'ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' },
+                dNavLabels: { main: 'MAIN' },
+                editItem: 'আইটেম সম্পাদনা', editExp: 'খরচ সম্পাদনা', btnUpdate: 'আপডেট করুন', btnCancel: 'বাতিল', confirmDel: 'মুছে ফেলবেন?'
             },
             en: {
-                appSub: 'Inventory Manager', ptag: { item: 'Item', sales: 'Sales', stock: 'Stock', expense: 'Expense' },
+                appSub: 'Inventory Manager', ptag: { item: 'Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expense' },
                 slItems: 'Total Items', slQty: 'Total Qty', slAmt: 'Total Amount', slPaid: 'Paid Amount',
-                chAdd: 'Add New Item', lbCode: 'Item Code *', lbName: 'Item Name *', lbSup: 'Supplier Name',
+                chAdd: 'Add New Purchase', lbCode: 'Item Code *', lbName: 'Item Name *', lbSup: 'Supplier Name',
                 lbPrice: 'Unit Price (৳)', lbQty: 'Quantity', lbTamt: 'Total Amount (৳)', lbPaid: 'Paid Amount (৳)', lbItemPay: 'Payment Method',
                 phCode: 'ITM001', phName: 'Product name', phSup: 'Supplier name',
-                btnSave: 'Save Item', stPur: 'Purchase List',
+                btnSave: 'Save Purchase', stPur: 'Purchase List',
                 chScan: 'Search', phSearch: 'Enter code or name...', ecT2: 'Cart Empty', ecS2: 'Search to add items',
                 chCust: 'Customer Info', lbCname: 'Customer Name', phCname: 'Enter customer name',
                 lbPayby: 'Payment Method', pcL: 'Cash', pbL: 'Bank', pmL: 'MFS/bKash',
                 chBill: 'Bill Summary', blSub: 'Subtotal', blDisc: 'Discount (৳)', blTot: 'Total', blPaid: 'Paid Amount (৳)', blDue: 'Due',
                 btnSale: 'Complete Sale',
                 phStkS: 'Search by code, name or supplier...', stlTot: 'Total', stlLow: 'Low Stock', stlOut: 'Out', stStk: 'Stock List',
-                nlItem: 'Item', nlSales: 'Sales', nlStock: 'Stock', nlExpense: 'Expense', flag: '🇬🇧', ltxt: 'EN',
-                emT: 'No Items Yet', emS: 'Add items using the form above', noR: 'No Results Found', noRS: 'Try a different search',
+                nlItem: 'Purchase', nlSales: 'Sales', nlStock: 'Stock', nlExpense: 'Expense', flag: '🇬🇧', ltxt: 'EN',
+                emT: 'No Purchases Yet', emS: 'Add items using the form above', noR: 'No Results Found', noRS: 'Try a different search',
                 supUnk: 'Unknown', stkLbl: 'Stock', qtyLbl: 'Qty',
                 bgOk: 'In Stock', bgLow: 'Low', bgOut: 'Out',
-                tSaved: '✅ Item saved!', tUpd: '✅ Stock updated!', tNeed: '⚠️ Code & name required',
+                tSaved: '✅ Purchase saved!', tUpd: '✅ Stock updated!', tNeed: '⚠️ Code & name required',
                 tOut: '⚠️ Out of stock!', tEmpty: '⚠️ Cart is empty!', tAdd: '🛒 Added:', tDone: '✅ Sale done! Customer:', tLang: '🇬🇧 English Active',
+                tItemDel: '🗑️ Item deleted', tItemEdit: '✅ Item updated!', tExpEdit: '✅ Expense updated!',
                 guest: 'Guest', sfx: ' items',
                 scanTitle: '📷 Scan Barcode', scanHint: 'Hold barcode or QR code inside the frame', scanAdd: 'Add Item',
                 scanErrT: 'Camera access denied', scanErrS: 'Allow camera permission in browser settings',
@@ -3466,8 +3616,9 @@
                 emExpT: 'No Expenses Yet', emExpS: 'Add expenses using the form above',
                 epc: 'Cash', epb: 'Bank', epm: 'MFS/bKash',
                 catNames: { rent: 'Rent', salary: 'Salary', utility: 'Utility', transport: 'Transport', marketing: 'Marketing', maintenance: 'Maintenance', food: 'Food', stationery: 'Stationery', tax: 'Tax', other: 'Other' },
-                dPageTitles: { item: 'Items & Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expenses' },
-                dNavLabels: { main: 'MAIN' }
+                dPageTitles: { item: 'Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expenses' },
+                dNavLabels: { main: 'MAIN' },
+                editItem: 'Edit Item', editExp: 'Edit Expense', btnUpdate: 'Update', btnCancel: 'Cancel', confirmDel: 'Delete this?'
             }
         };
         const CAT_ICONS = { rent: '🏠', salary: '👷', utility: '💡', transport: '🚚', marketing: '📣', maintenance: '🔧', food: '🍽️', stationery: '📝', tax: '📋', other: '📌' };
