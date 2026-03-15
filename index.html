@@ -58,9 +58,8 @@
             --s3: 0 8px 24px rgba(15, 23, 42, .10), 0 4px 8px rgba(15, 23, 42, .06);
             --nav: 64px;
             --top: 58px;
-            /* Desktop */
             --sidebar: 220px;
-            --dtop: 60px;
+            --dtop: 60px
         }
 
         html,
@@ -81,9 +80,6 @@
             height: 100%
         }
 
-        /* ═══════════════════════════════════════════
-   MOBILE LAYOUT (default, <768px)
-═══════════════════════════════════════════ */
         .topbar {
             height: var(--top);
             flex-shrink: 0;
@@ -197,7 +193,128 @@
             display: block
         }
 
-        /* STAT GRID */
+        /* ── PRODUCT ROWS ── */
+        .product-row {
+            background: var(--sf2);
+            border: 1.5px solid var(--bdr);
+            border-radius: var(--r12);
+            padding: 12px 12px 10px;
+            margin-bottom: 9px;
+            position: relative
+        }
+
+        .product-row.first-row {
+            background: var(--surface)
+        }
+
+        .pr-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .pr-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--tx3);
+            background: var(--sf3);
+            border: 1px solid var(--bdr);
+            padding: 3px 9px;
+            border-radius: 20px
+        }
+
+        .pr-del {
+            width: 26px;
+            height: 26px;
+            border-radius: var(--r6);
+            border: 1.5px solid var(--red-b);
+            background: var(--red-l);
+            color: var(--red);
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .12s
+        }
+
+        .pr-del:active {
+            transform: scale(.85)
+        }
+
+        .pr-g2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px
+        }
+
+        .pr-g3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px
+        }
+
+        .pr-divider {
+            height: 1px;
+            background: var(--bdr);
+            margin: 10px 0
+        }
+
+        /* ── ADD PRODUCT BUTTON ── */
+        .add-product-btn {
+            width: 100%;
+            padding: 11px;
+            border: 2px dashed var(--acc-b);
+            border-radius: var(--r12);
+            background: var(--acc-l);
+            color: var(--acc);
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Hind Siliguri', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all .15s;
+            margin-bottom: 12px
+        }
+
+        .add-product-btn:active {
+            transform: scale(.97);
+            background: var(--acc);
+            color: #fff
+        }
+
+        /* ── PURCHASE SUMMARY ── */
+        .pur-summary {
+            background: var(--sf2);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r10);
+            padding: 10px 13px;
+            margin-bottom: 12px;
+            display: none;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        .pur-summary.show {
+            display: flex
+        }
+
+        .ps-item {
+            font-size: 12px;
+            color: var(--tx3)
+        }
+
+        .ps-item span {
+            font-weight: 700;
+            color: var(--tx);
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        /* ── STATS ── */
         .stat-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -287,7 +404,7 @@
             color: var(--red)
         }
 
-        /* CARD */
+        /* ── CARD ── */
         .card {
             background: var(--surface);
             border: 1px solid var(--bdr);
@@ -349,9 +466,9 @@
             margin-top: 1px
         }
 
-        /* FORM */
+        /* ── FORM ── */
         .fld {
-            margin-bottom: 11px
+            margin-bottom: 9px
         }
 
         .lbl {
@@ -359,12 +476,12 @@
             font-weight: 600;
             color: var(--tx2);
             display: block;
-            margin-bottom: 5px
+            margin-bottom: 4px
         }
 
         .inp {
             width: 100%;
-            padding: 11px 13px;
+            padding: 10px 12px;
             border: 1.5px solid var(--bdr);
             border-radius: var(--r10);
             font-size: 14px;
@@ -410,12 +527,7 @@
             padding-right: 36px
         }
 
-        select.inp:focus {
-            border-color: var(--acc);
-            box-shadow: 0 0 0 3px rgba(59, 108, 244, .12)
-        }
-
-        /* PAY BUTTONS */
+        /* ── PAY BUTTONS ── */
         .pay-grp {
             display: flex;
             gap: 7px
@@ -448,7 +560,7 @@
             transform: scale(.95)
         }
 
-        /* BUTTON */
+        /* ── BUTTON ── */
         .btn {
             width: 100%;
             padding: 14px;
@@ -500,7 +612,7 @@
             box-shadow: none
         }
 
-        /* SCAN ROW */
+        /* ── SCAN ROW ── */
         .scan-row {
             display: flex;
             gap: 8px;
@@ -534,7 +646,7 @@
             background: var(--acc2)
         }
 
-        /* SUGGEST */
+        /* ── SUGGEST ── */
         .sug-wrap {
             position: relative
         }
@@ -608,7 +720,7 @@
             margin-top: 2px
         }
 
-        /* LIST ITEM */
+        /* ── LIST ROW ── */
         .list-row {
             background: var(--surface);
             border: 1px solid var(--bdr);
@@ -618,8 +730,7 @@
             display: flex;
             align-items: center;
             gap: 11px;
-            box-shadow: var(--s1);
-            cursor: default
+            box-shadow: var(--s1)
         }
 
         .li-code {
@@ -673,7 +784,7 @@
             margin-top: 3px
         }
 
-        /* CART ITEM */
+        /* ── CART ── */
         .cart-row {
             background: var(--surface);
             border: 1px solid var(--bdr);
@@ -773,7 +884,7 @@
             transform: scale(.88)
         }
 
-        /* BILL */
+        /* ── BILL ── */
         .b-row {
             display: flex;
             align-items: center;
@@ -844,7 +955,7 @@
             color: var(--red)
         }
 
-        /* STOCK */
+        /* ── STOCK ── */
         .sto-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -993,7 +1104,7 @@
             margin-top: 4px
         }
 
-        /* SEARCH */
+        /* ── SEARCH ── */
         .srch {
             position: relative;
             margin-bottom: 13px
@@ -1012,7 +1123,7 @@
             pointer-events: none
         }
 
-        /* SEC HD */
+        /* ── SEC HD ── */
         .sec-hd {
             display: flex;
             align-items: center;
@@ -1039,7 +1150,7 @@
             border-radius: 20px
         }
 
-        /* EMPTY */
+        /* ── EMPTY ── */
         .empty {
             text-align: center;
             padding: 36px 20px;
@@ -1068,7 +1179,7 @@
             color: var(--tx3)
         }
 
-        /* BNAV */
+        /* ── BOTTOM NAV ── */
         .bnav {
             height: var(--nav);
             flex-shrink: 0;
@@ -1134,10 +1245,10 @@
             font-weight: 700
         }
 
-        /* TOAST */
+        /* ── TOAST ── */
         .toast {
             position: fixed;
-            bottom: calc(var(--nav) + 10px);
+            bottom: calc(var(--nav)+10px);
             left: 50%;
             transform: translateX(-50%) translateY(14px);
             background: #1E293B;
@@ -1160,7 +1271,7 @@
             transform: translateX(-50%) translateY(0)
         }
 
-        /* EXPENSE ROWS */
+        /* ── EXPENSE ── */
         .exp-stat-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1229,26 +1340,6 @@
             margin-top: 3px
         }
 
-        .exp-del {
-            width: 28px;
-            height: 28px;
-            border-radius: var(--r8);
-            border: 1.5px solid var(--red-b);
-            background: var(--red-l);
-            color: var(--red);
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all .12s
-        }
-
-        .exp-del:active {
-            transform: scale(.88)
-        }
-
         .pay-badge {
             display: inline-flex;
             align-items: center;
@@ -1263,12 +1354,12 @@
             margin-left: 5px
         }
 
-        /* ROW ACTIONS */
+        /* ── ROW ACTIONS ── */
         .row-actions {
             display: flex;
             gap: 5px;
             flex-shrink: 0;
-            margin-left: 4px
+            align-items: center
         }
 
         .act-btn {
@@ -1280,15 +1371,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
             transition: all .12s;
             flex-shrink: 0
         }
 
         .act-edit {
             background: var(--acc-l);
-            border: 1.5px solid var(--acc-b);
-            color: var(--acc)
+            color: var(--acc);
+            border: 1.5px solid var(--acc-b)
         }
 
         .act-edit:active {
@@ -1297,24 +1388,23 @@
 
         .act-del {
             background: var(--red-l);
-            border: 1.5px solid var(--red-b);
-            color: var(--red)
+            color: var(--red);
+            border: 1.5px solid var(--red-b)
         }
 
         .act-del:active {
             transform: scale(.88)
         }
 
-        /* EDIT MODAL */
+        /* ── EDIT MODAL ── */
         .edit-modal {
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 200;
-            background: rgba(10, 15, 30, .7);
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end
+            z-index: 300;
+            background: rgba(10, 15, 30, .5);
+            align-items: flex-end;
+            justify-content: center
         }
 
         .edit-modal.open {
@@ -1325,11 +1415,12 @@
             width: 100%;
             max-width: 480px;
             background: var(--surface);
-            border-radius: 24px 24px 0 0;
-            padding: 0 0 24px;
-            animation: slideUp .25s ease;
-            overflow-y: auto;
-            max-height: 92vh
+            border-radius: 22px 22px 0 0;
+            padding: 0 0 28px;
+            animation: slideUp .22s ease;
+            overflow: hidden;
+            max-height: 92vh;
+            overflow-y: auto
         }
 
         .edit-sheet::-webkit-scrollbar {
@@ -1337,7 +1428,7 @@
         }
 
         .edit-handle {
-            width: 40px;
+            width: 38px;
             height: 4px;
             background: var(--bdr2);
             border-radius: 4px;
@@ -1348,7 +1439,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 16px 10px;
+            padding: 14px 16px 12px;
             border-bottom: 1px solid var(--bdr)
         }
 
@@ -1356,30 +1447,25 @@
             font-size: 15px;
             font-weight: 700;
             color: var(--tx);
-            font-family: 'Hind Siliguri', sans-serif
+            font-family: 'Syne', sans-serif
         }
 
         .edit-close {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: var(--sf2);
-            border: 1px solid var(--bdr);
+            border: 1.5px solid var(--bdr);
             color: var(--tx2);
             font-size: 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: all .12s
-        }
-
-        .edit-close:active {
-            background: var(--sf3)
+            justify-content: center
         }
 
         .edit-body {
-            padding: 16px
+            padding: 14px 16px 0
         }
 
         .edit-2btn {
@@ -1401,31 +1487,17 @@
             transform: scale(.98)
         }
 
-        .d-act-wrap {
-            display: flex;
-            gap: 6px;
-            align-items: center
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%)
+            }
+
+            to {
+                transform: translateY(0)
+            }
         }
 
-        .d-act-edit {
-            padding: 5px 11px;
-            border: 1px solid var(--acc-b);
-            background: var(--acc-l);
-            color: var(--acc);
-            border-radius: 7px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all .12s;
-            font-family: 'Hind Siliguri', sans-serif;
-            font-weight: 600;
-            white-space: nowrap
-        }
-
-        .d-act-edit:hover {
-            background: var(--acc-b)
-        }
-
-        /* SCANNER MODAL */
+        /* ── SCANNER ── */
         .scan-modal {
             display: none;
             position: fixed;
@@ -1449,16 +1521,6 @@
             padding: 0 0 32px;
             animation: slideUp .25s ease;
             overflow: hidden
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%)
-            }
-
-            to {
-                transform: translateY(0)
-            }
         }
 
         .scan-handle {
@@ -1495,10 +1557,6 @@
             display: flex;
             align-items: center;
             justify-content: center
-        }
-
-        .scan-close:active {
-            background: #ffffff44
         }
 
         .scan-viewport {
@@ -1701,10 +1759,8 @@
             font-family: 'Hind Siliguri', sans-serif
         }
 
-        /* ═══════════════════════════════════════════
-   DESKTOP LAYOUT (≥768px) — Fully different
-═══════════════════════════════════════════ */
-        @media (min-width:768px) {
+        /* ════════════ DESKTOP ════════════ */
+        @media(min-width:768px) {
 
             html,
             body {
@@ -1720,7 +1776,6 @@
                 height: 100vh
             }
 
-            /* Hide mobile-only elements */
             .topbar,
             .bnav,
             .toast {
@@ -1731,7 +1786,6 @@
                 display: none !important
             }
 
-            /* DESKTOP SHELL */
             .d-shell {
                 display: flex;
                 width: 100%;
@@ -1739,7 +1793,6 @@
                 overflow: hidden
             }
 
-            /* SIDEBAR */
             .d-sidebar {
                 width: var(--sidebar);
                 flex-shrink: 0;
@@ -1749,7 +1802,7 @@
                 flex-direction: column;
                 height: 100vh;
                 overflow: hidden;
-                box-shadow: var(--s1);
+                box-shadow: var(--s1)
             }
 
             .d-logo-wrap {
@@ -1876,7 +1929,6 @@
                 background: var(--sf3)
             }
 
-            /* MAIN AREA */
             .d-main {
                 flex: 1;
                 display: flex;
@@ -1885,7 +1937,6 @@
                 background: var(--bg)
             }
 
-            /* TOP BAR */
             .d-topbar {
                 height: var(--dtop);
                 flex-shrink: 0;
@@ -1928,7 +1979,6 @@
                 border: 1px solid var(--bdr)
             }
 
-            /* CONTENT */
             .d-content {
                 flex: 1;
                 overflow-y: auto;
@@ -1950,7 +2000,6 @@
                 border-radius: 4px
             }
 
-            /* D-PAGES */
             .d-page {
                 display: none
             }
@@ -1959,7 +2008,6 @@
                 display: block
             }
 
-            /* STAT CARDS */
             .d-stat-grid {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
@@ -2085,7 +2133,6 @@
                 color: var(--red)
             }
 
-            /* 2-COL LAYOUT */
             .d-two-col {
                 display: grid;
                 grid-template-columns: 1fr 1.6fr;
@@ -2093,15 +2140,6 @@
                 align-items: start
             }
 
-            .d-three-col {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 18px;
-                align-items: start;
-                margin-bottom: 20px
-            }
-
-            /* D-CARD */
             .d-card {
                 background: var(--surface);
                 border: 1px solid var(--bdr);
@@ -2164,7 +2202,6 @@
                 margin-top: 1px
             }
 
-            /* D-FORM */
             .d-fld {
                 margin-bottom: 11px
             }
@@ -2225,13 +2262,6 @@
                 gap: 12px
             }
 
-            .d-g3 {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 10px
-            }
-
-            /* D-PAY */
             .d-pay-grp {
                 display: flex;
                 gap: 8px
@@ -2264,7 +2294,6 @@
                 background: var(--sf2)
             }
 
-            /* D-BTN */
             .d-btn {
                 width: 100%;
                 padding: 12px;
@@ -2318,7 +2347,6 @@
                 transform: translateY(-1px)
             }
 
-            /* TABLE */
             .d-table-wrap {
                 overflow-x: auto;
                 border-radius: var(--r12);
@@ -2459,7 +2487,6 @@
                 background: var(--red-b)
             }
 
-            /* SEARCH */
             .d-search-wrap {
                 position: relative;
                 margin-bottom: 16px
@@ -2476,11 +2503,6 @@
                 transform: translateY(-50%);
                 font-size: 15px;
                 pointer-events: none
-            }
-
-            /* CART */
-            .d-cart-table-wrap {
-                margin-bottom: 14px
             }
 
             .d-cart-row {
@@ -2582,7 +2604,6 @@
                 background: var(--red-b)
             }
 
-            /* BILL */
             .d-bill-row {
                 display: flex;
                 align-items: center;
@@ -2659,7 +2680,6 @@
                 color: var(--red)
             }
 
-            /* STK summary */
             .d-stk-summary {
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -2701,7 +2721,6 @@
                 color: var(--red)
             }
 
-            /* EMPTY */
             .d-empty {
                 text-align: center;
                 padding: 48px 20px
@@ -2725,7 +2744,6 @@
                 color: var(--tx3)
             }
 
-            /* SEC HD */
             .d-sec-hd {
                 display: flex;
                 align-items: center;
@@ -2752,7 +2770,6 @@
                 border-radius: 20px
             }
 
-            /* D-TOAST */
             .d-toast {
                 position: fixed;
                 bottom: 24px;
@@ -2777,7 +2794,6 @@
                 transform: translateY(0)
             }
 
-            /* SUG LIST desktop */
             .d-sug-list {
                 position: absolute;
                 top: calc(100% + 4px);
@@ -2843,7 +2859,6 @@
                 text-align: right
             }
 
-            /* EXP table */
             .d-cat-ic-cell {
                 width: 34px;
                 height: 34px;
@@ -2877,121 +2892,107 @@
                 background: var(--acc);
                 color: #fff
             }
-        }
 
-        .row-actions {
-            display: flex;
-            gap: 5px;
-            flex-shrink: 0;
-            align-items: center
-        }
+            /* Desktop product rows */
+            .d-product-row {
+                background: var(--sf2);
+                border: 1.5px solid var(--bdr);
+                border-radius: var(--r12);
+                padding: 12px 14px 10px;
+                margin-bottom: 10px;
+                position: relative
+            }
 
-        .act-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: var(--r8);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            transition: all .12s;
-            flex-shrink: 0
-        }
+            .d-product-row.first-row {
+                background: var(--surface)
+            }
 
-        .act-edit {
-            background: var(--acc-l);
-            color: var(--acc);
-            border: 1.5px solid var(--acc-b)
-        }
+            .d-pr-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 10px
+            }
 
-        .act-edit:active {
-            transform: scale(.88)
-        }
+            .d-pr-num {
+                font-size: 11px;
+                font-weight: 700;
+                color: var(--tx3);
+                background: var(--sf3);
+                border: 1px solid var(--bdr);
+                padding: 3px 9px;
+                border-radius: 20px
+            }
 
-        .act-del {
-            background: var(--red-l);
-            color: var(--red);
-            border: 1.5px solid var(--red-b)
-        }
+            .d-pr-del {
+                width: 26px;
+                height: 26px;
+                border-radius: var(--r6);
+                border: 1.5px solid var(--red-b);
+                background: var(--red-l);
+                color: var(--red);
+                font-size: 13px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all .12s
+            }
 
-        .act-del:active {
-            transform: scale(.88)
-        }
+            .d-pr-del:hover {
+                background: var(--red-b)
+            }
 
-        .edit-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 300;
-            background: rgba(10, 15, 30, .5);
-            align-items: flex-end;
-            justify-content: center
-        }
+            .d-add-product-btn {
+                width: 100%;
+                padding: 10px;
+                border: 2px dashed var(--acc-b);
+                border-radius: var(--r12);
+                background: var(--acc-l);
+                color: var(--acc);
+                font-size: 12px;
+                font-weight: 700;
+                font-family: 'Hind Siliguri', sans-serif;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 7px;
+                transition: all .14s;
+                margin-bottom: 12px
+            }
 
-        .edit-modal.open {
-            display: flex
-        }
+            .d-add-product-btn:hover {
+                background: var(--acc);
+                color: #fff
+            }
 
-        .edit-sheet {
-            width: 100%;
-            max-width: 480px;
-            background: var(--surface);
-            border-radius: 22px 22px 0 0;
-            padding: 0 0 28px;
-            animation: slideUp .22s ease;
-            overflow: hidden;
-            max-height: 92vh;
-            overflow-y: auto
-        }
+            .d-pur-summary {
+                background: var(--sf2);
+                border: 1px solid var(--bdr);
+                border-radius: var(--r10);
+                padding: 10px 14px;
+                margin-bottom: 12px;
+                display: none;
+                gap: 18px;
+                flex-wrap: wrap
+            }
 
-        .edit-sheet::-webkit-scrollbar {
-            display: none
-        }
+            .d-pur-summary.show {
+                display: flex
+            }
 
-        .edit-handle {
-            width: 38px;
-            height: 4px;
-            background: var(--bdr2);
-            border-radius: 4px;
-            margin: 12px auto 0
-        }
+            .d-ps-item {
+                font-size: 12px;
+                color: var(--tx3)
+            }
 
-        .edit-title-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 16px 12px;
-            border-bottom: 1px solid var(--bdr)
-        }
+            .d-ps-item span {
+                font-weight: 700;
+                color: var(--tx);
+                font-family: 'JetBrains Mono', monospace
+            }
 
-        .edit-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--tx);
-            font-family: 'Syne', sans-serif
-        }
-
-        .edit-close {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--sf2);
-            border: 1.5px solid var(--bdr);
-            color: var(--tx2);
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .edit-body {
-            padding: 14px 16px 0
-        }
-
-        @media(min-width:768px) {
             .edit-modal {
                 align-items: center
             }
@@ -3006,23 +3007,24 @@
 
 <body>
 
-    <!-- ══════════════ MOBILE LAYOUT ══════════════ -->
+    <!-- ══════════ MOBILE ══════════ -->
     <header class="topbar">
         <div class="t-left">
             <div class="t-logo">📦</div>
             <div>
-                <div class="t-name" id="app-title">StockPro</div>
+                <div class="t-name">StockPro</div>
                 <div class="t-sub" id="app-sub">ইনভেন্টরি ম্যানেজার</div>
             </div>
         </div>
         <div class="t-right">
             <button class="lang-btn bn" id="lang-btn" onclick="toggleLang()"><span id="l-flag">🇧🇩</span><span
                     id="l-txt">BN</span></button>
-            <div class="page-chip" id="p-chip">আইটেম</div>
+            <div class="page-chip" id="p-chip">ক্রয়</div>
         </div>
     </header>
 
     <main class="scr" id="scr">
+
         <!-- PAGE: ITEM -->
         <div class="page active" id="page-item">
             <div class="stat-grid">
@@ -3051,30 +3053,26 @@
                 <div class="card-hd">
                     <div class="card-ic ci-blue">➕</div>
                     <div>
-                        <div class="card-ht" id="ch-add">নতুন আইটেম যোগ করুন</div>
-                        <div class="card-hs" id="ch-add-s">Add New Item / Purchase</div>
+                        <div class="card-ht" id="ch-add">নতুন ক্রয় যোগ করুন</div>
+                        <div class="card-hs">Add New Item / Purchase</div>
                     </div>
                 </div>
-                <div class="g2">
-                    <div class="fld"><label class="lbl" id="lb-code">আইটেম কোড *</label><input class="inp mono"
-                            id="f-code" placeholder="ITM001"></div>
-                    <div class="fld"><label class="lbl" id="lb-name">আইটেম নাম *</label><input class="inp" id="f-name"
-                            placeholder="পণ্যের নাম"></div>
+
+                <!-- DYNAMIC PRODUCT ROWS -->
+                <div id="product-rows"></div>
+
+                <!-- ADD MORE BUTTON -->
+                <button class="add-product-btn" id="add-product-btn" onclick="addProductRow()">
+                    ➕ <span id="btn-add-product">আরেকটি পণ্য যোগ করুন</span>
+                </button>
+
+                <!-- PURCHASE SUMMARY (shows when >1 product) -->
+                <div class="pur-summary" id="pur-summary">
+                    <div class="ps-item" id="psi-count">পণ্য: <span id="ps-count">0</span></div>
+                    <div class="ps-item">মোট: <span id="ps-total">৳0</span></div>
                 </div>
-                <div class="fld"><label class="lbl" id="lb-sup">সরবরাহকারী</label><input class="inp" id="f-sup"
-                        placeholder="সরবরাহকারীর নাম"></div>
-                <div class="g2">
-                    <div class="fld"><label class="lbl" id="lb-price">একক মূল্য (৳)</label><input class="inp mono"
-                            id="f-price" type="number" placeholder="0.00" oninput="calcItem()"></div>
-                    <div class="fld"><label class="lbl" id="lb-qty">পরিমাণ</label><input class="inp mono" id="f-qty"
-                            type="number" placeholder="0" oninput="calcItem()"></div>
-                </div>
-                <div class="g2">
-                    <div class="fld"><label class="lbl" id="lb-tqty">মোট পরিমাণ</label><input class="inp mono ro"
-                            id="f-tqty" readonly placeholder="0"></div>
-                    <div class="fld"><label class="lbl" id="lb-tamt">মোট মূল্য (৳)</label><input class="inp mono ro"
-                            id="f-tamt" readonly placeholder="0.00"></div>
-                </div>
+
+                <!-- PAYMENT - shared for all products -->
                 <div class="fld"><label class="lbl" id="lb-paid">পরিশোধিত (৳)</label><input class="inp mono" id="f-paid"
                         type="number" placeholder="0.00"></div>
                 <div class="fld" style="margin-bottom:14px">
@@ -3088,9 +3086,10 @@
                                 id="ipm-lbl">বিকাশ/MFS</span></button>
                     </div>
                 </div>
-                <button class="btn btn-p" onclick="addItem()"><span>✅</span><span id="btn-save">আইটেম সংরক্ষণ
+                <button class="btn btn-p" onclick="saveAllItems()"><span>✅</span><span id="btn-save">ক্রয় সংরক্ষণ
                         করুন</span></button>
             </div>
+
             <div class="sec-hd">
                 <div class="sec-t">📋 <span id="st-pur">ক্রয় তালিকা</span></div>
                 <div class="sec-pill" id="ip-pill">0টি</div>
@@ -3100,12 +3099,36 @@
 
         <!-- PAGE: SALES -->
         <div class="page" id="page-sales">
+            <!-- SALES STATS -->
+            <div class="stat-grid" id="sales-stat-grid">
+                <div class="stat-card sc-green">
+                    <div class="stat-ic">🧾</div>
+                    <div class="stat-lbl" id="ssl-total">মোট বিক্রয়</div>
+                    <div class="stat-val" id="ssv-total">৳0</div>
+                </div>
+                <div class="stat-card sc-blue">
+                    <div class="stat-ic">📦</div>
+                    <div class="stat-lbl" id="ssl-count">বিক্রয় সংখ্যা</div>
+                    <div class="stat-val" id="ssv-count">0</div>
+                </div>
+                <div class="stat-card sc-purple">
+                    <div class="stat-ic">✅</div>
+                    <div class="stat-lbl" id="ssl-paid">পরিশোধিত</div>
+                    <div class="stat-val" id="ssv-paid">৳0</div>
+                </div>
+                <div class="stat-card sc-red">
+                    <div class="stat-ic">⏳</div>
+                    <div class="stat-lbl" id="ssl-due">মোট বাকি</div>
+                    <div class="stat-val" id="ssv-due">৳0</div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-hd">
                     <div class="card-ic ci-blue">🔍</div>
                     <div>
                         <div class="card-ht" id="ch-scan">স্ক্যান / খুঁজুন</div>
-                        <div class="card-hs" id="ch-scan-s">Scan or Search Item</div>
+                        <div class="card-hs">Scan or Search Item</div>
                     </div>
                 </div>
                 <div class="sug-wrap">
@@ -3163,6 +3186,13 @@
                 <div style="margin-top:14px"><button class="btn btn-g" onclick="completeSale()"><span>🧾</span><span
                             id="btn-sale">বিক্রয় সম্পন্ন করুন</span></button></div>
             </div>
+
+            <!-- SALES HISTORY LIST -->
+            <div class="sec-hd">
+                <div class="sec-t">🧾 <span id="st-sales-hist">বিক্রয় তালিকা</span></div>
+                <div class="sec-pill" id="sales-pill">0টি</div>
+            </div>
+            <div id="sales-list"></div>
         </div>
 
         <!-- PAGE: STOCK -->
@@ -3219,7 +3249,7 @@
                     <div class="card-ic ci-red">💸</div>
                     <div>
                         <div class="card-ht" id="ch-exp">নতুন খরচ যোগ করুন</div>
-                        <div class="card-hs" id="ch-exp-s">Add New Expense</div>
+                        <div class="card-hs">Add New Expense</div>
                     </div>
                 </div>
                 <div class="fld"><label class="lbl" id="elb-date">তারিখ</label><input class="inp" type="date"
@@ -3284,130 +3314,6 @@
         </button>
     </nav>
     <div class="toast" id="toast"></div>
-
-    <!-- EDIT ITEM MODAL -->
-    <div class="edit-modal" id="edit-item-modal">
-        <div class="edit-sheet">
-            <div class="edit-handle"></div>
-            <div class="edit-title-bar">
-                <div class="edit-title" id="eim-title">✏️ আইটেম সম্পাদনা</div>
-                <button class="edit-close" onclick="closeEditItem()">✕</button>
-            </div>
-            <div class="edit-body">
-                <input type="hidden" id="eim-code-orig">
-                <div class="g2">
-                    <div class="fld"><label class="lbl" id="eilb-code">আইটেম কোড</label><input class="inp mono"
-                            id="eim-code" placeholder="ITM001"></div>
-                    <div class="fld"><label class="lbl" id="eilb-name">আইটেম নাম *</label><input class="inp"
-                            id="eim-name" placeholder="পণ্যের নাম"></div>
-                </div>
-                <div class="fld"><label class="lbl" id="eilb-sup">সরবরাহকারী</label><input class="inp" id="eim-sup"
-                        placeholder="সরবরাহকারীর নাম"></div>
-                <div class="g2">
-                    <div class="fld"><label class="lbl" id="eilb-price">একক মূল্য (৳)</label><input class="inp mono"
-                            id="eim-price" type="number" placeholder="0.00"></div>
-                    <div class="fld"><label class="lbl" id="eilb-qty">স্টক পরিমাণ</label><input class="inp mono"
-                            id="eim-qty" type="number" placeholder="0"></div>
-                </div>
-                <div class="fld"><label class="lbl" id="eilb-paid">পরিশোধিত (৳)</label><input class="inp mono"
-                        id="eim-paid" type="number" placeholder="0.00"></div>
-                <div class="fld" style="margin-bottom:16px">
-                    <label class="lbl" id="eilb-pay">পরিশোধ পদ্ধতি</label>
-                    <div class="pay-grp">
-                        <button class="pay-opt active" id="eim-pay-cash" onclick="setEimPay('cash')">💵<br><span
-                                id="eipc-lbl">নগদ</span></button>
-                        <button class="pay-opt" id="eim-pay-bank" onclick="setEimPay('bank')">🏦<br><span
-                                id="eipb-lbl">ব্যাংক</span></button>
-                        <button class="pay-opt" id="eim-pay-mfs" onclick="setEimPay('mfs')">📱<br><span
-                                id="eipm-lbl">বিকাশ/MFS</span></button>
-                    </div>
-                </div>
-                <button class="btn btn-p" onclick="saveEditItem()" style="margin-bottom:10px"><span>✅</span><span
-                        id="eim-btn">আপডেট করুন</span></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- EDIT EXPENSE MODAL -->
-    <div class="edit-modal" id="edit-exp-modal">
-        <div class="edit-sheet">
-            <div class="edit-handle"></div>
-            <div class="edit-title-bar">
-                <div class="edit-title" id="eem-title">✏️ খরচ সম্পাদনা</div>
-                <button class="edit-close" onclick="closeEditExp()">✕</button>
-            </div>
-            <div class="edit-body">
-                <input type="hidden" id="eem-id">
-                <div class="fld"><label class="lbl" id="eelb-date">তারিখ</label><input class="inp" type="date"
-                        id="eem-date"></div>
-                <div class="fld"><label class="lbl" id="eelb-cat">খরচের ধরন</label>
-                    <select class="inp" id="eem-cat">
-                        <option value="">-- ক্যাটাগরি --</option>
-                        <option value="rent">🏠 ভাড়া / Rent</option>
-                        <option value="salary">👷 বেতন / Salary</option>
-                        <option value="utility">💡 বিদ্যুৎ / Utility</option>
-                        <option value="transport">🚚 পরিবহন / Transport</option>
-                        <option value="marketing">📣 বিজ্ঞাপন / Marketing</option>
-                        <option value="maintenance">🔧 রক্ষণাবেক্ষণ / Maintenance</option>
-                        <option value="food">🍽️ খাবার / Food</option>
-                        <option value="stationery">📝 স্টেশনারি / Stationery</option>
-                        <option value="tax">📋 ট্যাক্স / Tax</option>
-                        <option value="other">📌 অন্যান্য / Other</option>
-                    </select>
-                </div>
-                <div class="fld"><label class="lbl" id="eelb-desc">বিবরণ</label><input class="inp" id="eem-desc"
-                        placeholder="খরচের বিবরণ"></div>
-                <div class="fld"><label class="lbl" id="eelb-amt">পরিমাণ (৳)</label><input class="inp mono" id="eem-amt"
-                        type="number" placeholder="0.00"></div>
-                <div class="fld" style="margin-bottom:16px">
-                    <label class="lbl" id="eelb-pay">পরিশোধ পদ্ধতি</label>
-                    <div class="pay-grp">
-                        <button class="pay-opt active" id="eem-pay-cash" onclick="setEemPay('cash')">💵<br><span
-                                id="eepc-lbl">নগদ</span></button>
-                        <button class="pay-opt" id="eem-pay-bank" onclick="setEemPay('bank')">🏦<br><span
-                                id="eepb-lbl">ব্যাংক</span></button>
-                        <button class="pay-opt" id="eem-pay-mfs" onclick="setEemPay('mfs')">📱<br><span
-                                id="eepm-lbl">বিকাশ/MFS</span></button>
-                    </div>
-                </div>
-                <button class="btn btn-r" onclick="saveEditExp()" style="margin-bottom:10px"><span>✅</span><span
-                        id="eem-btn">আপডেট করুন</span></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCANNER MODAL -->
-    <div class="scan-modal" id="scan-modal">
-        <div class="scan-sheet">
-            <div class="scan-handle"></div>
-            <div class="scan-title-bar">
-                <div class="scan-title" id="scan-title-txt">📷 বারকোড স্ক্যান করুন</div><button class="scan-close"
-                    onclick="closeScanner()">✕</button>
-            </div>
-            <div class="scan-viewport"><video id="scan-video" playsinline autoplay muted></video>
-                <div class="scan-overlay">
-                    <div class="scan-frame">
-                        <div class="scan-c3"></div>
-                        <div class="scan-c4"></div>
-                        <div class="scan-line"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="scan-err" id="scan-err">
-                <div class="scan-err-ic">📵</div>
-                <div class="scan-err-t" id="scan-err-t">ক্যামেরা অ্যাক্সেস নেই</div>
-                <div class="scan-err-s" id="scan-err-s">ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন</div>
-            </div>
-            <div class="scan-hint" id="scan-hint-txt">বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন</div>
-            <div class="scan-result-bar" id="scan-result-bar">
-                <div style="flex:1;min-width:0">
-                    <div class="srb-code" id="srb-code"></div>
-                    <div class="srb-name" id="srb-name"></div>
-                </div><button class="srb-btn" id="srb-btn" onclick="confirmScanAdd()">যোগ করুন</button>
-            </div>
-            <div class="scan-nf" id="scan-nf"></div>
-        </div>
-    </div>
 
     <!-- EDIT ITEM MODAL -->
     <div class="edit-modal" id="edit-item-modal">
@@ -3506,9 +3412,90 @@
         </div>
     </div>
 
-    <!-- ══════════════ DESKTOP LAYOUT ══════════════ -->
+    <!-- EDIT SALE MODAL -->
+    <div class="edit-modal" id="edit-sale-modal">
+        <div class="edit-sheet">
+            <div class="edit-handle"></div>
+            <div class="edit-title-bar">
+                <div class="edit-title" id="esm-title">✏️ বিক্রয় সম্পাদনা</div>
+                <button class="edit-close" onclick="closeEditSale()">✕</button>
+            </div>
+            <div class="edit-body">
+                <input type="hidden" id="esm-id">
+                <!-- Items summary (read-only) -->
+                <div class="fld">
+                    <label class="lbl">📦 পণ্য</label>
+                    <div style="background:var(--sf2);border:1.5px solid var(--bdr);border-radius:var(--r10);padding:10px 12px;font-size:12px;color:var(--tx3);line-height:1.6;"
+                        id="esm-items-summary"></div>
+                </div>
+                <div class="fld">
+                    <label class="lbl">💰 মোট বিল</label>
+                    <div style="background:var(--sf2);border:1.5px solid var(--bdr);border-radius:var(--r10);padding:10px 12px;font-size:15px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--grn);"
+                        id="esm-total-val">৳0.00</div>
+                </div>
+                <div class="fld"><label class="lbl" id="esmlb-cust">গ্রাহকের নাম</label><input class="inp" id="esm-cust"
+                        placeholder="গ্রাহকের নাম"></div>
+                <div class="fld"><label class="lbl" id="esmlb-paid">পরিশোধিত (৳)</label><input class="inp mono"
+                        id="esm-paid" type="number" placeholder="0.00"></div>
+                <div class="fld" style="margin-bottom:0">
+                    <label class="lbl" id="esmlb-pay">পরিশোধ পদ্ধতি</label>
+                    <div class="pay-grp">
+                        <button class="pay-opt active" id="esm-pay-cash"
+                            onclick="esmPay='cash';['cash','bank','mfs'].forEach(p=>document.getElementById('esm-pay-'+p).classList.toggle('active',p==='cash'))">💵<br><span
+                                id="esmpc-lbl">নগদ</span></button>
+                        <button class="pay-opt" id="esm-pay-bank"
+                            onclick="esmPay='bank';['cash','bank','mfs'].forEach(p=>document.getElementById('esm-pay-'+p).classList.toggle('active',p==='bank'))">🏦<br><span
+                                id="esmpb-lbl">ব্যাংক</span></button>
+                        <button class="pay-opt" id="esm-pay-mfs"
+                            onclick="esmPay='mfs';['cash','bank','mfs'].forEach(p=>document.getElementById('esm-pay-'+p).classList.toggle('active',p==='mfs'))">📱<br><span
+                                id="esmpm-lbl">বিকাশ/MFS</span></button>
+                    </div>
+                </div>
+                <div class="edit-2btn">
+                    <button class="btn btn-sec" onclick="closeEditSale()">✕ <span
+                            id="esmbtn-cancel">বাতিল</span></button>
+                    <button class="btn btn-g" onclick="saveEditSale()">✅ <span id="esm-btn">আপডেট করুন</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCANNER MODAL -->
+    <div class="scan-modal" id="scan-modal">
+        <div class="scan-sheet">
+            <div class="scan-handle"></div>
+            <div class="scan-title-bar">
+                <div class="scan-title" id="scan-title-txt">📷 বারকোড স্ক্যান করুন</div>
+                <button class="scan-close" onclick="closeScanner()">✕</button>
+            </div>
+            <div class="scan-viewport"><video id="scan-video" playsinline autoplay muted></video>
+                <div class="scan-overlay">
+                    <div class="scan-frame">
+                        <div class="scan-c3"></div>
+                        <div class="scan-c4"></div>
+                        <div class="scan-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scan-err" id="scan-err">
+                <div class="scan-err-ic">📵</div>
+                <div class="scan-err-t" id="scan-err-t">ক্যামেরা অ্যাক্সেস নেই</div>
+                <div class="scan-err-s" id="scan-err-s">ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন</div>
+            </div>
+            <div class="scan-hint" id="scan-hint-txt">বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন</div>
+            <div class="scan-result-bar" id="scan-result-bar">
+                <div style="flex:1;min-width:0">
+                    <div class="srb-code" id="srb-code"></div>
+                    <div class="srb-name" id="srb-name"></div>
+                </div>
+                <button class="srb-btn" id="srb-btn" onclick="confirmScanAdd()">যোগ করুন</button>
+            </div>
+            <div class="scan-nf" id="scan-nf"></div>
+        </div>
+    </div>
+
+    <!-- ══════════ DESKTOP ══════════ -->
     <div class="d-shell" id="d-shell" style="display:none">
-        <!-- SIDEBAR -->
         <aside class="d-sidebar">
             <div class="d-logo-wrap">
                 <div class="d-logo-row">
@@ -3535,8 +3522,6 @@
                         id="d-l-txt">BN · বাংলা</span></button>
             </div>
         </aside>
-
-        <!-- MAIN -->
         <div class="d-main">
             <div class="d-topbar">
                 <div class="d-page-title"><span class="d-page-ic" id="d-page-ic">📦</span><span
@@ -3580,41 +3565,25 @@
                         </div>
                     </div>
                     <div class="d-two-col">
-                        <!-- Form -->
                         <div class="d-card">
                             <div class="d-card-hd">
                                 <div class="d-card-ic dci-acc">➕</div>
                                 <div>
-                                    <div class="d-card-ht" id="dch-add">নতুন আইটেম যোগ করুন</div>
+                                    <div class="d-card-ht" id="dch-add">নতুন ক্রয় যোগ করুন</div>
                                     <div class="d-card-hs">Add New Item / Purchase</div>
                                 </div>
                             </div>
-                            <div class="d-g2">
-                                <div class="d-fld"><label class="d-lbl" id="dlb-code">আইটেম কোড *</label><input
-                                        class="d-inp d-inp-mono" id="df-code" placeholder="ITM001"
-                                        style="font-family:'JetBrains Mono',monospace"></div>
-                                <div class="d-fld"><label class="d-lbl" id="dlb-name">আইটেম নাম *</label><input
-                                        class="d-inp" id="df-name" placeholder="পণ্যের নাম"></div>
+                            <!-- DYNAMIC PRODUCT ROWS DESKTOP -->
+                            <div id="d-product-rows"></div>
+                            <button class="d-add-product-btn" id="d-add-product-btn" onclick="dAddProductRow()">➕ <span
+                                    id="d-btn-add-product">আরেকটি পণ্য যোগ করুন</span></button>
+                            <div class="d-pur-summary" id="d-pur-summary">
+                                <div class="d-ps-item">পণ্য: <span id="d-ps-count">0</span></div>
+                                <div class="d-ps-item">মোট: <span id="d-ps-total">৳0</span></div>
                             </div>
-                            <div class="d-fld"><label class="d-lbl" id="dlb-sup">সরবরাহকারী</label><input class="d-inp"
-                                    id="df-sup" placeholder="সরবরাহকারীর নাম"></div>
-                            <div class="d-g2">
-                                <div class="d-fld"><label class="d-lbl" id="dlb-price">একক মূল্য (৳)</label><input
-                                        class="d-inp" id="df-price" type="number" placeholder="0.00"
-                                        oninput="dCalcItem()" style="font-family:'JetBrains Mono',monospace"></div>
-                                <div class="d-fld"><label class="d-lbl" id="dlb-qty">পরিমাণ</label><input class="d-inp"
-                                        id="df-qty" type="number" placeholder="0" oninput="dCalcItem()"
-                                        style="font-family:'JetBrains Mono',monospace"></div>
-                            </div>
-                            <div class="d-g2">
-                                <div class="d-fld"><label class="d-lbl" id="dlb-tamt">মোট মূল্য</label><input
-                                        class="d-inp ro" id="df-tamt" readonly placeholder="0.00"
-                                        style="font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.02);color:rgba(255,255,255,.3)">
-                                </div>
-                                <div class="d-fld"><label class="d-lbl" id="dlb-paid">পরিশোধিত (৳)</label><input
-                                        class="d-inp" id="df-paid" type="number" placeholder="0.00"
-                                        style="font-family:'JetBrains Mono',monospace"></div>
-                            </div>
+                            <div class="d-fld"><label class="d-lbl" id="d-lb-paid">পরিশোধিত (৳)</label><input
+                                    class="d-inp" id="df-paid" type="number" placeholder="0.00"
+                                    style="font-family:'JetBrains Mono',monospace"></div>
                             <div class="d-fld" style="margin-bottom:16px">
                                 <label class="d-lbl" id="dlb-ipay">পরিশোধ পদ্ধতি</label>
                                 <div class="d-pay-grp">
@@ -3626,17 +3595,16 @@
                                         onclick="dSetItemPay('mfs')">📱<br><span id="dipm-lbl">বিকাশ/MFS</span></button>
                                 </div>
                             </div>
-                            <button class="d-btn d-btn-p" onclick="dAddItem()"><span>✅</span><span id="dbtn-save">আইটেম
-                                    সংরক্ষণ করুন</span></button>
+                            <button class="d-btn d-btn-p" onclick="dSaveAllItems()"><span>✅</span><span
+                                    id="dbtn-save">ক্রয় সংরক্ষণ করুন</span></button>
                         </div>
-                        <!-- Table -->
                         <div class="d-card">
                             <div class="d-sec-hd">
                                 <div class="d-sec-t">📋 <span id="dst-pur">ক্রয় তালিকা</span></div>
                                 <div class="d-sec-pill" id="dip-pill">0টি</div>
                             </div>
                             <div class="d-table-wrap">
-                                <table class="d-table" id="d-item-table">
+                                <table class="d-table">
                                     <thead>
                                         <tr>
                                             <th id="dth-code">কোড</th>
@@ -3657,8 +3625,38 @@
 
                 <!-- D-PAGE: SALES -->
                 <div class="d-page" id="d-page-sales">
+                    <!-- STATS ROW -->
+                    <div class="d-stat-grid">
+                        <div class="d-stat-card dsc-grn">
+                            <div class="d-sc-top">
+                                <div class="d-sc-ic">🧾</div>
+                            </div>
+                            <div class="d-sc-lbl" id="dssl-total">মোট বিক্রয়</div>
+                            <div class="d-sc-val" id="dssv-total">৳0</div>
+                        </div>
+                        <div class="d-stat-card dsc-acc">
+                            <div class="d-sc-top">
+                                <div class="d-sc-ic">📦</div>
+                            </div>
+                            <div class="d-sc-lbl" id="dssl-count">বিক্রয় সংখ্যা</div>
+                            <div class="d-sc-val" id="dssv-count">0</div>
+                        </div>
+                        <div class="d-stat-card dsc-pur">
+                            <div class="d-sc-top">
+                                <div class="d-sc-ic">✅</div>
+                            </div>
+                            <div class="d-sc-lbl" id="dssl-paid">পরিশোধিত</div>
+                            <div class="d-sc-val" id="dssv-paid">৳0</div>
+                        </div>
+                        <div class="d-stat-card dsc-red">
+                            <div class="d-sc-top">
+                                <div class="d-sc-ic">⏳</div>
+                            </div>
+                            <div class="d-sc-lbl" id="dssl-due">মোট বাকি</div>
+                            <div class="d-sc-val" id="dssv-due">৳0</div>
+                        </div>
+                    </div>
                     <div class="d-two-col" style="grid-template-columns:1.4fr 1fr">
-                        <!-- Left: search + cart + bill -->
                         <div>
                             <div class="d-card">
                                 <div class="d-card-hd">
@@ -3669,15 +3667,13 @@
                                     </div>
                                 </div>
                                 <div style="position:relative">
-                                    <div class="d-search-wrap">
-                                        <span class="d-search-ic">🔍</span>
-                                        <input class="d-inp" id="ds-search" placeholder="কোড বা নাম লিখুন..."
-                                            oninput="dDoSearch()" style="padding-left:38px">
-                                    </div>
+                                    <div class="d-search-wrap"><span class="d-search-ic">🔍</span><input class="d-inp"
+                                            id="ds-search" placeholder="কোড বা নাম লিখুন..." oninput="dDoSearch()"
+                                            style="padding-left:38px"></div>
                                     <div class="d-sug-list" id="d-sug-list"></div>
                                 </div>
                                 <div id="d-cart-body"
-                                    style="min-height:80px;border:1px solid rgba(255,255,255,.05);border-radius:10px;overflow:hidden">
+                                    style="min-height:80px;border:1px solid var(--bdr);border-radius:10px;overflow:hidden">
                                     <div class="d-empty" style="padding:30px 20px">
                                         <div class="d-empty-ic" style="font-size:30px;margin-bottom:8px">🛒</div>
                                         <div class="d-empty-t" style="font-size:13px" id="dec-t">কার্ট খালি</div>
@@ -3706,7 +3702,6 @@
                                         class="d-bill-due" id="dbv-due">৳0.00</span></div>
                             </div>
                         </div>
-                        <!-- Right: customer + payment + confirm -->
                         <div>
                             <div class="d-card">
                                 <div class="d-card-hd">
@@ -3734,6 +3729,30 @@
                             </div>
                         </div>
                     </div>
+                    <!-- SALES HISTORY TABLE -->
+                    <div class="d-card">
+                        <div class="d-sec-hd">
+                            <div class="d-sec-t">🧾 <span id="d-st-sales-hist">বিক্রয় তালিকা</span></div>
+                            <div class="d-sec-pill" id="d-sales-pill">0টি</div>
+                        </div>
+                        <div class="d-table-wrap">
+                            <table class="d-table">
+                                <thead>
+                                    <tr>
+                                        <th id="dsth-cust">গ্রাহক</th>
+                                        <th id="dsth-items">পণ্য</th>
+                                        <th id="dsth-total">মোট</th>
+                                        <th id="dsth-paid">পরিশোধ</th>
+                                        <th id="dsth-due">বাকি</th>
+                                        <th id="dsth-pay">পদ্ধতি</th>
+                                        <th id="dsth-date">তারিখ</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="d-sales-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- D-PAGE: STOCK -->
@@ -3754,19 +3773,18 @@
                     </div>
                     <div class="d-card">
                         <div class="d-card-hd"
-                            style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06)">
+                            style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bdr)">
                             <div class="d-card-ic dci-acc">📦</div>
                             <div style="flex:1">
                                 <div class="d-card-ht" id="dst-stk">স্টক তালিকা</div>
                             </div>
-                            <div class="d-search-wrap" style="margin:0;width:280px">
-                                <span class="d-search-ic">🔍</span>
-                                <input class="d-inp" id="d-stk-search" placeholder="খুঁজুন..." oninput="dRenderStock()"
-                                    style="padding-left:38px;margin:0">
+                            <div class="d-search-wrap" style="margin:0;width:280px"><span
+                                    class="d-search-ic">🔍</span><input class="d-inp" id="d-stk-search"
+                                    placeholder="খুঁজুন..." oninput="dRenderStock()" style="padding-left:38px;margin:0">
                             </div>
                         </div>
                         <div class="d-table-wrap">
-                            <table class="d-table" id="d-stock-table">
+                            <table class="d-table">
                                 <thead>
                                     <tr>
                                         <th id="dth-scode">কোড</th>
@@ -3775,6 +3793,7 @@
                                         <th id="dth-sprice">মূল্য</th>
                                         <th id="dth-sqty">পরিমাণ</th>
                                         <th id="dth-sstatus">স্ট্যাটাস</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody id="d-stock-tbody"></tbody>
@@ -3816,7 +3835,6 @@
                         </div>
                     </div>
                     <div class="d-two-col">
-                        <!-- Form -->
                         <div class="d-card">
                             <div class="d-card-hd">
                                 <div class="d-card-ic dci-red">💸</div>
@@ -3861,14 +3879,13 @@
                             <button class="d-btn d-btn-r" onclick="dAddExpense()"><span>💸</span><span id="dbtn-exp">খরচ
                                     সংরক্ষণ করুন</span></button>
                         </div>
-                        <!-- Table -->
                         <div class="d-card">
                             <div class="d-sec-hd">
                                 <div class="d-sec-t">📋 <span id="dest-list">খরচের তালিকা</span></div>
                                 <div class="d-sec-pill" id="dep-pill">0টি</div>
                             </div>
                             <div class="d-table-wrap">
-                                <table class="d-table" id="d-exp-table">
+                                <table class="d-table">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -3887,90 +3904,20 @@
                     </div>
                 </div>
 
-            </div><!-- d-content -->
-        </div><!-- d-main -->
-    </div><!-- d-shell -->
+            </div>
+        </div>
+    </div>
     <div class="d-toast" id="d-toast"></div>
 
     <script>
-        /* ════════════════════════════════════════
-           DATA
-        ════════════════════════════════════════ */
+        /* ══ DATA ══ */
         let DB = { items: JSON.parse(localStorage.getItem('sp2_items') || '[]'), sales: JSON.parse(localStorage.getItem('sp2_sales') || '[]'), expenses: JSON.parse(localStorage.getItem('sp2_expenses') || '[]') };
         function saveDB() { localStorage.setItem('sp2_items', JSON.stringify(DB.items)); localStorage.setItem('sp2_sales', JSON.stringify(DB.sales)); localStorage.setItem('sp2_expenses', JSON.stringify(DB.expenses)) }
 
         let LANG = localStorage.getItem('sp2_lang') || 'bn';
         const TX = {
-            bn: {
-                appSub: 'ইনভেন্টরি ম্যানেজার', ptag: { item: 'ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' },
-                slItems: 'মোট আইটেম', slQty: 'মোট পরিমাণ', slAmt: 'মোট মূল্য', slPaid: 'পরিশোধিত',
-                chAdd: 'নতুন ক্রয় যোগ করুন', lbCode: 'আইটেম কোড *', lbName: 'আইটেম নাম *', lbSup: 'সরবরাহকারী',
-                lbPrice: 'একক মূল্য (৳)', lbQty: 'পরিমাণ', lbTamt: 'মোট মূল্য (৳)', lbPaid: 'পরিশোধিত (৳)', lbItemPay: 'পরিশোধ পদ্ধতি',
-                phCode: 'ITM001', phName: 'পণ্যের নাম', phSup: 'সরবরাহকারীর নাম',
-                btnSave: 'ক্রয় সংরক্ষণ করুন', stPur: 'ক্রয় তালিকা',
-                chScan: 'স্ক্যান / খুঁজুন', phSearch: 'কোড বা নাম লিখুন...', ecT2: 'কার্ট খালি', ecS2: 'আইটেম খুঁজে যোগ করুন',
-                chCust: 'গ্রাহক তথ্য', lbCname: 'গ্রাহকের নাম', phCname: 'গ্রাহকের নাম লিখুন',
-                lbPayby: 'পরিশোধ পদ্ধতি', pcL: 'নগদ', pbL: 'ব্যাংক', pmL: 'বিকাশ/MFS',
-                chBill: 'বিল সারসংক্ষেপ', blSub: 'মোট', blDisc: 'ছাড় (৳)', blTot: 'মোট মূল্য', blPaid: 'পরিশোধিত (৳)', blDue: 'বাকি',
-                btnSale: 'বিক্রয় সম্পন্ন করুন',
-                phStkS: 'কোড, নাম বা সরবরাহকারী খুঁজুন...', stlTot: 'মোট', stlLow: 'কম স্টক', stlOut: 'শেষ', stStk: 'স্টক তালিকা',
-                nlItem: 'ক্রয়', nlSales: 'বিক্রয়', nlStock: 'স্টক', nlExpense: 'খরচ', flag: '🇧🇩', ltxt: 'BN',
-                emT: 'কোনো ক্রয় নেই', emS: 'উপরে ফর্ম থেকে যোগ করুন', noR: 'কোনো ফলাফল নেই', noRS: 'ভিন্ন কিছু খোঁজ করুন',
-                supUnk: 'অজানা', stkLbl: 'স্টক', qtyLbl: 'পরিমাণ',
-                bgOk: 'আছে', bgLow: 'কম', bgOut: 'শেষ',
-                tSaved: '✅ ক্রয় সংরক্ষিত!', tUpd: '✅ স্টক আপডেট!', tNeed: '⚠️ কোড ও নাম আবশ্যক',
-                tOut: '⚠️ স্টক শেষ!', tEmpty: '⚠️ কার্ট খালি!', tAdd: '🛒 যোগ হয়েছে:', tDone: '✅ বিক্রয় সম্পন্ন! গ্রাহক:', tLang: '🇧🇩 বাংলা সক্রিয়',
-                tItemDel: '🗑️ আইটেম মুছে গেছে', tItemEdit: '✅ আইটেম আপডেট!', tExpEdit: '✅ খরচ আপডেট!',
-                guest: 'অতিথি', sfx: 'টি',
-                scanTitle: '📷 বারকোড স্ক্যান করুন', scanHint: 'বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন', scanAdd: 'যোগ করুন',
-                scanErrT: 'ক্যামেরা অ্যাক্সেস নেই', scanErrS: 'ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন',
-                eslTotal: 'মোট খরচ', eslMonth: 'এই মাস', eslCount: 'মোট এন্ট্রি', eslAvg: 'গড় খরচ',
-                chExp: 'নতুন খরচ যোগ করুন', elbDate: 'তারিখ', elbCat: 'খরচের ধরন', elbDesc: 'বিবরণ', elbAmt: 'পরিমাণ (৳)', elbPay: 'পরিশোধ পদ্ধতি',
-                phDesc: 'খরচের বিবরণ লিখুন...', btnExp: 'খরচ সংরক্ষণ করুন', estList: 'খরচের তালিকা',
-                eNeedCat: '⚠️ ক্যাটাগরি বেছে নিন', eNeedAmt: '⚠️ পরিমাণ লিখুন',
-                tExpSaved: '✅ খরচ সংরক্ষিত!', tExpDel: '🗑️ খরচ মুছে গেছে',
-                emExpT: 'কোনো খরচ নেই', emExpS: 'উপরে ফর্ম থেকে যোগ করুন',
-                epc: 'নগদ', epb: 'ব্যাংক', epm: 'বিকাশ/MFS',
-                catNames: { rent: 'ভাড়া', salary: 'বেতন', utility: 'বিদ্যুৎ', transport: 'পরিবহন', marketing: 'বিজ্ঞাপন', maintenance: 'রক্ষণাবেক্ষণ', food: 'খাবার', stationery: 'স্টেশনারি', tax: 'ট্যাক্স', other: 'অন্যান্য' },
-                dPageTitles: { item: 'ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' },
-                dNavLabels: { main: 'MAIN' },
-                editItem: 'আইটেম সম্পাদনা', editExp: 'খরচ সম্পাদনা', btnUpdate: 'আপডেট করুন', btnCancel: 'বাতিল', confirmDel: 'মুছে ফেলবেন?'
-            },
-            en: {
-                appSub: 'Inventory Manager', ptag: { item: 'Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expense' },
-                slItems: 'Total Items', slQty: 'Total Qty', slAmt: 'Total Amount', slPaid: 'Paid Amount',
-                chAdd: 'Add New Purchase', lbCode: 'Item Code *', lbName: 'Item Name *', lbSup: 'Supplier Name',
-                lbPrice: 'Unit Price (৳)', lbQty: 'Quantity', lbTamt: 'Total Amount (৳)', lbPaid: 'Paid Amount (৳)', lbItemPay: 'Payment Method',
-                phCode: 'ITM001', phName: 'Product name', phSup: 'Supplier name',
-                btnSave: 'Save Purchase', stPur: 'Purchase List',
-                chScan: 'Search', phSearch: 'Enter code or name...', ecT2: 'Cart Empty', ecS2: 'Search to add items',
-                chCust: 'Customer Info', lbCname: 'Customer Name', phCname: 'Enter customer name',
-                lbPayby: 'Payment Method', pcL: 'Cash', pbL: 'Bank', pmL: 'MFS/bKash',
-                chBill: 'Bill Summary', blSub: 'Subtotal', blDisc: 'Discount (৳)', blTot: 'Total', blPaid: 'Paid Amount (৳)', blDue: 'Due',
-                btnSale: 'Complete Sale',
-                phStkS: 'Search by code, name or supplier...', stlTot: 'Total', stlLow: 'Low Stock', stlOut: 'Out', stStk: 'Stock List',
-                nlItem: 'Purchase', nlSales: 'Sales', nlStock: 'Stock', nlExpense: 'Expense', flag: '🇬🇧', ltxt: 'EN',
-                emT: 'No Purchases Yet', emS: 'Add items using the form above', noR: 'No Results Found', noRS: 'Try a different search',
-                supUnk: 'Unknown', stkLbl: 'Stock', qtyLbl: 'Qty',
-                bgOk: 'In Stock', bgLow: 'Low', bgOut: 'Out',
-                tSaved: '✅ Purchase saved!', tUpd: '✅ Stock updated!', tNeed: '⚠️ Code & name required',
-                tOut: '⚠️ Out of stock!', tEmpty: '⚠️ Cart is empty!', tAdd: '🛒 Added:', tDone: '✅ Sale done! Customer:', tLang: '🇬🇧 English Active',
-                tItemDel: '🗑️ Item deleted', tItemEdit: '✅ Item updated!', tExpEdit: '✅ Expense updated!',
-                guest: 'Guest', sfx: ' items',
-                scanTitle: '📷 Scan Barcode', scanHint: 'Hold barcode or QR code inside the frame', scanAdd: 'Add Item',
-                scanErrT: 'Camera access denied', scanErrS: 'Allow camera permission in browser settings',
-                eslTotal: 'Total Expense', eslMonth: 'This Month', eslCount: 'Total Entries', eslAvg: 'Avg Expense',
-                chExp: 'Add New Expense', elbDate: 'Date', elbCat: 'Expense Category', elbDesc: 'Description', elbAmt: 'Amount (৳)', elbPay: 'Payment Method',
-                phDesc: 'Enter expense description...', btnExp: 'Save Expense', estList: 'Expense List',
-                eNeedCat: '⚠️ Select a category', eNeedAmt: '⚠️ Enter amount',
-                tExpSaved: '✅ Expense saved!', tExpDel: '🗑️ Expense deleted',
-                emExpT: 'No Expenses Yet', emExpS: 'Add expenses using the form above',
-                epc: 'Cash', epb: 'Bank', epm: 'MFS/bKash',
-                catNames: { rent: 'Rent', salary: 'Salary', utility: 'Utility', transport: 'Transport', marketing: 'Marketing', maintenance: 'Maintenance', food: 'Food', stationery: 'Stationery', tax: 'Tax', other: 'Other' },
-                dPageTitles: { item: 'Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expenses' },
-                dNavLabels: { main: 'MAIN' },
-                editItem: 'Edit Item', editExp: 'Edit Expense', btnUpdate: 'Update', btnCancel: 'Cancel', confirmDel: 'Delete this?'
-            }
+            bn: { appSub: 'ইনভেন্টরি ম্যানেজার', ptag: { item: 'ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' }, slItems: 'মোট আইটেম', slQty: 'মোট পরিমাণ', slAmt: 'মোট মূল্য', slPaid: 'পরিশোধিত', chAdd: 'নতুন ক্রয় যোগ করুন', lbPaid: 'পরিশোধিত (৳)', lbItemPay: 'পরিশোধ পদ্ধতি', pcL: 'নগদ', pbL: 'ব্যাংক', pmL: 'বিকাশ/MFS', btnSave: 'ক্রয় সংরক্ষণ করুন', btnAddProduct: 'আরেকটি পণ্য যোগ করুন', stPur: 'ক্রয় তালিকা', chScan: 'স্ক্যান / খুঁজুন', phSearch: 'কোড বা নাম লিখুন...', ecT2: 'কার্ট খালি', ecS2: 'আইটেম খুঁজে যোগ করুন', chCust: 'গ্রাহক তথ্য', lbCname: 'গ্রাহকের নাম', phCname: 'গ্রাহকের নাম লিখুন', lbPayby: 'পরিশোধ পদ্ধতি', chBill: 'বিল সারসংক্ষেপ', blSub: 'মোট', blDisc: 'ছাড় (৳)', blTot: 'মোট মূল্য', blPaid: 'পরিশোধিত (৳)', blDue: 'বাকি', btnSale: 'বিক্রয় সম্পন্ন করুন', phStkS: 'কোড, নাম বা সরবরাহকারী খুঁজুন...', stlTot: 'মোট', stlLow: 'কম স্টক', stlOut: 'শেষ', stStk: 'স্টক তালিকা', nlItem: 'ক্রয়', nlSales: 'বিক্রয়', nlStock: 'স্টক', nlExpense: 'খরচ', flag: '🇧🇩', ltxt: 'BN', emT: 'কোনো ক্রয় নেই', emS: 'উপরে ফর্ম থেকে যোগ করুন', noR: 'কোনো ফলাফল নেই', noRS: 'ভিন্ন কিছু খোঁজ করুন', supUnk: 'অজানা', stkLbl: 'স্টক', qtyLbl: 'পরিমাণ', bgOk: 'আছে', bgLow: 'কম', bgOut: 'শেষ', tSaved: '✅ ক্রয় সংরক্ষিত!', tUpd: '✅ স্টক আপডেট!', tNeed: '⚠️ কোড ও নাম আবশ্যক', tOut: '⚠️ স্টক শেষ!', tEmpty: '⚠️ কার্ট খালি!', tAdd: '🛒 যোগ হয়েছে:', tDone: '✅ বিক্রয় সম্পন্ন! গ্রাহক:', tLang: '🇧🇩 বাংলা সক্রিয়', tItemDel: '🗑️ আইটেম মুছে গেছে', tItemEdit: '✅ আইটেম আপডেট!', tExpEdit: '✅ খরচ আপডেট!', tSaleDel: '🗑️ বিক্রয় মুছে গেছে', guest: 'অতিথি', sfx: 'টি', scanTitle: '📷 বারকোড স্ক্যান করুন', scanHint: 'বারকোড বা QR কোড ফ্রেমের মধ্যে রাখুন', scanAdd: 'যোগ করুন', scanErrT: 'ক্যামেরা অ্যাক্সেস নেই', scanErrS: 'ব্রাউজার সেটিংস থেকে ক্যামেরা পারমিশন দিন', eslTotal: 'মোট খরচ', eslMonth: 'এই মাস', eslCount: 'মোট এন্ট্রি', eslAvg: 'গড় খরচ', chExp: 'নতুন খরচ যোগ করুন', elbDate: 'তারিখ', elbCat: 'খরচের ধরন', elbDesc: 'বিবরণ', elbAmt: 'পরিমাণ (৳)', elbPay: 'পরিশোধ পদ্ধতি', phDesc: 'খরচের বিবরণ লিখুন...', btnExp: 'খরচ সংরক্ষণ করুন', estList: 'খরচের তালিকা', eNeedCat: '⚠️ ক্যাটাগরি বেছে নিন', eNeedAmt: '⚠️ পরিমাণ লিখুন', tExpSaved: '✅ খরচ সংরক্ষিত!', tExpDel: '🗑️ খরচ মুছে গেছে', emExpT: 'কোনো খরচ নেই', emExpS: 'উপরে ফর্ম থেকে যোগ করুন', epc: 'নগদ', epb: 'ব্যাংক', epm: 'বিকাশ/MFS', catNames: { rent: 'ভাড়া', salary: 'বেতন', utility: 'বিদ্যুৎ', transport: 'পরিবহন', marketing: 'বিজ্ঞাপন', maintenance: 'রক্ষণাবেক্ষণ', food: 'খাবার', stationery: 'স্টেশনারি', tax: 'ট্যাক্স', other: 'অন্যান্য' }, dPageTitles: { item: 'ক্রয়', sales: 'বিক্রয়', stock: 'স্টক', expense: 'খরচ' }, editItem: 'আইটেম সম্পাদনা', editExp: 'খরচ সম্পাদনা', btnUpdate: 'আপডেট করুন', btnCancel: 'বাতিল', confirmDel: 'মুছে ফেলবেন?', prLabel: 'পণ্য', phCode: 'কোড', phName: 'পণ্যের নাম', phSup: 'সরবরাহকারী', phPrice: 'মূল্য', phQty: 'পরিমাণ', tBulkSaved: '✅ {{n}}টি পণ্য সংরক্ষিত!', sslTotal: 'মোট বিক্রয়', sslCount: 'বিক্রয় সংখ্যা', sslPaid: 'পরিশোধিত', sslDue: 'মোট বাকি', stSalesHist: 'বিক্রয় তালিকা', sthCust: 'গ্রাহক', sthItems: 'পণ্য', sthTotal: 'মোট', sthPaid: 'পরিশোধ', sthDue: 'বাকি', sthPay: 'পদ্ধতি', sthDate: 'তারিখ', emSalesT: 'কোনো বিক্রয় নেই', emSalesS: 'বিক্রয় সম্পন্ন করলে এখানে দেখাবে', dueBadge: 'বাকি', paidBadge: 'পরিশোধিত' },
+            en: { appSub: 'Inventory Manager', ptag: { item: 'Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expense' }, slItems: 'Total Items', slQty: 'Total Qty', slAmt: 'Total Amount', slPaid: 'Paid Amount', chAdd: 'Add New Purchase', lbPaid: 'Paid Amount (৳)', lbItemPay: 'Payment Method', pcL: 'Cash', pbL: 'Bank', pmL: 'MFS/bKash', btnSave: 'Save Purchase', btnAddProduct: 'Add Another Product', stPur: 'Purchase List', chScan: 'Search', phSearch: 'Enter code or name...', ecT2: 'Cart Empty', ecS2: 'Search to add items', chCust: 'Customer Info', lbCname: 'Customer Name', phCname: 'Enter customer name', lbPayby: 'Payment Method', chBill: 'Bill Summary', blSub: 'Subtotal', blDisc: 'Discount (৳)', blTot: 'Total', blPaid: 'Paid Amount (৳)', blDue: 'Due', btnSale: 'Complete Sale', phStkS: 'Search by code, name or supplier...', stlTot: 'Total', stlLow: 'Low Stock', stlOut: 'Out', stStk: 'Stock List', nlItem: 'Purchase', nlSales: 'Sales', nlStock: 'Stock', nlExpense: 'Expense', flag: '🇬🇧', ltxt: 'EN', emT: 'No Purchases Yet', emS: 'Add items using the form above', noR: 'No Results Found', noRS: 'Try a different search', supUnk: 'Unknown', stkLbl: 'Stock', qtyLbl: 'Qty', bgOk: 'In Stock', bgLow: 'Low', bgOut: 'Out', tSaved: '✅ Purchase saved!', tUpd: '✅ Stock updated!', tNeed: '⚠️ Code & name required', tOut: '⚠️ Out of stock!', tEmpty: '⚠️ Cart is empty!', tAdd: '🛒 Added:', tDone: '✅ Sale done! Customer:', tLang: '🇬🇧 English Active', tItemDel: '🗑️ Item deleted', tItemEdit: '✅ Item updated!', tExpEdit: '✅ Expense updated!', tSaleDel: '🗑️ Sale deleted', guest: 'Guest', sfx: ' items', scanTitle: '📷 Scan Barcode', scanHint: 'Hold barcode or QR code inside the frame', scanAdd: 'Add Item', scanErrT: 'Camera access denied', scanErrS: 'Allow camera permission in browser settings', eslTotal: 'Total Expense', eslMonth: 'This Month', eslCount: 'Total Entries', eslAvg: 'Avg Expense', chExp: 'Add New Expense', elbDate: 'Date', elbCat: 'Expense Category', elbDesc: 'Description', elbAmt: 'Amount (৳)', elbPay: 'Payment Method', phDesc: 'Enter expense description...', btnExp: 'Save Expense', estList: 'Expense List', eNeedCat: '⚠️ Select a category', eNeedAmt: '⚠️ Enter amount', tExpSaved: '✅ Expense saved!', tExpDel: '🗑️ Expense deleted', emExpT: 'No Expenses Yet', emExpS: 'Add expenses using the form above', epc: 'Cash', epb: 'Bank', epm: 'MFS/bKash', catNames: { rent: 'Rent', salary: 'Salary', utility: 'Utility', transport: 'Transport', marketing: 'Marketing', maintenance: 'Maintenance', food: 'Food', stationery: 'Stationery', tax: 'Tax', other: 'Other' }, dPageTitles: { item: 'Purchase', sales: 'Sales', stock: 'Stock', expense: 'Expenses' }, editItem: 'Edit Item', editExp: 'Edit Expense', btnUpdate: 'Update', btnCancel: 'Cancel', confirmDel: 'Delete this?', prLabel: 'Product', phCode: 'Code', phName: 'Product name', phSup: 'Supplier', phPrice: 'Price', phQty: 'Qty', tBulkSaved: '✅ {{n}} items saved!', sslTotal: 'Total Sales', sslCount: 'No. of Sales', sslPaid: 'Paid', sslDue: 'Total Due', stSalesHist: 'Sales History', sthCust: 'Customer', sthItems: 'Items', sthTotal: 'Total', sthPaid: 'Paid', sthDue: 'Due', sthPay: 'Method', sthDate: 'Date', emSalesT: 'No Sales Yet', emSalesS: 'Complete a sale to see history here', dueBadge: 'Due', paidBadge: 'Paid' }
         };
         const CAT_ICONS = { rent: '🏠', salary: '👷', utility: '💡', transport: '🚚', marketing: '📣', maintenance: '🔧', food: '🍽️', stationery: '📝', tax: '📋', other: '📌' };
         const CAT_COLORS = { rent: '#8B5CF6', salary: '#3B6CF4', utility: '#F59E0B', transport: '#10B981', marketing: '#EF4444', maintenance: '#6366F1', food: '#F97316', stationery: '#0EA5E9', tax: '#EC4899', other: '#94A3B8' };
@@ -3979,46 +3926,34 @@
         const PAY_LABELS_EN = { cash: 'Cash', bank: 'Bank', mfs: 'MFS' };
 
         function tx(k) { return TX[LANG][k] || '' }
-        function $id(id) { return document.getElementById(id) }
+        function $id(i) { return document.getElementById(i) }
         function _t(id, v) { const e = $id(id); if (e) e.textContent = v }
         function _p(id, v) { const e = $id(id); if (e) e.placeholder = v }
         function isDesktop() { return window.innerWidth >= 768 }
 
-        /* ════════ RESPONSIVE SWITCH ════════ */
+        /* ══ RESPONSIVE ══ */
         function checkLayout() {
             const d = isDesktop();
             $id('d-shell').style.display = d ? 'flex' : 'none';
-            document.querySelector('body').style.maxWidth = d ? '100%' : '480px';
-            document.querySelector('body').style.height = d ? '100vh' : '100%';
-            if (d) {
-                updateDateChip();
-                dRenderAll();
-            }
+            document.body.style.maxWidth = d ? '100%' : '480px';
+            document.body.style.height = d ? '100vh' : '100%';
+            if (d) { updateDateChip(); dRenderAll() }
         }
         window.addEventListener('resize', checkLayout);
+        function updateDateChip() { const now = new Date(); _t('d-date-chip', now.toLocaleDateString(LANG === 'bn' ? 'bn-BD' : 'en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })) }
 
-        function updateDateChip() {
-            const now = new Date();
-            _t('d-date-chip', now.toLocaleDateString(LANG === 'bn' ? 'bn-BD' : 'en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }));
-        }
-
-        /* ════════════════════════════════════════
-           LANG
-        ════════════════════════════════════════ */
+        /* ══ LANG ══ */
         function applyLang() {
             const L = TX[LANG];
-            // mobile
             _t('app-sub', L.appSub);
             $id('l-flag').textContent = L.flag; $id('l-txt').textContent = L.ltxt;
-            const lb = $id('lang-btn'); lb.className = 'lang-btn ' + LANG;
+            $id('lang-btn').className = 'lang-btn ' + LANG;
             const cp = document.querySelector('.page.active')?.id?.replace('page-', '') || 'item';
             _t('p-chip', L.ptag[cp]);
             _t('sl-items', L.slItems); _t('sl-qty', L.slQty); _t('sl-amt', L.slAmt); _t('sl-paid', L.slPaid);
-            _t('ch-add', L.chAdd); _t('lb-code', L.lbCode); _t('lb-name', L.lbName); _t('lb-sup', L.lbSup);
-            _t('lb-price', L.lbPrice); _t('lb-qty', L.lbQty); _t('lb-tamt', L.lbTamt); _t('lb-paid', L.lbPaid); _t('lb-item-pay', L.lbItemPay);
+            _t('ch-add', L.chAdd); _t('lb-paid', L.lbPaid); _t('lb-item-pay', L.lbItemPay);
             _t('ipc-lbl', L.pcL); _t('ipb-lbl', L.pbL); _t('ipm-lbl', L.pmL);
-            _p('f-code', L.phCode); _p('f-name', L.phName); _p('f-sup', L.phSup);
-            _t('btn-save', L.btnSave); _t('st-pur', L.stPur);
+            _t('btn-save', L.btnSave); _t('btn-add-product', L.btnAddProduct); _t('st-pur', L.stPur);
             _t('ch-scan', L.chScan); _p('s-search', L.phSearch);
             _t('ch-cust', L.chCust); _t('lb-cname', L.lbCname); _p('cust-name', L.phCname);
             _t('lb-payby', L.lbPayby); _t('pc-lbl', L.pcL); _t('pb-lbl', L.pbL); _t('pm-lbl', L.pmL);
@@ -4031,19 +3966,29 @@
             _t('ch-exp', L.chExp); _t('elb-date', L.elbDate); _t('elb-cat', L.elbCat); _t('elb-desc', L.elbDesc); _t('elb-amt', L.elbAmt); _t('elb-pay', L.elbPay);
             _p('ef-desc', L.phDesc); _t('btn-exp', L.btnExp); _t('est-list', L.estList);
             _t('epc-lbl', L.epc); _t('epb-lbl', L.epb); _t('epm-lbl', L.epm);
-            // edit modal labels
-            _t('ebtn-cancel-i', L.btnCancel || 'বাতিল'); _t('ebtn-cancel-e', L.btnCancel || 'বাতিল');
+            _t('ebtn-cancel-i', L.btnCancel); _t('ebtn-cancel-e', L.btnCancel); _t('esmbtn-cancel', L.btnCancel);
+            // sales stats & list labels
+            _t('ssl-total', L.sslTotal); _t('ssl-count', L.sslCount); _t('ssl-paid', L.sslPaid); _t('ssl-due', L.sslDue);
+            _t('st-sales-hist', L.stSalesHist);
+            _t('dssl-total', L.sslTotal); _t('dssl-count', L.sslCount); _t('dssl-paid', L.sslPaid); _t('dssl-due', L.sslDue);
+            _t('d-st-sales-hist', L.stSalesHist);
+            _t('dsth-cust', L.sthCust); _t('dsth-items', L.sthItems); _t('dsth-total', L.sthTotal); _t('dsth-paid', L.sthPaid); _t('dsth-due', L.sthDue); _t('dsth-pay', L.sthPay); _t('dsth-date', L.sthDate);
             // desktop
             _t('d-app-sub', L.appSub);
             $id('d-l-flag').textContent = L.flag; _t('d-l-txt', L.ltxt + ' · ' + (LANG === 'bn' ? 'বাংলা' : 'English'));
             _t('dnl-item', LANG === 'bn' ? 'আইটেম / ক্রয়' : 'Items & Purchase'); _t('dnl-sales', L.nlSales); _t('dnl-stock', L.nlStock); _t('dnl-expense', L.nlExpense);
+            _t('dch-add', L.chAdd); _t('d-lb-paid', L.lbPaid); _t('dlb-ipay', L.lbItemPay);
+            _t('dipc-lbl', L.pcL); _t('dipb-lbl', L.pbL); _t('dipm-lbl', L.pmL);
+            _t('dbtn-save', L.btnSave); _t('d-btn-add-product', L.btnAddProduct); _t('dst-pur', L.stPur);
             updateDateChip();
+            // re-render product rows labels
+            rerenderProductRowLabels(); dRerenderProductRowLabels();
             renderItemList(); renderCart(); renderStock(); updateStats(); renderExpenseList(); updateExpenseStats();
             if (isDesktop()) dRenderAll();
         }
         function toggleLang() { LANG = LANG === 'bn' ? 'en' : 'bn'; localStorage.setItem('sp2_lang', LANG); applyLang(); showToast(tx('tLang')) }
 
-        /* ════════ MOBILE NAV ════════ */
+        /* ══ MOBILE NAV ══ */
         let curPage = 'item';
         function goPage(p) {
             if (curPage === p) return; curPage = p;
@@ -4051,37 +3996,32 @@
             document.querySelectorAll('.nt').forEach(e => e.classList.remove('active'));
             $id('page-' + p).classList.add('active'); $id('nt-' + p).classList.add('active');
             _t('p-chip', TX[LANG].ptag[p]); $id('scr').scrollTop = 0;
-            if (p === 'stock') renderStock(); if (p === 'sales') renderCart();
+            if (p === 'stock') renderStock(); if (p === 'sales') { renderCart(); renderSalesList(); updateSalesStats(); }
             if (p === 'expense') { renderExpenseList(); updateExpenseStats(); }
         }
 
-        /* ════════ DESKTOP NAV ════════ */
+        /* ══ DESKTOP NAV ══ */
         let dCurPage = 'item';
         function dGoPage(p) {
             dCurPage = p;
             document.querySelectorAll('.d-page').forEach(e => e.classList.remove('active'));
             document.querySelectorAll('.d-nav-item').forEach(e => e.classList.remove('active'));
             $id('d-page-' + p).classList.add('active'); $id('dnt-' + p).classList.add('active');
-            const L = TX[LANG];
-            _t('d-page-title-txt', L.dPageTitles[p]);
-            const icons = { item: '📦', sales: '🛒', stock: '📋', expense: '💸' };
-            _t('d-page-ic', icons[p]);
+            _t('d-page-title-txt', TX[LANG].dPageTitles[p]);
+            const icons = { item: '📦', sales: '🛒', stock: '📋', expense: '💸' }; _t('d-page-ic', icons[p]);
             $id('d-content').scrollTop = 0;
-            if (p === 'stock') dRenderStock();
-            if (p === 'sales') dRenderCart();
+            if (p === 'stock') dRenderStock(); if (p === 'sales') { dRenderCart(); dRenderSalesTable(); dUpdateSalesStats(); }
             if (p === 'expense') { dRenderExpenseTable(); dUpdateExpenseStats(); }
         }
 
-        /* ════════ TOAST ════════ */
+        /* ══ TOAST ══ */
         let tt, dtt;
         function showToast(msg) {
             if (isDesktop()) { const el = $id('d-toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(dtt); dtt = setTimeout(() => el.classList.remove('on'), 2600) }
             else { const el = $id('toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => el.classList.remove('on'), 2600) }
         }
 
-        /* ════════════════════════════════════════
-           SHARED DATA HELPERS
-        ════════════════════════════════════════ */
+        /* ══ STATS ══ */
         function updateStats() {
             const I = DB.items;
             _t('sv-items', I.length); _t('sv-qty', I.reduce((a, b) => a + (b.qty || 0), 0));
@@ -4094,44 +4034,146 @@
             }
         }
         function updateExpenseStats() {
-            const E = DB.expenses;
-            const total = E.reduce((a, b) => a + b.amt, 0);
-            const now = new Date();
+            const E = DB.expenses, total = E.reduce((a, b) => a + b.amt, 0), now = new Date();
             const mTot = E.filter(ex => { const d = new Date(ex.date); return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear() }).reduce((a, b) => a + b.amt, 0);
             const avg = E.length ? total / E.length : 0;
             _t('esv-total', '৳' + total.toFixed(0)); _t('esv-month', '৳' + mTot.toFixed(0)); _t('esv-count', E.length); _t('esv-avg', '৳' + avg.toFixed(0));
         }
 
-        /* ════════════════════════════════════════
-           MOBILE — ITEM
-        ════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           MOBILE — DYNAMIC PRODUCT ROWS
+        ══════════════════════════════════════════ */
+        let rowIdCounter = 0;
         let itemPayMethod = 'cash';
         function setItemPay(m) { itemPayMethod = m;['cash', 'bank', 'mfs'].forEach(p => $id('item-pay-' + p).classList.toggle('active', p === m)) }
-        function calcItem() {
-            const p = parseFloat($id('f-price').value) || 0, q = parseFloat($id('f-qty').value) || 0;
-            $id('f-tqty').value = q || ''; $id('f-tamt').value = q && p ? (p * q).toFixed(2) : '';
+
+        function makeProductRowHTML(rid, num, isFirst) {
+            const L = TX[LANG];
+            const delBtn = isFirst ? '' : `<button class="pr-del" onclick="removeProductRow('${rid}')" title="মুছুন">✕</button>`;
+            return `<div class="product-row${isFirst ? ' first-row' : ''}" id="${rid}">
+        <div class="pr-header">
+            <span class="pr-num">${L.prLabel || 'পণ্য'} ${num}</span>
+            ${delBtn}
+        </div>
+        <div class="pr-g2">
+            <div class="fld"><label class="lbl">${L.lbCode || 'কোড *'}</label><input class="inp mono pr-code" placeholder="${L.phCode || 'ITM001'}" oninput="updatePurchaseSummary()"></div>
+            <div class="fld"><label class="lbl">${L.lbName || 'নাম *'}</label><input class="inp pr-name" placeholder="${L.phName || 'পণ্যের নাম'}" oninput="updatePurchaseSummary()"></div>
+        </div>
+        <div class="fld"><label class="lbl">${L.lbSup || 'সরবরাহকারী'}</label><input class="inp pr-sup" placeholder="${L.phSup || 'সরবরাহকারীর নাম'}"></div>
+        <div class="pr-g2">
+            <div class="fld"><label class="lbl">${L.lbPrice || 'মূল্য (৳)'}</label><input class="inp mono pr-price" type="number" placeholder="0.00" oninput="updatePurchaseSummary()"></div>
+            <div class="fld"><label class="lbl">${L.lbQty || 'পরিমাণ'}</label><input class="inp mono pr-qty" type="number" placeholder="0" oninput="updatePurchaseSummary()"></div>
+        </div>
+    </div>`;
         }
-        function addItem() {
-            const code = $id('f-code').value.trim(), name = $id('f-name').value.trim();
-            if (!code || !name) { showToast(tx('tNeed')); return }
-            const price = parseFloat($id('f-price').value) || 0, qty = parseFloat($id('f-qty').value) || 0, paid = parseFloat($id('f-paid').value) || 0, sup = $id('f-sup').value.trim();
-            _saveItem(code, name, sup, price, qty, paid, itemPayMethod);
-            ['f-code', 'f-name', 'f-sup', 'f-price', 'f-qty', 'f-tqty', 'f-tamt', 'f-paid'].forEach(id => { const e = $id(id); if (e) e.value = '' });
-            setItemPay('cash'); renderItemList(); updateStats(); if (isDesktop()) dRenderItemTable();
+
+        function addProductRow() {
+            rowIdCounter++;
+            const rid = 'pr_' + rowIdCounter;
+            const container = $id('product-rows');
+            const num = container.children.length + 1;
+            const div = document.createElement('div');
+            div.innerHTML = makeProductRowHTML(rid, num, num === 1);
+            container.appendChild(div.firstElementChild);
+            updateProductRowNumbers();
+            updatePurchaseSummary();
         }
-        function _saveItem(code, name, sup, price, qty, paid, pm) {
+
+        function removeProductRow(rid) {
+            const el = $id(rid); if (el) el.remove();
+            updateProductRowNumbers();
+            updatePurchaseSummary();
+        }
+
+        function updateProductRowNumbers() {
+            const rows = $id('product-rows').querySelectorAll('.product-row');
+            const L = TX[LANG];
+            rows.forEach((row, i) => {
+                const numEl = row.querySelector('.pr-num');
+                if (numEl) numEl.textContent = (L.prLabel || 'পণ্য') + ' ' + (i + 1);
+                // first row has no delete button
+                const delBtn = row.querySelector('.pr-del');
+                if (i === 0 && delBtn) delBtn.remove();
+                else if (i > 0 && !delBtn) {
+                    const hd = row.querySelector('.pr-header');
+                    if (hd) { const b = document.createElement('button'); b.className = 'pr-del'; b.onclick = () => removeProductRow(row.id); b.textContent = '✕'; hd.appendChild(b); }
+                }
+            });
+        }
+
+        function rerenderProductRowLabels() {
+            const rows = $id('product-rows').querySelectorAll('.product-row');
+            const L = TX[LANG];
+            rows.forEach((row, i) => {
+                const numEl = row.querySelector('.pr-num');
+                if (numEl) numEl.textContent = (L.prLabel || 'পণ্য') + ' ' + (i + 1);
+                const lbls = row.querySelectorAll('.lbl');
+                if (lbls[0]) lbls[0].textContent = L.lbCode || 'কোড *';
+                if (lbls[1]) lbls[1].textContent = L.lbName || 'নাম *';
+                if (lbls[2]) lbls[2].textContent = L.lbSup || 'সরবরাহকারী';
+                if (lbls[3]) lbls[3].textContent = L.lbPrice || 'মূল্য (৳)';
+                if (lbls[4]) lbls[4].textContent = L.lbQty || 'পরিমাণ';
+                const inps = row.querySelectorAll('input');
+                if (inps[0]) inps[0].placeholder = L.phCode || 'ITM001';
+                if (inps[1]) inps[1].placeholder = L.phName || 'পণ্যের নাম';
+                if (inps[2]) inps[2].placeholder = L.phSup || 'সরবরাহকারীর নাম';
+            });
+        }
+
+        function updatePurchaseSummary() {
+            const rows = $id('product-rows').querySelectorAll('.product-row');
+            let count = 0, total = 0;
+            rows.forEach(row => {
+                const code = row.querySelector('.pr-code').value.trim();
+                const name = row.querySelector('.pr-name').value.trim();
+                const price = parseFloat(row.querySelector('.pr-price').value) || 0;
+                const qty = parseFloat(row.querySelector('.pr-qty').value) || 0;
+                if (code && name) count++;
+                total += price * qty;
+            });
+            const sm = $id('pur-summary');
+            if (rows.length > 1 || (count > 0 && total > 0)) { sm.classList.add('show'); _t('ps-count', count); _t('ps-total', '৳' + total.toFixed(2)); }
+            else { sm.classList.remove('show'); }
+        }
+
+        function saveAllItems() {
+            const rows = $id('product-rows').querySelectorAll('.product-row');
+            const paid = parseFloat($id('f-paid').value) || 0;
+            let saved = 0;
+            const perPaid = rows.length > 0 ? paid / rows.length : 0;
+            rows.forEach(row => {
+                const code = row.querySelector('.pr-code').value.trim();
+                const name = row.querySelector('.pr-name').value.trim();
+                if (!code || !name) return;
+                const sup = row.querySelector('.pr-sup').value.trim();
+                const price = parseFloat(row.querySelector('.pr-price').value) || 0;
+                const qty = parseFloat(row.querySelector('.pr-qty').value) || 0;
+                _saveItem(code, name, sup, price, qty, perPaid, itemPayMethod, saved === 0 && rows.length === 1);
+                saved++;
+            });
+            if (saved === 0) { showToast(tx('tNeed')); return }
+            // reset form
+            $id('product-rows').innerHTML = ''; $id('f-paid').value = '';
+            rowIdCounter = 0; setItemPay('cash'); addProductRow();
+            renderItemList(); updateStats(); if (isDesktop()) dRenderItemTable();
+            if (saved > 1) showToast((tx('tBulkSaved') || '✅ {{n}}টি পণ্য সংরক্ষিত!').replace('{{n}}', saved));
+        }
+
+        function _saveItem(code, name, sup, price, qty, paid, pm, showMsg = true) {
             const ex = DB.items.find(i => i.code === code);
-            if (ex) { ex.qty += qty; ex.totalQty = (ex.totalQty || 0) + qty; ex.totalAmt = (ex.totalAmt || 0) + (price * qty); ex.paidAmt = (ex.paidAmt || 0) + paid; ex.payMethod = pm; if (sup) ex.supplier = sup; if (price) ex.price = price; showToast(tx('tUpd')) }
-            else { DB.items.push({ code, name, supplier: sup, price, qty, totalQty: qty, totalAmt: price * qty, paidAmt: paid, payMethod: pm, date: new Date().toLocaleDateString('bn-BD') }); showToast(tx('tSaved')) }
+            if (ex) { ex.qty += qty; ex.totalQty = (ex.totalQty || 0) + qty; ex.totalAmt = (ex.totalAmt || 0) + (price * qty); ex.paidAmt = (ex.paidAmt || 0) + paid; ex.payMethod = pm; if (sup) ex.supplier = sup; if (price) ex.price = price; if (showMsg) showToast(tx('tUpd')); }
+            else { DB.items.push({ code, name, supplier: sup, price, qty, totalQty: qty, totalAmt: price * qty, paidAmt: paid, payMethod: pm, date: new Date().toLocaleDateString('bn-BD') }); if (showMsg) showToast(tx('tSaved')); }
             saveDB();
         }
+
         function deleteItem(code) {
-            if (!confirm(tx('confirmDel') || 'Delete?')) return;
+            if (!confirm(tx('confirmDel'))) return;
             DB.items = DB.items.filter(i => i.code !== code);
             saveDB(); renderItemList(); renderStock(); updateStats();
             if (isDesktop()) { dRenderItemTable(); dRenderStock() }
             showToast(tx('tItemDel'));
         }
+
         function renderItemList() {
             const el = $id('item-list'), n = DB.items.length;
             _t('ip-pill', n + (LANG === 'bn' ? tx('sfx') : ' items'));
@@ -4140,9 +4182,7 @@
             el.innerHTML = DB.items.slice().reverse().map(it => { const pm = it.payMethod || 'cash'; return `<div class="list-row"><div class="li-code">${e(it.code)}</div><div class="li-body"><div class="li-name">${e(it.name)}</div><div class="li-sub">🏭 ${e(it.supplier || tx('supUnk'))}${it.date ? ' · ' + it.date : ''}<span class="pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></div></div><div class="li-rt"><div class="li-price">৳${it.price.toFixed(2)}</div><div class="li-qty">${tx('stkLbl')}: ${it.qty}</div></div><div class="row-actions"><button class="act-btn act-edit" onclick="openEditItem('${e(it.code)}')">✏️</button><button class="act-btn act-del" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></div>` }).join('');
         }
 
-        /* ════════════════════════════════════════
-           MOBILE — SALES
-        ════════════════════════════════════════ */
+        /* ══ MOBILE SALES ══ */
         let cart = [], payMethod = 'cash';
         function setPay(m) { payMethod = m;['cash', 'bank', 'mfs'].forEach(p => $id('pay-' + p).classList.toggle('active', p === m)) }
         function doSearch() {
@@ -4177,12 +4217,12 @@
             if (!cart.length) { showToast(tx('tEmpty')); return }
             const cust = $id('cust-name').value.trim() || tx('guest'), tot = parseFloat($id('bv-tot').textContent.replace('৳', '')) || 0, paid = parseFloat($id('bv-paid').value) || 0;
             cart.forEach(c => { const it = DB.items.find(i => i.code === c.code); if (it) it.qty = Math.max(0, it.qty - c.qty) });
-            DB.sales.push({ cust, items: [...cart], total: tot, paid, pay: payMethod, date: new Date().toLocaleString() });
+            DB.sales.push({ id: Date.now(), cust, items: [...cart], total: tot, paid, pay: payMethod, date: new Date().toLocaleString() });
             saveDB(); cart = []; $id('cust-name').value = ''; $id('bv-disc').value = ''; $id('bv-paid').value = '';
-            renderCart(); updateStats(); showToast(tx('tDone') + ' ' + cust); if (isDesktop()) { dRenderCart(); dRenderItemTable(); dRenderStock() }
+            renderCart(); renderSalesList(); updateSalesStats(); updateStats(); showToast(tx('tDone') + ' ' + cust); if (isDesktop()) { dRenderCart(); dRenderItemTable(); dRenderStock(); dRenderSalesTable(); dUpdateSalesStats() }
         }
 
-        /* MOBILE STOCK */
+        /* ══ MOBILE STOCK ══ */
         function renderStock() {
             const q = ($id('stk-search').value || '').toLowerCase();
             const fil = DB.items.filter(i => i.code.toLowerCase().includes(q) || i.name.toLowerCase().includes(q) || (i.supplier || '').toLowerCase().includes(q));
@@ -4193,7 +4233,7 @@
             el.innerHTML = fil.map(it => { const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok'; const badge = { ok: `<span class="s-badge bg-ok">${tx('bgOk')}</span>`, low: `<span class="s-badge bg-low">${tx('bgLow')}</span>`, out: `<span class="s-badge bg-out">${tx('bgOut')}</span>` }[s]; return `<div class="stk-row${s === 'low' ? ' s-low' : s === 'out' ? ' s-out' : ''}"><div class="s-code c-${s}">${e(it.code)}</div><div class="s-body"><div class="s-name">${e(it.name)}</div><div class="s-sup">🏭 ${e(it.supplier || tx('supUnk'))}</div></div><div class="s-rt">${badge}<div class="s-qty">${tx('qtyLbl')}: ${it.qty}</div></div><div class="row-actions"><button class="act-btn act-edit" onclick="openEditItem('${e(it.code)}')">✏️</button><button class="act-btn act-del" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></div>` }).join('');
         }
 
-        /* MOBILE EXPENSE */
+        /* ══ MOBILE EXPENSE ══ */
         let expPayMethod = 'cash';
         function setExpPay(m) { expPayMethod = m;['cash', 'bank', 'mfs'].forEach(p => $id('exp-pay-' + p).classList.toggle('active', p === m)) }
         function initExpenseDate() { const d = new Date(), y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), dd = String(d.getDate()).padStart(2, '0'); const v = `${y}-${m}-${dd}`; $id('ef-date').value = v; if ($id('def-date')) $id('def-date').value = v }
@@ -4221,31 +4261,127 @@
             }).join('');
         }
 
-        /* SCANNER */
+        /* ══ SCANNER ══ */
         let scanStream = null, scanActive = false, lastScanned = '';
         function openScanner() { const m = $id('scan-modal'); m.classList.add('open'); $id('scan-result-bar').classList.remove('show'); $id('scan-nf').classList.remove('show'); $id('scan-err').classList.remove('show'); lastScanned = ''; startCamera() }
         function closeScanner() { $id('scan-modal').classList.remove('open'); stopCamera() }
-        function stopCamera() { scanActive = false; if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null } const v = $id('scan-video'); v.srcObject = null }
+        function stopCamera() { scanActive = false; if (scanStream) { scanStream.getTracks().forEach(t => t.stop()); scanStream = null } $id('scan-video').srcObject = null }
         async function startCamera() { stopCamera(); scanActive = true; const v = $id('scan-video'); try { scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } } }); v.srcObject = scanStream; await v.play(); scheduleScan() } catch (err) { $id('scan-err').classList.add('show'); _t('scan-err-t', tx('scanErrT')); _t('scan-err-s', tx('scanErrS')) } }
         function scheduleScan() { if (!scanActive) return; requestAnimationFrame(() => { if (!scanActive) return; const v = $id('scan-video'); if (v.readyState === v.HAVE_ENOUGH_DATA) { const c = document.createElement('canvas'); c.width = v.videoWidth; c.height = v.videoHeight; const ctx = c.getContext('2d'); ctx.drawImage(v, 0, 0, c.width, c.height); const img = ctx.getImageData(0, 0, c.width, c.height); try { const code = window.jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' }); if (code && code.data && code.data !== lastScanned) { lastScanned = code.data; handleScanResult(code.data) } } catch (err) { } } setTimeout(() => scheduleScan(), 250) }) }
         function handleScanResult(code) { const item = DB.items.find(i => i.code === code || i.barcode === code); const rb = $id('scan-result-bar'), nf = $id('scan-nf'); rb.classList.remove('show'); nf.classList.remove('show'); if (item) { _t('srb-code', item.code); _t('srb-name', item.name + (item.qty <= 0 ? ' ⚠️ স্টক শেষ' : '  ·  স্টক: ' + item.qty)); $id('srb-btn').onclick = () => confirmScanAdd(item.code); rb.classList.add('show'); if (navigator.vibrate) navigator.vibrate([60, 30, 60]) } else { nf.classList.add('show'); nf.textContent = (LANG === 'bn' ? '❌ পণ্য পাওয়া যায়নি: ' : '❌ Item not found: ') + code } }
         function confirmScanAdd(code) { if (!code) return; addToCart(code); $id('scan-result-bar').classList.remove('show'); lastScanned = '' }
         function quickScan() { if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { showToast(LANG === 'bn' ? '⚠️ এই ব্রাউজারে ক্যামেরা সাপোর্ট নেই' : '⚠️ Camera not supported'); return } openScanner() }
 
-        /* ════════════════════════════════════════
-           DESKTOP — ITEM
-        ════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+           DESKTOP — DYNAMIC PRODUCT ROWS
+        ══════════════════════════════════════════ */
+        let dRowIdCounter = 0;
         let dItemPay = 'cash';
         function dSetItemPay(m) { dItemPay = m;['cash', 'bank', 'mfs'].forEach(p => $id('d-item-pay-' + p).classList.toggle('active', p === m)) }
-        function dCalcItem() { const p = parseFloat($id('df-price').value) || 0, q = parseFloat($id('df-qty').value) || 0; $id('df-tamt').value = q && p ? (p * q).toFixed(2) : '' }
-        function dAddItem() {
-            const code = $id('df-code').value.trim(), name = $id('df-name').value.trim();
-            if (!code || !name) { showToast(tx('tNeed')); return }
-            const price = parseFloat($id('df-price').value) || 0, qty = parseFloat($id('df-qty').value) || 0, paid = parseFloat($id('df-paid').value) || 0, sup = $id('df-sup').value.trim();
-            _saveItem(code, name, sup, price, qty, paid, dItemPay);
-            ['df-code', 'df-name', 'df-sup', 'df-price', 'df-qty', 'df-tamt', 'df-paid'].forEach(id => { const e = $id(id); if (e) e.value = '' });
-            dSetItemPay('cash'); dRenderItemTable(); updateStats(); renderItemList();
+
+        function dMakeProductRowHTML(rid, num, isFirst) {
+            const L = TX[LANG];
+            const delBtn = isFirst ? '' : `<button class="d-pr-del" onclick="dRemoveProductRow('${rid}')">✕</button>`;
+            return `<div class="d-product-row${isFirst ? ' first-row' : ''}" id="${rid}">
+        <div class="d-pr-header">
+            <span class="d-pr-num">${L.prLabel || 'পণ্য'} ${num}</span>
+            ${delBtn}
+        </div>
+        <div class="d-g2">
+            <div class="d-fld"><label class="d-lbl">${L.lbCode || 'কোড *'}</label><input class="d-inp d-pr-code" placeholder="${L.phCode || 'ITM001'}" oninput="dUpdatePurchaseSummary()" style="font-family:'JetBrains Mono',monospace;font-size:12px"></div>
+            <div class="d-fld"><label class="d-lbl">${L.lbName || 'নাম *'}</label><input class="d-inp d-pr-name" placeholder="${L.phName || 'পণ্যের নাম'}" oninput="dUpdatePurchaseSummary()"></div>
+        </div>
+        <div class="d-fld"><label class="d-lbl">${L.lbSup || 'সরবরাহকারী'}</label><input class="d-inp d-pr-sup" placeholder="${L.phSup || 'সরবরাহকারীর নাম'}"></div>
+        <div class="d-g2">
+            <div class="d-fld"><label class="d-lbl">${L.lbPrice || 'মূল্য (৳)'}</label><input class="d-inp d-pr-price" type="number" placeholder="0.00" oninput="dUpdatePurchaseSummary()" style="font-family:'JetBrains Mono',monospace"></div>
+            <div class="d-fld"><label class="d-lbl">${L.lbQty || 'পরিমাণ'}</label><input class="d-inp d-pr-qty" type="number" placeholder="0" oninput="dUpdatePurchaseSummary()" style="font-family:'JetBrains Mono',monospace"></div>
+        </div>
+    </div>`;
         }
+
+        function dAddProductRow() {
+            dRowIdCounter++;
+            const rid = 'dpr_' + dRowIdCounter;
+            const container = $id('d-product-rows');
+            const num = container.children.length + 1;
+            const div = document.createElement('div');
+            div.innerHTML = dMakeProductRowHTML(rid, num, num === 1);
+            container.appendChild(div.firstElementChild);
+            dUpdateProductRowNumbers();
+            dUpdatePurchaseSummary();
+        }
+
+        function dRemoveProductRow(rid) {
+            const el = $id(rid); if (el) el.remove();
+            dUpdateProductRowNumbers();
+            dUpdatePurchaseSummary();
+        }
+
+        function dUpdateProductRowNumbers() {
+            const rows = $id('d-product-rows').querySelectorAll('.d-product-row');
+            const L = TX[LANG];
+            rows.forEach((row, i) => {
+                const numEl = row.querySelector('.d-pr-num');
+                if (numEl) numEl.textContent = (L.prLabel || 'পণ্য') + ' ' + (i + 1);
+                const delBtn = row.querySelector('.d-pr-del');
+                if (i === 0 && delBtn) delBtn.remove();
+                else if (i > 0 && !delBtn) { const hd = row.querySelector('.d-pr-header'); if (hd) { const b = document.createElement('button'); b.className = 'd-pr-del'; b.onclick = () => dRemoveProductRow(row.id); b.textContent = '✕'; hd.appendChild(b); } }
+            });
+        }
+
+        function dRerenderProductRowLabels() {
+            const rows = $id('d-product-rows').querySelectorAll('.d-product-row');
+            const L = TX[LANG];
+            rows.forEach((row, i) => {
+                const numEl = row.querySelector('.d-pr-num');
+                if (numEl) numEl.textContent = (L.prLabel || 'পণ্য') + ' ' + (i + 1);
+                const lbls = row.querySelectorAll('.d-lbl');
+                if (lbls[0]) lbls[0].textContent = L.lbCode || 'কোড *';
+                if (lbls[1]) lbls[1].textContent = L.lbName || 'নাম *';
+                if (lbls[2]) lbls[2].textContent = L.lbSup || 'সরবরাহকারী';
+                if (lbls[3]) lbls[3].textContent = L.lbPrice || 'মূল্য (৳)';
+                if (lbls[4]) lbls[4].textContent = L.lbQty || 'পরিমাণ';
+            });
+        }
+
+        function dUpdatePurchaseSummary() {
+            const rows = $id('d-product-rows').querySelectorAll('.d-product-row');
+            let count = 0, total = 0;
+            rows.forEach(row => {
+                const code = row.querySelector('.d-pr-code').value.trim();
+                const name = row.querySelector('.d-pr-name').value.trim();
+                const price = parseFloat(row.querySelector('.d-pr-price').value) || 0;
+                const qty = parseFloat(row.querySelector('.d-pr-qty').value) || 0;
+                if (code && name) count++;
+                total += price * qty;
+            });
+            const sm = $id('d-pur-summary');
+            if (rows.length > 1 || (count > 0 && total > 0)) { sm.classList.add('show'); _t('d-ps-count', count); _t('d-ps-total', '৳' + total.toFixed(2)); }
+            else { sm.classList.remove('show'); }
+        }
+
+        function dSaveAllItems() {
+            const rows = $id('d-product-rows').querySelectorAll('.d-product-row');
+            const paid = parseFloat($id('df-paid').value) || 0;
+            let saved = 0;
+            const perPaid = rows.length > 0 ? paid / rows.length : 0;
+            rows.forEach(row => {
+                const code = row.querySelector('.d-pr-code').value.trim();
+                const name = row.querySelector('.d-pr-name').value.trim();
+                if (!code || !name) return;
+                const sup = row.querySelector('.d-pr-sup').value.trim();
+                const price = parseFloat(row.querySelector('.d-pr-price').value) || 0;
+                const qty = parseFloat(row.querySelector('.d-pr-qty').value) || 0;
+                _saveItem(code, name, sup, price, qty, perPaid, dItemPay, saved === 0 && rows.length === 1);
+                saved++;
+            });
+            if (saved === 0) { showToast(tx('tNeed')); return }
+            $id('d-product-rows').innerHTML = ''; $id('df-paid').value = '';
+            dRowIdCounter = 0; dSetItemPay('cash'); dAddProductRow();
+            dRenderItemTable(); updateStats(); renderItemList();
+            if (saved > 1) showToast((tx('tBulkSaved') || '✅ {{n}} items saved!').replace('{{n}}', saved));
+        }
+
         function dRenderItemTable() {
             const tb = $id('d-item-tbody'), n = DB.items.length;
             _t('dip-pill', n + (LANG === 'bn' ? tx('sfx') : ' items'));
@@ -4254,7 +4390,7 @@
             tb.innerHTML = DB.items.slice().reverse().map(it => { const pm = it.payMethod || 'cash'; return `<tr><td><span class="d-code-badge">${e(it.code)}</span></td><td class="d-name-cell">${e(it.name)}</td><td style="color:var(--tx3);font-size:12px">${e(it.supplier || tx('supUnk'))}</td><td class="d-mono d-acc">৳${it.price.toFixed(2)}</td><td class="d-mono ${it.qty === 0 ? 'd-red' : it.qty <= 5 ? 'd-amb' : 'd-grn'}">${it.qty}</td><td><span class="d-pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></td><td><div class="d-act-wrap"><button class="d-act-edit" onclick="openEditItem('${e(it.code)}')">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button><button class="d-del-btn" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></td></tr>` }).join('');
         }
 
-        /* DESKTOP — SALES */
+        /* ══ DESKTOP SALES ══ */
         let dPayMethod = 'cash';
         function dSetPay(m) { dPayMethod = m;['cash', 'bank', 'mfs'].forEach(p => $id('d-pay-' + p).classList.toggle('active', p === m)) }
         function dDoSearch() {
@@ -4280,21 +4416,18 @@
         }
         function dChQty(i, d) { cart[i].qty += d; if (cart[i].qty <= 0) cart.splice(i, 1); dRenderCart(); renderCart() }
         function dDelCart(i) { cart.splice(i, 1); dRenderCart(); renderCart() }
-        function dCalcBill() {
-            const sub = cart.reduce((a, c) => a + c.price * c.qty, 0), disc = parseFloat($id('dbv-disc').value) || 0, tot = Math.max(0, sub - disc);
-            _t('dbv-sub', '৳' + sub.toFixed(2)); _t('dbv-tot', '৳' + tot.toFixed(2)); dCalcDue();
-        }
+        function dCalcBill() { const sub = cart.reduce((a, c) => a + c.price * c.qty, 0), disc = parseFloat($id('dbv-disc').value) || 0, tot = Math.max(0, sub - disc); _t('dbv-sub', '৳' + sub.toFixed(2)); _t('dbv-tot', '৳' + tot.toFixed(2)); dCalcDue() }
         function dCalcDue() { const tot = parseFloat($id('dbv-tot').textContent.replace('৳', '')) || 0, paid = parseFloat($id('dbv-paid').value) || 0; _t('dbv-due', '৳' + Math.max(0, tot - paid).toFixed(2)) }
         function dCompleteSale() {
             if (!cart.length) { showToast(tx('tEmpty')); return }
             const cust = $id('d-cust-name').value.trim() || tx('guest'), tot = parseFloat($id('dbv-tot').textContent.replace('৳', '')) || 0, paid = parseFloat($id('dbv-paid').value) || 0;
             cart.forEach(c => { const it = DB.items.find(i => i.code === c.code); if (it) it.qty = Math.max(0, it.qty - c.qty) });
-            DB.sales.push({ cust, items: [...cart], total: tot, paid, pay: dPayMethod, date: new Date().toLocaleString() });
+            DB.sales.push({ id: Date.now(), cust, items: [...cart], total: tot, paid, pay: dPayMethod, date: new Date().toLocaleString() });
             saveDB(); cart = []; $id('d-cust-name').value = ''; $id('dbv-disc').value = ''; $id('dbv-paid').value = '';
-            dRenderCart(); renderCart(); updateStats(); dRenderItemTable(); dRenderStock(); showToast(tx('tDone') + ' ' + cust);
+            dRenderCart(); renderCart(); updateStats(); dRenderItemTable(); dRenderStock(); dRenderSalesTable(); dUpdateSalesStats(); renderSalesList(); updateSalesStats(); showToast(tx('tDone') + ' ' + cust);
         }
 
-        /* DESKTOP — STOCK */
+        /* ══ DESKTOP STOCK ══ */
         function dRenderStock() {
             const q = ($id('d-stk-search')?.value || '').toLowerCase();
             const fil = DB.items.filter(i => i.code.toLowerCase().includes(q) || i.name.toLowerCase().includes(q) || (i.supplier || '').toLowerCase().includes(q));
@@ -4304,7 +4437,7 @@
             tb.innerHTML = fil.map(it => { const s = it.qty === 0 ? 'out' : it.qty <= 5 ? 'low' : 'ok'; const badge = { ok: `<span class="d-stk-badge dsb-ok">${tx('bgOk')}</span>`, low: `<span class="d-stk-badge dsb-low">${tx('bgLow')}</span>`, out: `<span class="d-stk-badge dsb-out">${tx('bgOut')}</span>` }[s]; return `<tr><td><span class="d-code-badge">${e(it.code)}</span></td><td class="d-name-cell">${e(it.name)}</td><td style="color:var(--tx3);font-size:12px">${e(it.supplier || tx('supUnk'))}</td><td class="d-mono d-acc">৳${it.price.toFixed(2)}</td><td class="d-mono ${s === 'out' ? 'd-red' : s === 'low' ? 'd-amb' : 'd-grn'}">${it.qty}</td><td>${badge}</td><td><div class="d-act-wrap"><button class="d-act-edit" onclick="openEditItem('${e(it.code)}')">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button><button class="d-del-btn" onclick="deleteItem('${e(it.code)}')">🗑️</button></div></td></tr>` }).join('');
         }
 
-        /* DESKTOP — EXPENSE */
+        /* ══ DESKTOP EXPENSE ══ */
         let dExpPay = 'cash';
         function dSetExpPay(m) { dExpPay = m;['cash', 'bank', 'mfs'].forEach(p => $id('d-exp-pay-' + p).classList.toggle('active', p === m)) }
         function dAddExpense() {
@@ -4332,97 +4465,180 @@
             }).join('');
         }
 
-        /* DESKTOP — RENDER ALL */
-        function dRenderAll() {
-            updateStats(); dRenderItemTable(); dRenderCart(); dRenderStock(); dRenderExpenseTable(); dUpdateExpenseStats();
+        function dRenderAll() { updateStats(); dRenderItemTable(); dRenderCart(); dRenderStock(); dRenderExpenseTable(); dUpdateExpenseStats(); dRenderSalesTable(); dUpdateSalesStats() }
+
+        /* ══ SALES STATS & LIST (MOBILE) ══ */
+        function updateSalesStats() {
+            const S = DB.sales;
+            const total = S.reduce((a, b) => a + b.total, 0);
+            const paid = S.reduce((a, b) => a + (b.paid || 0), 0);
+            const due = S.reduce((a, b) => a + Math.max(0, b.total - (b.paid || 0)), 0);
+            _t('ssv-total', '৳' + total.toFixed(0)); _t('ssv-count', S.length);
+            _t('ssv-paid', '৳' + paid.toFixed(0)); _t('ssv-due', '৳' + due.toFixed(0));
+        }
+        function deleteSale(id) {
+            if (!confirm(tx('confirmDel'))) return;
+            DB.sales = DB.sales.filter(s => s.id !== id); saveDB();
+            renderSalesList(); updateSalesStats();
+            if (isDesktop()) { dRenderSalesTable(); dUpdateSalesStats() }
+            showToast(tx('tSaleDel'));
+        }
+        function openEditSale(id) {
+            const s = DB.sales.find(x => x.id === id); if (!s) return;
+            const L = TX[LANG];
+            _t('esm-title', '✏️ ' + (LANG === 'bn' ? 'বিক্রয় সম্পাদনা' : 'Edit Sale'));
+            _t('esm-btn', L.btnUpdate);
+            _t('esmlb-cust', L.lbCname); _t('esmlb-paid', L.blPaid); _t('esmlb-pay', L.lbPayby);
+            _t('esmpc-lbl', L.pcL); _t('esmpb-lbl', L.pbL); _t('esmpm-lbl', L.pmL);
+            $id('esm-id').value = id;
+            $id('esm-cust').value = s.cust || '';
+            $id('esm-paid').value = s.paid || 0;
+            esmPay = s.pay || 'cash';['cash', 'bank', 'mfs'].forEach(p => $id('esm-pay-' + p).classList.toggle('active', p === esmPay));
+            // show items summary read-only
+            _t('esm-items-summary', s.items.map(i => i.name + (i.qty > 1 ? ' ×' + i.qty : '')).join(', '));
+            _t('esm-total-val', '৳' + s.total.toFixed(2));
+            $id('edit-sale-modal').classList.add('open');
+        }
+        function closeEditSale() { $id('edit-sale-modal').classList.remove('open') }
+        function saveEditSale() {
+            const id = parseInt($id('esm-id').value);
+            const s = DB.sales.find(x => x.id === id); if (!s) return;
+            s.cust = $id('esm-cust').value.trim() || tx('guest');
+            s.paid = parseFloat($id('esm-paid').value) || 0;
+            s.pay = esmPay;
+            saveDB(); closeEditSale();
+            renderSalesList(); updateSalesStats();
+            if (isDesktop()) { dRenderSalesTable(); dUpdateSalesStats() }
+            showToast(LANG === 'bn' ? '✅ বিক্রয় আপডেট!' : '✅ Sale updated!');
+        }
+        function renderSalesList() {
+            updateSalesStats();
+            const el = $id('sales-list'), S = DB.sales;
+            _t('sales-pill', S.length + (LANG === 'bn' ? tx('sfx') : ' items'));
+            if (!S.length) {
+                el.innerHTML = `<div class="empty"><div class="empty-ic">🧾</div><div class="empty-t">${tx('emSalesT')}</div><div class="empty-s">${tx('emSalesS')}</div></div>`; return;
+            }
+            const pl = LANG === 'bn' ? PAY_LABELS_BN : PAY_LABELS_EN;
+            el.innerHTML = S.slice().reverse().map(s => {
+                const due = Math.max(0, s.total - (s.paid || 0));
+                const pm = s.pay || 'cash';
+                const itemsSummary = s.items.map(i => e(i.name) + (i.qty > 1 ? ' ×' + i.qty : '')).join(', ');
+                const dueBadge = due > 0
+                    ? `<span style="background:var(--red-l);color:var(--red);border:1px solid var(--red-b);padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;">৳${due.toFixed(0)} ${tx('dueBadge')}</span>`
+                    : `<span style="background:var(--grn-l);color:var(--grn2);border:1px solid var(--grn-b);padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;">✓ ${tx('paidBadge')}</span>`;
+                const sid = s.id || 0;
+                return `<div class="list-row" style="flex-direction:column;align-items:stretch;gap:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+                    <div style="width:34px;height:34px;border-radius:var(--r8);background:var(--grn-l);border:1px solid var(--grn-b);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">👤</div>
+                    <div style="min-width:0;">
+                        <div style="font-size:14px;font-weight:700;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${e(s.cust)}</div>
+                        <div style="font-size:11px;color:var(--tx3);margin-top:1px;">${s.date || ''}</div>
+                    </div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;">
+                    <div style="font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--grn);">৳${s.total.toFixed(2)}</div>
+                    <div style="margin-top:3px;">${dueBadge}</div>
+                </div>
+            </div>
+            <div style="background:var(--sf2);border-radius:var(--r8);padding:7px 10px;font-size:11px;color:var(--tx3);line-height:1.5;">
+                📦 ${itemsSummary} &nbsp;·&nbsp; ${PAY_ICONS[pm]} ${pl[pm]}
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:6px;">
+                <button class="act-btn act-edit" onclick="openEditSale(${sid})" style="width:auto;padding:4px 10px;font-size:11px;font-weight:600;font-family:'Hind Siliguri',sans-serif;border-radius:7px;">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button>
+                <button class="act-btn act-del" onclick="deleteSale(${sid})" style="width:auto;padding:4px 10px;font-size:11px;font-weight:600;font-family:'Hind Siliguri',sans-serif;border-radius:7px;">🗑️ ${LANG === 'bn' ? 'মুছুন' : 'Delete'}</button>
+            </div>
+        </div>`;
+            }).join('');
         }
 
-        /* ════════════════════════════════════════
-           EDIT ITEM MODAL
-        ════════════════════════════════════════ */
+        /* ══ SALES STATS & TABLE (DESKTOP) ══ */
+        function dUpdateSalesStats() {
+            const S = DB.sales;
+            const total = S.reduce((a, b) => a + b.total, 0);
+            const paid = S.reduce((a, b) => a + (b.paid || 0), 0);
+            const due = S.reduce((a, b) => a + Math.max(0, b.total - (b.paid || 0)), 0);
+            _t('dssv-total', '৳' + total.toFixed(0)); _t('dssv-count', S.length);
+            _t('dssv-paid', '৳' + paid.toFixed(0)); _t('dssv-due', '৳' + due.toFixed(0));
+        }
+        function dRenderSalesTable() {
+            const tb = $id('d-sales-tbody'), S = DB.sales;
+            _t('d-sales-pill', S.length + (LANG === 'bn' ? tx('sfx') : ' items'));
+            if (!S.length) { tb.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--tx3);font-size:13px">🧾 ${tx('emSalesT')}</td></tr>`; return }
+            const pl = LANG === 'bn' ? PAY_LABELS_BN : PAY_LABELS_EN;
+            tb.innerHTML = S.slice().reverse().map(s => {
+                const due = Math.max(0, s.total - (s.paid || 0));
+                const pm = s.pay || 'cash';
+                const itemsSummary = s.items.map(i => e(i.name) + (i.qty > 1 ? ' ×' + i.qty : '')).join(', ');
+                const dueBadge = due > 0
+                    ? `<span class="d-stk-badge dsb-out">৳${due.toFixed(0)} ${tx('dueBadge')}</span>`
+                    : `<span class="d-stk-badge dsb-ok">✓ ${tx('paidBadge')}</span>`;
+                const sid = s.id || 0;
+                return `<tr>
+            <td><div style="font-weight:700;color:var(--tx)">${e(s.cust)}</div></td>
+            <td style="font-size:11px;color:var(--tx3);max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${itemsSummary}</td>
+            <td class="d-mono d-grn">৳${s.total.toFixed(2)}</td>
+            <td class="d-mono" style="color:var(--tx2)">৳${(s.paid || 0).toFixed(2)}</td>
+            <td>${dueBadge}</td>
+            <td><span class="d-pay-badge">${PAY_ICONS[pm]} ${pl[pm]}</span></td>
+            <td style="font-size:11px;color:var(--tx3);white-space:nowrap">${s.date || ''}</td>
+            <td><div class="d-act-wrap">
+                <button class="d-act-edit" onclick="openEditSale(${sid})">✏️ ${LANG === 'bn' ? 'এডিট' : 'Edit'}</button>
+                <button class="d-del-btn" onclick="deleteSale(${sid})">🗑️</button>
+            </div></td>
+        </tr>`;
+            }).join('');
+        }
+
+        /* ══ EDIT ITEM MODAL ══ */
         let eimPay = 'cash';
+        let esmPay = 'cash';
         function setEimPay(m) { eimPay = m;['cash', 'bank', 'mfs'].forEach(p => $id('eim-pay-' + p).classList.toggle('active', p === m)) }
         function openEditItem(code) {
             const it = DB.items.find(i => i.code === code); if (!it) return;
             const L = TX[LANG];
-            _t('eim-title', '✏️ ' + (L.editItem || 'Edit Item'));
-            _t('eim-btn', L.btnUpdate || 'Update');
-            _t('eilb-code', L.lbCode); _t('eilb-name', L.lbName); _t('eilb-sup', L.lbSup);
-            _t('eilb-price', L.lbPrice); _t('eilb-qty', L.lbQty); _t('eilb-paid', L.lbPaid);
+            _t('eim-title', '✏️ ' + (L.editItem || 'Edit Item')); _t('eim-btn', L.btnUpdate);
+            _t('eilb-code', L.lbCode || 'কোড'); _t('eilb-name', L.lbName || 'নাম *'); _t('eilb-sup', L.lbSup || 'সরবরাহকারী');
+            _t('eilb-price', L.lbPrice || 'মূল্য'); _t('eilb-qty', 'বর্তমান স্টক'); _t('eilb-paid', L.lbPaid);
             _t('eipc-lbl', L.pcL); _t('eipb-lbl', L.pbL); _t('eipm-lbl', L.pmL);
-            $id('eim-code-orig').value = it.code;
-            $id('eim-code').value = it.code;
-            $id('eim-name').value = it.name;
-            $id('eim-sup').value = it.supplier || '';
-            $id('eim-price').value = it.price || '';
-            $id('eim-qty').value = it.qty || 0;
-            $id('eim-paid').value = it.paidAmt || '';
-            eimPay = it.payMethod || 'cash';
-            ['cash', 'bank', 'mfs'].forEach(p => $id('eim-pay-' + p).classList.toggle('active', p === eimPay));
+            $id('eim-code-orig').value = it.code; $id('eim-code').value = it.code; $id('eim-name').value = it.name;
+            $id('eim-sup').value = it.supplier || ''; $id('eim-price').value = it.price || ''; $id('eim-qty').value = it.qty || 0; $id('eim-paid').value = it.paidAmt || '';
+            eimPay = it.payMethod || 'cash';['cash', 'bank', 'mfs'].forEach(p => $id('eim-pay-' + p).classList.toggle('active', p === eimPay));
             $id('edit-item-modal').classList.add('open');
         }
         function closeEditItem() { $id('edit-item-modal').classList.remove('open') }
         function saveEditItem() {
-            const origCode = $id('eim-code-orig').value;
-            const newCode = $id('eim-code').value.trim();
-            const name = $id('eim-name').value.trim();
+            const origCode = $id('eim-code-orig').value, newCode = $id('eim-code').value.trim(), name = $id('eim-name').value.trim();
             if (!name) { showToast(tx('tNeed')); return }
             const it = DB.items.find(i => i.code === origCode); if (!it) return;
-            // if code changed and new code already exists elsewhere, reject
             if (newCode !== origCode && DB.items.find(i => i.code === newCode)) { showToast('⚠️ কোড আগে থেকে আছে!'); return }
-            it.code = newCode || origCode;
-            it.name = name;
-            it.supplier = $id('eim-sup').value.trim();
-            it.price = parseFloat($id('eim-price').value) || it.price;
-            it.qty = parseFloat($id('eim-qty').value) || 0;
-            it.paidAmt = parseFloat($id('eim-paid').value) || it.paidAmt || 0;
-            it.payMethod = eimPay;
-            saveDB(); closeEditItem();
-            renderItemList(); renderStock(); updateStats();
-            if (isDesktop()) { dRenderItemTable(); dRenderStock() }
-            showToast(tx('tItemEdit'));
+            it.code = newCode || origCode; it.name = name; it.supplier = $id('eim-sup').value.trim(); it.price = parseFloat($id('eim-price').value) || it.price; it.qty = parseFloat($id('eim-qty').value) || 0; it.paidAmt = parseFloat($id('eim-paid').value) || it.paidAmt || 0; it.payMethod = eimPay;
+            saveDB(); closeEditItem(); renderItemList(); renderStock(); updateStats(); if (isDesktop()) { dRenderItemTable(); dRenderStock() } showToast(tx('tItemEdit'));
         }
 
-        /* ════════════════════════════════════════
-           EDIT EXPENSE MODAL
-        ════════════════════════════════════════ */
+        /* ══ EDIT EXPENSE MODAL ══ */
         let eemPay = 'cash';
         function setEemPay(m) { eemPay = m;['cash', 'bank', 'mfs'].forEach(p => $id('eem-pay-' + p).classList.toggle('active', p === m)) }
         function openEditExp(id) {
             const ex = DB.expenses.find(x => x.id === id); if (!ex) return;
             const L = TX[LANG];
-            _t('eem-title', '✏️ ' + (L.editExp || 'Edit Expense'));
-            _t('eem-btn', L.btnUpdate || 'Update');
-            _t('eelb-date', L.elbDate); _t('eelb-cat', L.elbCat); _t('eelb-desc', L.elbDesc);
-            _t('eelb-amt', L.elbAmt); _t('eelb-pay', L.elbPay);
+            _t('eem-title', '✏️ ' + (L.editExp || 'Edit Expense')); _t('eem-btn', L.btnUpdate);
+            _t('eelb-date', L.elbDate); _t('eelb-cat', L.elbCat); _t('eelb-desc', L.elbDesc); _t('eelb-amt', L.elbAmt); _t('eelb-pay', L.elbPay);
             _t('eepc-lbl', L.epc); _t('eepb-lbl', L.epb); _t('eepm-lbl', L.epm);
-            $id('eem-id').value = ex.id;
-            $id('eem-date').value = ex.date || '';
-            $id('eem-cat').value = ex.cat || '';
-            $id('eem-desc').value = ex.desc || '';
-            $id('eem-amt').value = ex.amt || '';
-            eemPay = ex.payMethod || 'cash';
-            ['cash', 'bank', 'mfs'].forEach(p => $id('eem-pay-' + p).classList.toggle('active', p === eemPay));
+            $id('eem-id').value = ex.id; $id('eem-date').value = ex.date || ''; $id('eem-cat').value = ex.cat || ''; $id('eem-desc').value = ex.desc || ''; $id('eem-amt').value = ex.amt || '';
+            eemPay = ex.payMethod || 'cash';['cash', 'bank', 'mfs'].forEach(p => $id('eem-pay-' + p).classList.toggle('active', p === eemPay));
             $id('edit-exp-modal').classList.add('open');
         }
         function closeEditExp() { $id('edit-exp-modal').classList.remove('open') }
         function saveEditExp() {
-            const id = parseInt($id('eem-id').value);
-            const cat = $id('eem-cat').value, amt = parseFloat($id('eem-amt').value) || 0;
+            const id = parseInt($id('eem-id').value), cat = $id('eem-cat').value, amt = parseFloat($id('eem-amt').value) || 0;
             if (!cat) { showToast(tx('eNeedCat')); return } if (!amt || amt <= 0) { showToast(tx('eNeedAmt')); return }
             const ex = DB.expenses.find(x => x.id === id); if (!ex) return;
-            ex.cat = cat;
-            ex.desc = $id('eem-desc').value.trim() || (TX[LANG].catNames[cat] || cat);
-            ex.amt = amt;
-            ex.date = $id('eem-date').value || ex.date;
-            ex.payMethod = eemPay;
-            saveDB(); closeEditExp();
-            renderExpenseList(); updateExpenseStats();
-            if (isDesktop()) { dRenderExpenseTable(); dUpdateExpenseStats() }
-            showToast(tx('tExpEdit'));
+            ex.cat = cat; ex.desc = $id('eem-desc').value.trim() || (TX[LANG].catNames[cat] || cat); ex.amt = amt; ex.date = $id('eem-date').value || ex.date; ex.payMethod = eemPay;
+            saveDB(); closeEditExp(); renderExpenseList(); updateExpenseStats(); if (isDesktop()) { dRenderExpenseTable(); dUpdateExpenseStats() } showToast(tx('tExpEdit'));
         }
 
-        /* UTILS */
+        /* ══ UTILS ══ */
         function e(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') }
         document.addEventListener('click', ev => {
             if (!ev.target.closest('.sug-wrap')) $id('sug-list').style.display = 'none';
@@ -4431,11 +4647,17 @@
         $id('scan-modal').addEventListener('click', ev => { if (ev.target === $id('scan-modal')) closeScanner() });
         $id('edit-item-modal').addEventListener('click', ev => { if (ev.target === $id('edit-item-modal')) closeEditItem() });
         $id('edit-exp-modal').addEventListener('click', ev => { if (ev.target === $id('edit-exp-modal')) closeEditExp() });
+        $id('edit-sale-modal').addEventListener('click', ev => { if (ev.target === $id('edit-sale-modal')) closeEditSale() });
 
-        /* INIT */
+        /* ══ INIT ══ */
         initExpenseDate();
+        // Initialize with first product row
+        addProductRow();
+        dAddProductRow();
         applyLang();
         checkLayout();
+        // Initial renders
+        updateSalesStats();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 </body>
